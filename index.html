@@ -9,7 +9,12 @@
 
   <!-- Bootstrap  -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
 
+  <link rel="stylesheet" href="stylesheets/main.css">
+  <link rel="scripts" href="scripts/main.js">
 
   <!-- Optional theme
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
@@ -22,42 +27,85 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarText">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
-      </li>
-    </ul>
-    <span class="navbar-text">
-      Some text
-    </span>
-  </div>
+  <a href="t" class="filter"><i class="fa fa-filter"></i><span class="filter-text"> Filter</span></a>
+  <p class="title"> Welcome to </p>
+  <p class="title-name"> Dog-Date </p>
+  <button class="login-button" onclick="myFunction()">Login</button>
+  <a class="w3-xxlarge w3-text-white"><i class="fa fa-user"></i></a>
 </nav>
-</br>
+
 <body class="container-fluid">
-    <div class="d-flex flex-wrap justify-content-around">
+   <div class="d-flex flex-wrap justify-content-around">
+
       <div class="card col-sm-2 m-2">
         <img class="img-fluid w-100 pt-3" src="https://hips.hearstapps.com/ghk.h-cdn.co/assets/17/30/2560x1280/landscape-1500925839-golden-retriever-puppy.jpg?resize=480:*"></img>
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <h5 class="card-title">Snoopy</h5>
+          <p class="card-doginfo">Shepherd, 3 years</p>
+          <a href="t" class="card-date"><i class="fa fa-calendar"></i><span class="nav-text"> 10/13/2019</span></a>
+          <a href="t" class="card-time"><i class="fa fa-bell"></i><span class="nav-text"> 4pm</span></a>
+          <a href="t" class="card-location"><i class="fa fa-thumb-tack"></i><span class="nav-text"> Fullerton</span></a>
+          <a href="#" class="btn btn-primary">See more</a>
         </div>
       </div>
+
+      <div class="card col-sm-2 m-2">
+        <img class="img-fluid w-100 pt-3" src="https://hips.hearstapps.com/ghk.h-cdn.co/assets/17/30/2560x1280/landscape-1500925839-golden-retriever-puppy.jpg?resize=480:*"></img>
+        <div class="card-body">
+          <h5 class="card-title">Snoopy</h5>
+          <p class="card-doginfo">Shepherd, 3 years</p>
+          <a href="t" class="card-date"><i class="fa fa-calendar"></i><span class="nav-text"> 10/13/2019</span></a>
+          <a href="t" class="card-time"><i class="fa fa-bell"></i><span class="nav-text"> 4pm</span></a>
+          <a href="t" class="card-location"><i class="fa fa-thumb-tack"></i><span class="nav-text"> Fullerton</span></a>
+          <a href="#" class="btn btn-primary">See more</a>
+        </div>
+      </div>
+
+      <div class="card col-sm-2 m-2">
+        <img class="img-fluid w-100 pt-3" src="https://hips.hearstapps.com/ghk.h-cdn.co/assets/17/30/2560x1280/landscape-1500925839-golden-retriever-puppy.jpg?resize=480:*"></img>
+        <div class="card-body">
+          <h5 class="card-title">Snoopy</h5>
+          <p class="card-doginfo">Shepherd, 3 years</p>
+          <a href="t" class="card-date"><i class="fa fa-calendar"></i><span class="nav-text"> 10/13/2019</span></a>
+          <a href="t" class="card-time"><i class="fa fa-bell"></i><span class="nav-text"> 4pm</span></a>
+          <a href="t" class="card-location"><i class="fa fa-thumb-tack"></i><span class="nav-text"> Fullerton</span></a>
+          <a href="#" class="btn btn-primary">See more</a>
+        </div>
+      </div>
+
+      <div class="card col-sm-2 m-2">
+        <img class="img-fluid w-100 pt-3" src="https://hips.hearstapps.com/ghk.h-cdn.co/assets/17/30/2560x1280/landscape-1500925839-golden-retriever-puppy.jpg?resize=480:*"></img>
+        <div class="card-body">
+          <h5 class="card-title">Snoopy</h5>
+          <p class="card-doginfo">Shepherd, 3 years</p>
+          <a href="t" class="card-date"><i class="fa fa-calendar"></i><span class="nav-text"> 10/13/2019</span></a>
+          <a href="t" class="card-time"><i class="fa fa-bell"></i><span class="nav-text"> 4pm</span></a>
+          <a href="t" class="card-location"><i class="fa fa-thumb-tack"></i><span class="nav-text"> Fullerton</span></a>
+          <a href="#" class="btn btn-primary">See more</a>
+        </div>
+      </div>
+
+      <div class="card col-sm-2 m-2">
+        <img class="img-fluid w-100 pt-3" src="https://hips.hearstapps.com/ghk.h-cdn.co/assets/17/30/2560x1280/landscape-1500925839-golden-retriever-puppy.jpg?resize=480:*"></img>
+        <div class="card-body">
+          <h5 class="card-title">Snoopy</h5>
+          <p class="card-doginfo">Shepherd, 3 years</p>
+          <a href="t" class="card-date"><i class="fa fa-calendar"></i><span class="nav-text"> 10/13/2019</span></a>
+          <a href="t" class="card-time"><i class="fa fa-bell"></i><span class="nav-text"> 4pm</span></a>
+          <a href="t" class="card-location"><i class="fa fa-thumb-tack"></i><span class="nav-text"> Fullerton</span></a>
+          <a href="#" class="btn btn-primary">See more</a>
+        </div>
+      </div>
+
     </div>
+
+    <a class="w3-xxxlarge w3-text-dark"><i class="fa fa-plus-circle"></i></a>
+
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" charset="utf-8"></script>
+
 </body>
 
 </html>

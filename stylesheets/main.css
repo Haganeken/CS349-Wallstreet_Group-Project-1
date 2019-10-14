@@ -1,0 +1,87 @@
+.w3-text-darkred {color:#fff !important; color:#96302e !important}
+.w3-text-dark {color: #333333 !important}
+
+.title {
+  color: white;
+  font-size: 30px;
+  left: 280px;
+  position: relative;
+  top: 7px;
+}
+
+.title-name {
+  color: #96302e;
+  font-family: 'Dancing Script', cursive;
+  font-size: 60px;
+  left: 45%;
+  position: absolute;
+  transform: rotate(-10deg);
+}
+
+.filter {
+  color: white;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.login-button {
+  background-color: inherit;
+  border: none;
+  color: white;
+  font-size: 16px;
+  position:absolute;
+  right: 60px;
+}
+
+.login-button:hover, .filter:hover {
+  color: grey;
+  text-decoration: none;
+}
+
+.fa-user {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.fa-user:hover {
+  color: grey;
+  cursor: pointer;
+}
+
+.card-body {
+  font-size: 14px;
+}
+
+.card-title {
+  font-weight: 700;
+}
+
+.card-date, .card-time, .card-location {
+  display: block;
+  padding: 2px;
+  pointer-events: none;
+}
+
+.fa-thumb-tack {
+  margin-left: 3px;
+}
+
+.btn  {
+  background-color: #96302e;
+  border: none;
+  margin-top: 20px;
+}
+
+.btn:hover {
+  background-color: #cd5f5d;
+}
+
+.fa-plus-circle {
+  float: right;
+}
+
+.fa-plus-circle:hover {
+  color: grey;
+  cursor: pointer;
+}
