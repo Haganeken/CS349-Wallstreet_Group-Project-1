@@ -1,6 +1,11 @@
 .w3-text-darkred {color:#fff !important; color:#96302e !important}
 .w3-text-dark {color: #333333 !important}
 
+.navbar {
+  height: 70px;
+  margin-bottom: 15px;
+}
+
 .title {
   color: white;
   font-size: 30px;
@@ -18,13 +23,22 @@
   transform: rotate(-10deg);
 }
 
+.my-dates {
+  color: #333333;
+  display: inline-block;
+  font-family: 'Dancing Script', cursive;
+  font-size: 40px;
+  left: 45%;
+  position: relative;
+}
+
 .filter {
   color: white;
   font-size: 16px;
   text-decoration: none;
 }
 
-.login-button {
+.login-button, .username {
   background-color: inherit;
   border: none;
   color: white;
@@ -33,20 +47,10 @@
   right: 60px;
 }
 
-.login-button:hover, .filter:hover {
-  color: grey;
-  text-decoration: none;
-}
-
 .fa-user {
   position: absolute;
   right: 20px;
   top: 20px;
-}
-
-.fa-user:hover {
-  color: grey;
-  cursor: pointer;
 }
 
 .card-body {
@@ -57,10 +61,20 @@
   font-weight: 700;
 }
 
+.title-detail {
+  font-weight: 700;
+  margin-top: 30px;
+
+}
+
 .card-date, .card-time, .card-location {
   display: block;
   padding: 2px;
   pointer-events: none;
+}
+
+.card-date-detail, .card-time-detail, .card-location-detail {
+  padding-right: 20px;
 }
 
 .fa-thumb-tack {
@@ -81,7 +95,40 @@
   float: right;
 }
 
-.fa-plus-circle:hover {
+.login-button:hover, .filter:hover, .fa-user:hover, .fa-plus-circle:hover, .back-button:hover {
   color: grey;
   cursor: pointer;
+  text-decoration: none;
+}
+
+.back-button {
+  color: white;
+  font-size: 30px;
+}
+
+.email {
+  display: inline;
+}
+
+.email-address {
+  text-decoration: underline;
+}
+
+.img-fluid-detail{
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+.details-label {
+  display: block;
+}
+
+.create-button {
+  margin-top: 20px;
+}
+
+.title-new-event {
+  color: #333333;
+  font-family: 'Dancing Script', cursive;
+  font-size: 40px;
 }
