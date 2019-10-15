@@ -1,0 +1,162 @@
+/* VARIABLES */
+:root {
+    --color-dark-red: #96302E;
+    --color-black: #343330;
+    --color-light-blue: #D8DAD3;
+    --color-white: #FFEDDF;
+    --color-grey: #8A817C;
+}
+
+/* TAGS */
+body {
+    background-color: var(--color-black);
+}
+
+nav {
+    background-color: var(--color-grey);
+    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+}
+
+/* NAV BAR */
+.title-name {
+    color: var(--color-dark-red);
+    font-family: 'Dancing Script', cursive;
+    font-size: 60px;
+    transform: rotate(-10deg);
+    text-align: center;
+}
+
+.login-button:hover, .filter:hover {
+    color: grey;
+    text-decoration: none;
+}
+
+.fa-user {
+    right: 20px;
+    top: 20px;
+}
+
+.fa-user:hover {
+    color: grey;
+    cursor: pointer;
+}
+
+/* FILTER BAR */
+.filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin: .5rem;
+    border: 2px solid var(--color-grey);
+    border-radius: .75rem;
+}
+
+.filter-bar .dropdown {
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+}
+
+.filter-bar .btn {
+    background-color: var(--color-grey);
+}
+
+.filter-bar .btn:hover {
+    background-color: var(--color-dark-red);
+}
+
+/* CONTAINER */
+
+.container-card {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.container-card .card {
+    margin: 1rem;
+}
+
+/* CARD */
+.card {
+    background-color: var(--color-light-blue);
+    width: 200rem;
+}
+
+.card-body {
+    font-size: 14px;
+    padding: .75rem;
+    position: relative;
+}
+
+.card-title {
+    font-weight: 600;
+}
+
+.card-desc {
+    font-weight: 100;
+    font-size: 15px;
+}
+
+.card-grid {
+    display: inline-grid;
+    grid-template-columns: auto auto;
+    grid-column-gap: 0.5rem;
+    padding-bottom: 2rem;
+}
+
+.card-grid-wide {
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+.card-date, .card-time, .card-location {
+    display: block;
+    padding: 2px;
+    pointer-events: none;
+}
+
+.fa-thumb-tack {
+    margin-left: 3px;
+}
+
+.fa {
+    align-self: center;
+}
+
+/* BUTTONS */
+.btn {
+    background-color: var(--color-dark-red);
+    border: None;
+}
+
+.btn-more {
+    position: absolute;
+    bottom: -7%;
+    right: 10%;
+    left: 10%;
+}
+
+.btn:hover, .btn:focus {
+    background-color: rgb(182, 46, 46);
+}
+
+.card-body .btn {
+    margin-top: 20px;
+}
+
+/* ADD CARD BUTTON */
+.w3-text-dark {
+    color: var(--color-light-blue) !important
+}
+
+.fa-plus-circle {
+    float: right;
+}
+
+.fa-plus-circle:hover {
+    color: grey;
+    cursor: pointer;
+}
