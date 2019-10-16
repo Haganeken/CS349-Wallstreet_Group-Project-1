@@ -64,10 +64,6 @@ nav {
     color: var(--color-white);
 }
 
-.filter-bar .btn:hover {
-    background-color: var(--color-dark-red);
-}
-
 /* DROPDOWN */
 .dropdown-menu {
     background-color: var(--color-grey);
