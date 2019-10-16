@@ -5,107 +5,192 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <title>Bootstrap 101 Template</title>
+  <title>Dog-Date</title>
 
-  <!-- Bootstrap  -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
+    <!-- Bootstrap  -->
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://www.w3schools.com/w3css/4/w3.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="stylesheets/main.css">
-  <link rel="scripts" href="scripts/main.js">
+    <link href="stylesheets/main.css" rel="stylesheet">
+    <link href="scripts/main.js" rel="scripts">
 
-  <!-- Optional theme
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-  -->
+    <!-- Optional theme
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    -->
 
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a href="t" class="filter"><i class="fa fa-filter"></i><span class="filter-text"> Filter</span></a>
-  <p class="title"> Welcome to </p>
-  <p class="title-name"> Dog-Date </p>
-  <button class="login-button" onclick="myFunction()">Login</button>
-  <a class="w3-xxlarge w3-text-white"><i class="fa fa-user"></i></a>
+
+<body class="container-fluid ">
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <p class="title-name">Dog-Date</p>
+        </div>
+        <div class="col-sm-4 d-flex justify-content-end">
+            <button class="btn mt-0" onclick="myFunction()">Login</button>
+            <a class="w3-xxlarge w3-text-white ml-4"><i class="fa fa-user"></i></a>
+        </div>
+    </div>
 </nav>
 
-<body class="container-fluid">
-   <div class="d-flex flex-wrap justify-content-around">
-
-      <div class="card col-sm-2 m-2">
-        <img class="img-fluid w-100 pt-3" src="https://hips.hearstapps.com/ghk.h-cdn.co/assets/17/30/2560x1280/landscape-1500925839-golden-retriever-puppy.jpg?resize=480:*"></img>
-        <div class="card-body">
-          <h5 class="card-title">Snoopy</h5>
-          <p class="card-doginfo">Shepherd, 3 years</p>
-          <a href="t" class="card-date"><i class="fa fa-calendar"></i><span class="nav-text"> 10/13/2019</span></a>
-          <a href="t" class="card-time"><i class="fa fa-bell"></i><span class="nav-text"> 4pm</span></a>
-          <a href="t" class="card-location"><i class="fa fa-thumb-tack"></i><span class="nav-text"> Fullerton</span></a>
-          <a href="#" class="btn btn-primary">See more</a>
+<div class="d-flex justify-content-around">
+    <div class="filter-bar col-md-10">
+        <div class="dropdown">
+            <button aria-expanded="false" aria-haspopup="true" class="btn dropdown-toggle" data-toggle="dropdown"
+                    id="filterAge" type="button">
+                Age: <span>Any</span>
+            </button>
+            <div aria-labelledby="filterAge" class="dropdown-menu">
+                <div class="slide-container">
+                  <h5>Age: <span id="ageText"></span>+</h5>
+                  <input class="slider" id="ageSlider" max="20" min="1" type="range" value="10">
+                </div>
+            </div>
         </div>
-      </div>
-
-      <div class="card col-sm-2 m-2">
-        <img class="img-fluid w-100 pt-3" src="https://hips.hearstapps.com/ghk.h-cdn.co/assets/17/30/2560x1280/landscape-1500925839-golden-retriever-puppy.jpg?resize=480:*"></img>
-        <div class="card-body">
-          <h5 class="card-title">Snoopy</h5>
-          <p class="card-doginfo">Shepherd, 3 years</p>
-          <a href="t" class="card-date"><i class="fa fa-calendar"></i><span class="nav-text"> 10/13/2019</span></a>
-          <a href="t" class="card-time"><i class="fa fa-bell"></i><span class="nav-text"> 4pm</span></a>
-          <a href="t" class="card-location"><i class="fa fa-thumb-tack"></i><span class="nav-text"> Fullerton</span></a>
-          <a href="#" class="btn btn-primary">See more</a>
+        <div class="dropdown">
+            <button aria-expanded="false" aria-haspopup="true" class="btn dropdown-toggle" data-toggle="dropdown"
+                    id="filterTime" type="button">
+                Time: <span>Any</span>
+            </button>
+            <div aria-labelledby="filterTime" class="dropdown-menu">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
         </div>
-      </div>
-
-      <div class="card col-sm-2 m-2">
-        <img class="img-fluid w-100 pt-3" src="https://hips.hearstapps.com/ghk.h-cdn.co/assets/17/30/2560x1280/landscape-1500925839-golden-retriever-puppy.jpg?resize=480:*"></img>
-        <div class="card-body">
-          <h5 class="card-title">Snoopy</h5>
-          <p class="card-doginfo">Shepherd, 3 years</p>
-          <a href="t" class="card-date"><i class="fa fa-calendar"></i><span class="nav-text"> 10/13/2019</span></a>
-          <a href="t" class="card-time"><i class="fa fa-bell"></i><span class="nav-text"> 4pm</span></a>
-          <a href="t" class="card-location"><i class="fa fa-thumb-tack"></i><span class="nav-text"> Fullerton</span></a>
-          <a href="#" class="btn btn-primary">See more</a>
+        <div class="dropdown">
+            <button aria-expanded="false" aria-haspopup="true" class="btn dropdown-toggle" data-toggle="dropdown"
+                    id="filterLocation" type="button">
+                Location: <span>Any</span>
+            </button>
+            <div aria-labelledby="filterLocation" class="dropdown-menu">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
         </div>
-      </div>
-
-      <div class="card col-sm-2 m-2">
-        <img class="img-fluid w-100 pt-3" src="https://hips.hearstapps.com/ghk.h-cdn.co/assets/17/30/2560x1280/landscape-1500925839-golden-retriever-puppy.jpg?resize=480:*"></img>
-        <div class="card-body">
-          <h5 class="card-title">Snoopy</h5>
-          <p class="card-doginfo">Shepherd, 3 years</p>
-          <a href="t" class="card-date"><i class="fa fa-calendar"></i><span class="nav-text"> 10/13/2019</span></a>
-          <a href="t" class="card-time"><i class="fa fa-bell"></i><span class="nav-text"> 4pm</span></a>
-          <a href="t" class="card-location"><i class="fa fa-thumb-tack"></i><span class="nav-text"> Fullerton</span></a>
-          <a href="#" class="btn btn-primary">See more</a>
+        <div class="dropdown">
+            <button aria-expanded="false" aria-haspopup="true" class="btn dropdown-toggle" data-toggle="dropdown"
+                    id="filterDate" type="button">
+                Date: <span>Any</span>
+            </button>
+            <div aria-labelledby="filterDate" class="dropdown-menu">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
         </div>
-      </div>
+    </div>
+</div>
 
-      <div class="card col-sm-2 m-2">
-        <img class="img-fluid w-100 pt-3" src="https://hips.hearstapps.com/ghk.h-cdn.co/assets/17/30/2560x1280/landscape-1500925839-golden-retriever-puppy.jpg?resize=480:*"></img>
+<div class="container-card">
+    <div class="card col-md-3">
+        <img class="img-fluid w-100 pt-3"
+             src="https://hips.hearstapps.com/ghk.h-cdn.co/assets/17/30/2560x1280/landscape-1500925839-golden-retriever-puppy.jpg?resize=480:*"/>
         <div class="card-body">
-          <h5 class="card-title">Snoopy</h5>
-          <p class="card-doginfo">Shepherd, 3 years</p>
-          <a href="t" class="card-date"><i class="fa fa-calendar"></i><span class="nav-text"> 10/13/2019</span></a>
-          <a href="t" class="card-time"><i class="fa fa-bell"></i><span class="nav-text"> 4pm</span></a>
-          <a href="t" class="card-location"><i class="fa fa-thumb-tack"></i><span class="nav-text"> Fullerton</span></a>
-          <a href="#" class="btn btn-primary">See more</a>
+            <h5 class="card-title">Snoopy</h5>
+            <p class="card-desc">Shepherd, 3 years</p>
+            <div class="card-grid">
+                <i class="fa fa-calendar"></i>
+                <a class="card-date card-grid-wide" href="t"><span class="nav-text"> 10/13/2019</span></a>
+                <i class="fa fa-bell"></i>
+                <a class="card-time card-grid-wide" href="t"><span class="nav-text"> 4pm</span></a>
+                <i class="fa fa-thumb-tack"></i>
+                <a class="card-location card-grid-wide" href="t"><span class="nav-text"> Fullerton</span></a>
+            </div>
+            <a class="btn btn-primary btn-more" href="javascript:window.open('detail.html','mypopuptitle','width=400,height=400')">See more</a>
         </div>
-      </div>
-
+    </div>
+    <div class="card col-md-3">
+        <img class="img-fluid w-100 pt-3"
+             src="https://hips.hearstapps.com/ghk.h-cdn.co/assets/17/30/2560x1280/landscape-1500925839-golden-retriever-puppy.jpg?resize=480:*"/>
+        <div class="card-body">
+            <h5 class="card-title">Snoopy</h5>
+            <p class="card-desc">Shepherd, 3 years</p>
+            <div class="card-grid">
+                <i class="fa fa-calendar"></i>
+                <a class="card-date card-grid-wide" href="t"><span class="nav-text"> 10/13/2019</span></a>
+                <i class="fa fa-bell"></i>
+                <a class="card-time card-grid-wide" href="t"><span class="nav-text"> 4pm</span></a>
+                <i class="fa fa-thumb-tack"></i>
+                <a class="card-location card-grid-wide" href="t"><span class="nav-text"> Fullerton</span></a>
+            </div>
+            <a class="btn btn-primary btn-more" href="javascript:window.open('detail.html','mypopuptitle','width=400,height=400')">See more</a>
+        </div>
+    </div>
+    <div class="card col-md-3">
+        <img class="img-fluid w-100 pt-3"
+             src="https://hips.hearstapps.com/ghk.h-cdn.co/assets/17/30/2560x1280/landscape-1500925839-golden-retriever-puppy.jpg?resize=480:*"/>
+        <div class="card-body">
+            <h5 class="card-title">Snoopy</h5>
+            <p class="card-desc">Shepherd, 3 years</p>
+            <div class="card-grid">
+                <i class="fa fa-calendar"></i>
+                <a class="card-date card-grid-wide" href="t"><span class="nav-text"> 10/13/2019</span></a>
+                <i class="fa fa-bell"></i>
+                <a class="card-time card-grid-wide" href="t"><span class="nav-text"> 4pm</span></a>
+                <i class="fa fa-thumb-tack"></i>
+                <a class="card-location card-grid-wide" href="t"><span class="nav-text"> Fullerton</span></a>
+            </div>
+            <a class="btn btn-primary btn-more" href="#">See more</a>
+        </div>
+    </div>
+    <div class="card col-md-3">
+        <img class="img-fluid w-100 pt-3"
+             src="https://hips.hearstapps.com/ghk.h-cdn.co/assets/17/30/2560x1280/landscape-1500925839-golden-retriever-puppy.jpg?resize=480:*"/>
+        <div class="card-body">
+            <h5 class="card-title">Snoopy</h5>
+            <p class="card-desc">Shepherd, 3 years</p>
+            <div class="card-grid">
+                <i class="fa fa-calendar"></i>
+                <a class="card-date card-grid-wide" href="t"><span class="nav-text"> 10/13/2019</span></a>
+                <i class="fa fa-bell"></i>
+                <a class="card-time card-grid-wide" href="t"><span class="nav-text"> 4pm</span></a>
+                <i class="fa fa-thumb-tack"></i>
+                <a class="card-location card-grid-wide" href="t"><span class="nav-text"> Fullerton</span></a>
+            </div>
+            <a class="btn btn-primary btn-more" href="javascript:window.open('detail.html','mypopuptitle','width=400,height=400')">See more</a>
+        </div>
+    </div>
+    <div class="card col-md-3">
+        <img class="img-fluid w-100 pt-3"
+             src="https://hips.hearstapps.com/ghk.h-cdn.co/assets/17/30/2560x1280/landscape-1500925839-golden-retriever-puppy.jpg?resize=480:*"/>
+        <div class="card-body">
+            <h5 class="card-title">Snoopy</h5>
+            <p class="card-desc">Shepherd, 3 years</p>
+            <div class="card-grid">
+                <i class="fa fa-calendar"></i>
+                <a class="card-date card-grid-wide" href="t"><span class="nav-text"> 10/13/2019</span></a>
+                <i class="fa fa-bell"></i>
+                <a class="card-time card-grid-wide" href="t"><span class="nav-text"> 4pm</span></a>
+                <i class="fa fa-thumb-tack"></i>
+                <a class="card-location card-grid-wide" href="t"><span class="nav-text"> Fullerton</span></a>
+            </div>
+            <a class="btn btn-primary btn-more" href="javascript:window.open('detail.html','mypopuptitle','width=400,height=400')">See more</a>
+        </div>
     </div>
 
-    <a class="w3-xxxlarge w3-text-dark"><i class="fa fa-plus-circle"></i></a>
+    <a href="javascript:window.open('cardform.html','mypopuptitle','width=400,height=400')" class="w3-xxxlarge w3-text-dark"><i class="fa fa-plus-circle"></i></a>
 
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" charset="utf-8"></script>
-
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script charset="utf-8" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script crossorigin="anonymous" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+<script crossorigin="anonymous" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="scripts/main.js"></script>
 </body>
 
 </html>
