@@ -163,10 +163,19 @@ nav {
     grid-column-end: 3;
 }
 
+.title-detail {
+  font-weight: 700;
+  margin-top: 30px;
+}
+
 .card-date, .card-time, .card-location {
     display: block;
     padding: 2px;
     pointer-events: none;
+}
+
+.card-date-detail, .card-time-detail, .card-location-detail {
+  padding-right: 20px;
 }
 
 .fa-thumb-tack {
@@ -206,6 +215,44 @@ nav {
 
 .fa-plus-circle {
     float: right;
+}
+
+.login-button:hover, .filter:hover, .fa-user:hover, .fa-plus-circle:hover, .back-button:hover {
+  color: grey;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.back-button {
+  color: white;
+  font-size: 30px;
+}
+
+.email {
+  display: inline;
+}
+
+.email-address {
+  text-decoration: underline;
+}
+
+.img-fluid-detail{
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+.details-label {
+  display: block;
+}
+
+.create-button {
+  margin-top: 20px;
+}
+
+.title-new-event {
+    color: #333333;
+    font-family: 'Dancing Script', cursive;
+    font-size: 40px;
 }
 
 .fa-plus-circle:hover {
