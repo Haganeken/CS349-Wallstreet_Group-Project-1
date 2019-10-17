@@ -16,7 +16,6 @@
 
     <link href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
     <link href="stylesheets/main.css" rel="stylesheet">
-    <link href="scripts/main.js" rel="scripts">
 
     <!-- Optional theme
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
@@ -61,6 +60,7 @@
                 </div>
             </div>
         </div>
+        <div class="filter-vline"></div>
         <div class="dropdown">
             <button aria-expanded="false" aria-haspopup="true" class="btn dropdown-toggle" data-toggle="dropdown"
                     id="filterTime" type="button">
@@ -73,6 +73,7 @@
                 <div class="time-filter-slider" id="timeSlider"></div>
             </div>
         </div>
+        <div class="filter-vline"></div>
         <div class="dropdown">
             <button aria-expanded="false" aria-haspopup="true" class="btn dropdown-toggle" data-toggle="dropdown"
                     id="filterLocation" type="button">
@@ -105,10 +106,15 @@
                         <input aria-label="Radio button for following text input" name="distance" type="radio">
                         <span class="time-filter-title"><50 km</span>
                     </div>
+                    <div class="list-group-item">
+                        <input aria-label="Radio button for following text input" name="distance" type="radio">
+                        <span class="time-filter-title"><100 km</span>
+                    </div>
                 </div>
 
             </form>
         </div>
+        <div class="filter-vline"></div>
         <div class="dropdown">
             <button aria-expanded="false" aria-haspopup="true" class="btn dropdown-toggle"
                     data-toggle="dropdown"
@@ -124,7 +130,7 @@
     </div>
 </div>
 
-<div class="container-card">
+<div class="container-card" id="container-card">
     <div class="card col-md-3">
         <img class="img-fluid w-100 pt-3"
              src="https://hips.hearstapps.com/ghk.h-cdn.co/assets/17/30/2560x1280/landscape-1500925839-golden-retriever-puppy.jpg?resize=480:*"/>
@@ -216,8 +222,9 @@
     </div>
 
     <a class="w3-xxxlarge w3-text-dark"
-       href="javascript:window.open('cardform.html','mypopuptitle','width=400,height=400')"><i
-            class="fa fa-plus-circle"></i></a>
+       href="javascript:window.open('cardform.html','mypopuptitle','width=400,height=400')">
+        <i class="fa fa-plus-circle sticky-bottom"></i>
+    </a>
 </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script charset="utf-8" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>

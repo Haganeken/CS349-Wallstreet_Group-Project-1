@@ -38,18 +38,20 @@ let initStickyFilter = function () {
         toggleSticky()
     };
 
-// Get the navbar
     let filterBar = document.getElementById("filterbar");
-
-// Get the offset position of the navbar
+    let cardContainer = document.getElementById("container-card");
+    // Get the offset position of the
     var sticky = filterBar.offsetTop;
 
-// Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+    // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
     function toggleSticky() {
         if (window.pageYOffset >= sticky) {
-            filterBar.classList.add("sticky")
+            filterBar.classList.add("sticky-top");
+            cardContainer.classList.add("mt-5");
         } else {
-            filterBar.classList.remove("sticky");
+            filterBar.classList.remove("sticky-top");
+            cardContainer.classList.remove("mt-5");
+
         }
     }
 };
