@@ -7,6 +7,22 @@ slider.oninput = function () {
     output.innerHTML = this.value;
 };
 
+$(function () {
+
+    let $timeSlider = $("#timeSlider");
+    $timeSlider.slider({
+        range: true,
+        min: 0,
+        max: 500,
+        values: [75, 300],
+        slide: function (event, ui) {
+            $("#time2").val("$" + ui.values[0] + " - $" + ui.values[1]);
+        }
+    });
+
+    $("#time2").val("$" + $timeSlider.slider("values", 0) +
+        " - $" + $timeSlider.slider("values", 1));
+});
 
 // When the user scrolls the page, execute myFunction
 window.onscroll = function() {toggleSticky()};

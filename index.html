@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <title>Dog-Date</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Dog-Date</title>
 
     <!-- Bootstrap  -->
     <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -14,6 +14,7 @@
     <link href="https://www.w3schools.com/w3css/4/w3.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
 
+    <link href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
     <link href="stylesheets/main.css" rel="stylesheet">
     <link href="scripts/main.js" rel="scripts">
 
@@ -54,8 +55,8 @@
             </button>
             <div aria-labelledby="filterAge" class="dropdown-menu">
                 <div class="slide-container">
-                  <h5>Age: <span id="ageText"></span>+</h5>
-                  <input class="slider" id="ageSlider" max="20" min="1" type="range" value="10">
+                    <h5>Age: <span id="ageText"></span>+</h5>
+                    <input class="slider" id="ageSlider" max="20" min="1" type="range" value="10">
                 </div>
             </div>
         </div>
@@ -65,9 +66,9 @@
                 Time: <span>Any</span>
             </button>
             <div aria-labelledby="filterTime" class="dropdown-menu">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
+                <label for="timeText">Time:</label>
+                <input id="timeText" readonly type="text">
+                <div id="timeSlider"></div>
             </div>
         </div>
         <div class="dropdown">
@@ -110,7 +111,8 @@
                 <i class="fa fa-thumb-tack"></i>
                 <a class="card-location card-grid-wide" href="t"><span class="nav-text"> Fullerton</span></a>
             </div>
-            <a class="btn btn-primary btn-more" href="javascript:window.open('detail.html','mypopuptitle','width=400,height=400')">See more</a>
+            <a class="btn btn-primary btn-more"
+               href="javascript:window.open('detail.html','mypopuptitle','width=400,height=400')">See more</a>
         </div>
     </div>
     <div class="card col-md-3">
@@ -127,7 +129,8 @@
                 <i class="fa fa-thumb-tack"></i>
                 <a class="card-location card-grid-wide" href="t"><span class="nav-text"> Fullerton</span></a>
             </div>
-            <a class="btn btn-primary btn-more" href="javascript:window.open('detail.html','mypopuptitle','width=400,height=400')">See more</a>
+            <a class="btn btn-primary btn-more"
+               href="javascript:window.open('detail.html','mypopuptitle','width=400,height=400')">See more</a>
         </div>
     </div>
     <div class="card col-md-3">
@@ -161,7 +164,8 @@
                 <i class="fa fa-thumb-tack"></i>
                 <a class="card-location card-grid-wide" href="t"><span class="nav-text"> Fullerton</span></a>
             </div>
-            <a class="btn btn-primary btn-more" href="javascript:window.open('detail.html','mypopuptitle','width=400,height=400')">See more</a>
+            <a class="btn btn-primary btn-more"
+               href="javascript:window.open('detail.html','mypopuptitle','width=400,height=400')">See more</a>
         </div>
     </div>
     <div class="card col-md-3">
@@ -178,19 +182,24 @@
                 <i class="fa fa-thumb-tack"></i>
                 <a class="card-location card-grid-wide" href="t"><span class="nav-text"> Fullerton</span></a>
             </div>
-            <a class="btn btn-primary btn-more" href="javascript:window.open('detail.html','mypopuptitle','width=400,height=400')">See more</a>
+            <a class="btn btn-primary btn-more"
+               href="javascript:window.open('detail.html','mypopuptitle','width=400,height=400')">See more</a>
         </div>
     </div>
 
-    <a href="javascript:window.open('cardform.html','mypopuptitle','width=400,height=400')" class="w3-xxxlarge w3-text-dark"><i class="fa fa-plus-circle"></i></a>
-
+    <a class="w3-xxxlarge w3-text-dark"
+       href="javascript:window.open('cardform.html','mypopuptitle','width=400,height=400')"><i
+            class="fa fa-plus-circle"></i></a>
+</div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script charset="utf-8" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script crossorigin="anonymous" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 <script crossorigin="anonymous" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="scripts/main.js"></script>
+
 </body>
 
 </html>
