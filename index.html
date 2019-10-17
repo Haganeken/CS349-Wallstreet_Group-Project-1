@@ -56,6 +56,7 @@
             <div aria-labelledby="filterAge" class="dropdown-menu">
                 <div class="slide-container">
                     <h5>Age: <span id="ageText"></span>+</h5>
+                    <div class="dropdown-divider"></div>
                     <input class="slider" id="ageSlider" max="20" min="1" type="range" value="10">
                 </div>
             </div>
@@ -66,9 +67,10 @@
                 Time: <span>Any</span>
             </button>
             <div aria-labelledby="filterTime" class="dropdown-menu">
-                <label for="timeText">Time:</label>
-                <input id="timeText" readonly type="text">
-                <div id="timeSlider"></div>
+                <label class="time-filter-title" for="timeText">Time</label>
+                <input class="time-filter-text" id="timeText" readonly type="text">
+                <div class="dropdown-divider"></div>
+                <div class="time-filter-slider" id="timeSlider"></div>
             </div>
         </div>
         <div class="dropdown">
@@ -76,14 +78,40 @@
                     id="filterLocation" type="button">
                 Location: <span>Any</span>
             </button>
-            <div aria-labelledby="filterLocation" class="dropdown-menu">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-            </div>
+            <form aria-labelledby="filterLocation" class="dropdown-menu">
+                <div class="list-group">
+                    <div class="list-group-item">
+                        <input aria-label="Radio button for following text input" name="distance" type="radio">
+                        <span class="time-filter-title"><1 km</span>
+                    </div>
+                    <div class="list-group-item">
+                        <input aria-label="Radio button for following text input" name="distance" type="radio">
+                        <span class="time-filter-title"><2.5 km</span>
+                    </div>
+
+                    <div class="list-group-item">
+                        <input aria-label="Radio button for following text input" name="distance" type="radio">
+                        <span class="time-filter-title"><5 km</span>
+                    </div>
+                    <div class="list-group-item">
+                        <input aria-label="Radio button for following text input" name="distance" type="radio">
+                        <span class="time-filter-title"><10 km</span>
+                    </div>
+                    <div class="list-group-item">
+                        <input aria-label="Radio button for following text input" name="distance" type="radio">
+                        <span class="time-filter-title"><25 km</span>
+                    </div>
+                    <div class="list-group-item">
+                        <input aria-label="Radio button for following text input" name="distance" type="radio">
+                        <span class="time-filter-title"><50 km</span>
+                    </div>
+                </div>
+
+            </form>
         </div>
         <div class="dropdown">
-            <button aria-expanded="false" aria-haspopup="true" class="btn dropdown-toggle" data-toggle="dropdown"
+            <button aria-expanded="false" aria-haspopup="true" class="btn dropdown-toggle"
+                    data-toggle="dropdown"
                     id="filterDate" type="button">
                 Date: <span>Any</span>
             </button>
@@ -193,9 +221,11 @@
 </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script charset="utf-8" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script crossorigin="anonymous" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
+<script crossorigin="anonymous"
+        integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-<script crossorigin="anonymous" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+<script crossorigin="anonymous"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="scripts/main.js"></script>

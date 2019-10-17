@@ -1,43 +1,56 @@
-var slider = document.getElementById("ageSlider");
-var output = document.getElementById("ageText");
-output.innerHTML = slider.value; // Display the default slider value
+$(document).ready(function () {
+    initAgeSlider();
+    initTimeSlider();
+    initStickyFilter();
+});
 
-// Update the current slider value (each time you drag the slider handle)
-slider.oninput = function () {
-    output.innerHTML = this.value;
+
+let initAgeSlider = function () {
+    let slider = document.getElementById("ageSlider");
+    let output = document.getElementById("ageText");
+    output.innerHTML = slider.value; // Display the default slider value
+
+    // Update the current slider value
+    slider.oninput = function () {
+        output.innerHTML = this.value;
+    };
 };
 
-$(function () {
-
+let initTimeSlider = function () {
     let $timeSlider = $("#timeSlider");
     $timeSlider.slider({
         range: true,
         min: 0,
-        max: 500,
-        values: [75, 300],
+        max: 23,
+        values: [1, 22],
         slide: function (event, ui) {
-            $("#time2").val("$" + ui.values[0] + " - $" + ui.values[1]);
+            $("#timeText").val(ui.values[0] + ":00 - " + ui.values[1] + ":00");
         }
     });
 
-    $("#time2").val("$" + $timeSlider.slider("values", 0) +
-        " - $" + $timeSlider.slider("values", 1));
-});
+    $("#timeText").val($timeSlider.slider("values", 0) +
+        ":00 - " + $timeSlider.slider("values", 1) + ":00");
+};
 
-// When the user scrolls the page, execute myFunction
-window.onscroll = function() {toggleSticky()};
+let initStickyFilter = function () {
+    // When the user scrolls the page, execute myFunction
+    window.onscroll = function () {
+        toggleSticky()
+    };
 
 // Get the navbar
-var navbar = document.getElementById("filterbar");
+    let filterBar = document.getElementById("filterbar");
 
 // Get the offset position of the navbar
-var sticky = navbar.offsetTop;
+    var sticky = filterBar.offsetTop;
 
 // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
-function toggleSticky() {
-  if (window.pageYOffset >= sticky) {
-    navbar.classList.add("sticky")
-  } else {
-    navbar.classList.remove("sticky");
-  }
-} 
+    function toggleSticky() {
+        if (window.pageYOffset >= sticky) {
+            filterBar.classList.add("sticky")
+        } else {
+            filterBar.classList.remove("sticky");
+        }
+    }
+};
+

@@ -1,6 +1,7 @@
 /* VARIABLES */
 :root {
     --color-dark-red: #96302E;
+    --color-dark-red-hover: #B62E2E;
     --color-black: #343330;
     --color-light-blue: #D8DAD3;
     --color-white: #e8e8e8;
@@ -102,7 +103,7 @@ nav {
     appearance: none;
     width: 25px; /* Set a specific slider handle width */
     height: 25px; /* Slider handle height */
-    background: var(--color-dark-red); /* Green background */
+    background: var(--color-dark-red);
     border-radius: .75rem;
     cursor: pointer; /* Cursor on hover */
 }
@@ -110,8 +111,57 @@ nav {
 .slider::-moz-range-thumb {
     width: 25px; /* Set a specific slider handle width */
     height: 25px; /* Slider handle height */
-    background: #4CAF50; /* Green background */
+    background: var(--color-dark-red);
     cursor: pointer; /* Cursor on hover */
+}
+
+/* TIME FILTER */
+.time-filter-title {
+    font-size: 24px;
+    font-family: "Segoe UI", sans-serif;
+    font-weight: 400;
+    margin: 0;
+}
+
+.time-filter-text {
+    background-color: var(--color-grey);
+    border: none;
+    text-align: center;
+    color: white;
+    font-size: 17px;
+}
+
+.time-filter-slider {
+    margin: 0.5rem;
+    opacity: 0.7;
+    border-radius: 1rem;
+}
+
+.ui-slide-range {
+    opacity: 0.7;
+}
+
+.time-filter-slider:hover {
+    opacity: 1;
+}
+
+.ui-slider-handle {
+    background: var(--color-dark-red) !important;
+    border-radius: 0.75rem !important;
+    border: none !important;
+}
+
+/* LOCATION FILTER */
+
+.list-group-item {
+    display: grid;
+    grid-template-columns: auto auto;
+    background-color: var(--color-grey);
+    border-bottom: 2px solid var(--color-dark-red);
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
 }
 
 /* CONTAINER */
@@ -197,7 +247,7 @@ nav {
 }
 
 .btn:hover, .btn:focus {
-    background-color: rgb(182, 46, 46);
+    background-color: var(--color-dark-red-hover);
 }
 
 .card-body .btn {
