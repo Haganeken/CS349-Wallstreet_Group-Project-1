@@ -69,6 +69,7 @@ nav {
     background-color: var(--color-grey);
     color: var(--color-white);
     text-align: center;
+    width: 200px;
 }
 
 /* SLIDER */
