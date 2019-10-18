@@ -2,12 +2,37 @@ $(document).ready(function () {
     initAgeSlider();
     initTimeSlider();
     initStickyFilter();
+    initDropdown();
+    initLocationCheckboxes();
 });
 
+let initDropdown = function () {
+    $('.dropdown-menu').on("click.bs.dropdown", function (event) {
+        event.stopPropagation();
+        // event.preventDefault();
+    })
+};
+
+let initLocationCheckboxes = function () {
+    var checkboxes = $(".btn-group-toggle label input");
+    checkboxes.click(function (event) {
+        checkboxClick(event);
+    });
+
+};
+
+var checkboxClick = function (event) {
+    var target = event.currentTarget;
+
+    //DO stuff
+    console.log(target.value);
+
+};
 
 let initAgeSlider = function () {
     let slider = document.getElementById("ageSlider");
-    let output = document.getElementById("ageText");
+    let output = document.getElementById("ageButtonText");
+
     output.innerHTML = slider.value; // Display the default slider value
 
     // Update the current slider value
@@ -18,18 +43,23 @@ let initAgeSlider = function () {
 
 let initTimeSlider = function () {
     let $timeSlider = $("#timeSlider");
+    let $timeText = $("#timeText");
+    let $timeButtonText = $("#timeButtonText");
+
     $timeSlider.slider({
         range: true,
         min: 0,
         max: 23,
-        values: [1, 22],
+        values: [12, 18],
         slide: function (event, ui) {
-            $("#timeText").val(ui.values[0] + ":00 - " + ui.values[1] + ":00");
+            $timeText.val(ui.values[0] + ":00 - " + ui.values[1] + ":00");
+            $timeButtonText.text($timeText.val());
         }
     });
 
-    $("#timeText").val($timeSlider.slider("values", 0) +
+    $timeText.val($timeSlider.slider("values", 0) +
         ":00 - " + $timeSlider.slider("values", 1) + ":00");
+    $timeButtonText.text($timeText.val());
 };
 
 let initStickyFilter = function () {

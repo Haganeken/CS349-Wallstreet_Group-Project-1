@@ -264,6 +264,15 @@ nav {
     margin-top: 20px;
 }
 
+.btn-group-toggle > .tag-btn > input[type="radio"] {
+    clip: rect(0, 0, 0, 0);
+    position: absolute;
+}
+
+.active {
+    background-color: var(--color-dark-red) !important;
+}
+
 /* ADD CARD BUTTON */
 .w3-text-dark {
     color: var(--color-light-blue) !important

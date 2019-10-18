@@ -50,7 +50,7 @@
         <div class="dropdown">
             <button aria-expanded="false" aria-haspopup="true" class="btn dropdown-toggle" data-toggle="dropdown"
                     id="filterAge" type="button">
-                Age: <span>Any</span>
+                Age: <span id="ageButtonText"></span>+
             </button>
             <div aria-labelledby="filterAge" class="dropdown-menu">
                 <div class="slide-container">
@@ -64,7 +64,7 @@
         <div class="dropdown">
             <button aria-expanded="false" aria-haspopup="true" class="btn dropdown-toggle" data-toggle="dropdown"
                     id="filterTime" type="button">
-                Time: <span>Any</span>
+                Time: <span id="timeButtonText"></span>
             </button>
             <div aria-labelledby="filterTime" class="dropdown-menu">
                 <label class="time-filter-title" for="timeText">Time</label>
@@ -79,45 +79,39 @@
                     id="filterLocation" type="button">
                 Location: <span>Any</span>
             </button>
-            <form aria-labelledby="filterLocation" class="dropdown-menu">
-                <div class="list-group">
-                    <div class="list-group-item">
-                        <input aria-label="Radio button for following text input" name="distance" type="radio">
-                        <span class="time-filter-title"><1 km</span>
-                    </div>
-                    <div class="list-group-item">
-                        <input aria-label="Radio button for following text input" name="distance" type="radio">
-                        <span class="time-filter-title"><2.5 km</span>
-                    </div>
-
-                    <div class="list-group-item">
-                        <input aria-label="Radio button for following text input" name="distance" type="radio">
-                        <span class="time-filter-title"><5 km</span>
-                    </div>
-                    <div class="list-group-item">
-                        <input aria-label="Radio button for following text input" name="distance" type="radio">
-                        <span class="time-filter-title"><10 km</span>
-                    </div>
-                    <div class="list-group-item">
-                        <input aria-label="Radio button for following text input" name="distance" type="radio">
-                        <span class="time-filter-title"><25 km</span>
-                    </div>
-                    <div class="list-group-item">
-                        <input aria-label="Radio button for following text input" name="distance" type="radio">
-                        <span class="time-filter-title"><50 km</span>
-                    </div>
-                    <div class="list-group-item">
-                        <input aria-label="Radio button for following text input" name="distance" type="radio">
-                        <span class="time-filter-title"><100 km</span>
-                    </div>
+            <div aria-labelledby="filterLocation" class="dropdown-menu p-0">
+                <div class="d-flex flex-column btn-group-toggle" data-toggle="buttons">
+                    <label class="btn tag-btn btn-lg">
+                        <input autocomplete="off" id="location-1" name="location-filter" type="radio" value="1"><1
+                        Km</input>
+                    </label>
+                    <label class="btn tag-btn btn-lg">
+                        <input autocomplete="off" id="location-3" name="location-filter" type="radio" value="3"><3
+                        Km</input>
+                    </label>
+                    <label class="btn tag-btn btn-lg">
+                        <input autocomplete="off" checked id="location-5" name="location-filter" type="radio" value="5"><5
+                        Km</input>
+                    </label>
+                    <label class="btn tag-btn btn-lg">
+                        <input autocomplete="off" id="location-10" name="location-filter" type="radio" value="10"><10
+                        Km</input>
+                    </label>
+                    <label class="btn tag-btn btn-lg">
+                        <input autocomplete="off" id="location-25" name="location-filter" type="radio" value="25"><25
+                        Km</input>
+                    </label>
+                    <label class="btn tag-btn btn-lg">
+                        <input autocomplete="off" id="location-100" name="location-filter" type="radio" value="100"><100
+                        Km</input>
+                    </label>
                 </div>
-
-            </form>
+            </div>
         </div>
         <div class="filter-vline"></div>
         <div class="dropdown">
-            <button aria-expanded="false" aria-haspopup="true" class="btn dropdown-toggle"
-                    data-toggle="dropdown"
+            <button aria-expanded="false" aria-haspopup="true" class="btn dropdown-toggle" data-toggle="dropdown"
+
                     id="filterDate" type="button">
                 Date: <span>Any</span>
             </button>
