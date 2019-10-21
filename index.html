@@ -54,11 +54,7 @@
                 Age: <span id="ageButtonText"></span>+
             </button>
             <div aria-labelledby="filterAge" class="dropdown-menu">
-                <div class="slide-container">
-                    <h5>Age: <span id="ageText"></span>+</h5>
-                    <div class="dropdown-divider"></div>
-                    <input class="slider" id="ageSlider" max="20" min="1" type="range" value="10">
-                </div>
+                <input class="slider" id="ageSlider" max="20" min="1" type="range" value="10">
             </div>
         </div>
         <div class="filter-vline"></div>
@@ -68,10 +64,8 @@
                 Time: <span id="timeButtonText"></span>
             </button>
             <div aria-labelledby="filterTime" class="dropdown-menu">
-                <label class="time-filter-title" for="timeText">Time</label>
-                <input class="time-filter-text" id="timeText" readonly type="text">
-                <div class="dropdown-divider"></div>
                 <div class="time-filter-slider" id="timeSlider"></div>
+                <input class="time-filter-text d-none" id="timeText" readonly type="text">
             </div>
         </div>
         <div class="filter-vline"></div>
@@ -116,8 +110,10 @@
                 Date: <span>Any</span>
             </button>
             <div aria-labelledby="filterDate" class="dropdown-menu">
-              <div class="d-flex">
-                <input type="text" id="demo-11_1" class="form-control form-control-sm" />
+                <div class="date-container">
+                    <h5>From:</h5>
+                    <input class="form-control form-control-sm" id="demo-11_1" type="text"/>
+                    <h5>To:</h5>
                 <input type="text" id="demo-11_2" class="form-control form-control-sm" />
               </div>
             </div>

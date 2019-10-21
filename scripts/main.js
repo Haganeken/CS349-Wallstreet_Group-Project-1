@@ -4,13 +4,14 @@ $(document).ready(function () {
     initStickyFilter();
     initDropdown();
     initLocationCheckboxes();
+    initDateFilter();
 });
 
 let initDropdown = function () {
     $('.dropdown-menu').on("click.bs.dropdown", function (event) {
         event.stopPropagation();
         // event.preventDefault();
-    })
+    });
 };
 
 let initLocationCheckboxes = function () {
@@ -86,11 +87,12 @@ let initStickyFilter = function () {
     }
 };
 
-
-var picker = new Lightpick({
-    field: document.getElementById('demo-11_1'),
-    secondField: document.getElementById('demo-11_2'),
-    repick: true,
-    startDate: moment().startOf('month').add(7, 'day'),
-    endDate: moment().add(1, 'month').endOf('month').subtract(7, 'day')
-});
+let initDateFilter = function () {
+    var picker = new Lightpick({
+        field: document.getElementById('demo-11_1'),
+        secondField: document.getElementById('demo-11_2'),
+        repick: true,
+        startDate: moment().startOf('month').add(7, 'day'),
+        endDate: moment().endOf('month').subtract(7, 'day')
+    });
+};

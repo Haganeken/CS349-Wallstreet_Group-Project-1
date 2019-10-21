@@ -79,13 +79,6 @@ nav {
     background-color: var(--color-grey);
     color: var(--color-white);
     text-align: center;
-    width: 200px;
-}
-
-/* SLIDER */
-.slide-container {
-    width: 100%; /* Width of the outside container */
-    padding: 0 0.3rem 0.3rem;
 }
 
 /* The slider itself */
@@ -173,6 +166,19 @@ nav {
     padding-left: 0.3rem;
     padding-right: 0.3rem;
 }
+
+/* DATE */
+.date-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 0.3rem;
+}
+
+.date-container .form-control {
+    color: var(--color-white);
+    background-color: var(--color-grey-dark);
+}
+
 
 /* CONTAINER */
 
