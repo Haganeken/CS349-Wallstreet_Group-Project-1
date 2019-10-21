@@ -155,7 +155,6 @@ nav {
 }
 
 /* LOCATION FILTER */
-
 .list-group-item {
     display: grid;
     grid-template-columns: auto auto;
@@ -165,6 +164,10 @@ nav {
     justify-content: space-between;
     padding-left: 0.3rem;
     padding-right: 0.3rem;
+}
+
+.location-active {
+    background-color: var(--color-dark-red);
 }
 
 /* DATE */

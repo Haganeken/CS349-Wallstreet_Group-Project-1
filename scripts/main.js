@@ -17,6 +17,10 @@ let initDropdown = function () {
 let initLocationCheckboxes = function () {
     var checkboxes = $(".btn-group-toggle label input");
     checkboxes.click(function (event) {
+        $('label.btn.tag-btn.btn-lg').each(function () {
+            this.setAttribute("style", "");
+        });
+
         checkboxClick(event);
     });
 
@@ -24,8 +28,11 @@ let initLocationCheckboxes = function () {
 
 var checkboxClick = function (event) {
     var target = event.currentTarget;
+    let parent = target.parentElement;
 
+    parent.setAttribute("style", "background-color: var(--color-dark-red)");
     //DO stuff
+
     console.log(target.value);
 
 };
