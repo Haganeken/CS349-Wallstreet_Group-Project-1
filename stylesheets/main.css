@@ -275,7 +275,7 @@ nav {
 
 /* ADD CARD BUTTON */
 .w3-text-dark {
-    color: var(--color-light-blue) !important
+    color: var(--color-white) !important;
 }
 
 .fa-plus-circle {
