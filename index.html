@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <title>Dog-Date</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Dog-Date</title>
 
     <!-- Bootstrap  -->
     <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -14,8 +14,9 @@
     <link href="https://www.w3schools.com/w3css/4/w3.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
 
+    <link href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
     <link href="stylesheets/main.css" rel="stylesheet">
-    <link href="scripts/main.js" rel="scripts">
+    <link href="stylesheets/lightpick.css" rel="stylesheet">
 
     <!-- Optional theme
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
@@ -50,52 +51,77 @@
         <div class="dropdown">
             <button aria-expanded="false" aria-haspopup="true" class="btn dropdown-toggle" data-toggle="dropdown"
                     id="filterAge" type="button">
-                Age: <span>Any</span>
+                Age: <span id="ageButtonText"></span>+
             </button>
             <div aria-labelledby="filterAge" class="dropdown-menu">
-                <div class="slide-container">
-                  <h5>Age: <span id="ageText"></span>+</h5>
-                  <input class="slider" id="ageSlider" max="20" min="1" type="range" value="10">
-                </div>
+                <input class="slider" id="ageSlider" max="20" min="1" type="range" value="10">
             </div>
         </div>
+        <div class="filter-vline"></div>
         <div class="dropdown">
             <button aria-expanded="false" aria-haspopup="true" class="btn dropdown-toggle" data-toggle="dropdown"
                     id="filterTime" type="button">
-                Time: <span>Any</span>
+                Time: <span id="timeButtonText"></span>
             </button>
             <div aria-labelledby="filterTime" class="dropdown-menu">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
+                <div class="time-filter-slider" id="timeSlider"></div>
+                <input class="time-filter-text d-none" id="timeText" readonly type="text">
             </div>
         </div>
+        <div class="filter-vline"></div>
         <div class="dropdown">
             <button aria-expanded="false" aria-haspopup="true" class="btn dropdown-toggle" data-toggle="dropdown"
                     id="filterLocation" type="button">
                 Location: <span>Any</span>
             </button>
-            <div aria-labelledby="filterLocation" class="dropdown-menu">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
+            <div aria-labelledby="filterLocation" class="dropdown-menu p-0">
+                <div class="d-flex flex-column btn-group-toggle" data-toggle="buttons">
+                    <label class="btn tag-btn btn-lg">
+                        <input autocomplete="off" id="location-1" name="location-filter" type="radio" value="1"><1
+                        Km</input>
+                    </label>
+                    <label class="btn tag-btn btn-lg">
+                        <input autocomplete="off" id="location-3" name="location-filter" type="radio" value="3"><3
+                        Km</input>
+                    </label>
+                    <label class="btn tag-btn btn-lg">
+                        <input autocomplete="off" checked id="location-5" name="location-filter" type="radio" value="5"><5
+                        Km</input>
+                    </label>
+                    <label class="btn tag-btn btn-lg">
+                        <input autocomplete="off" id="location-10" name="location-filter" type="radio" value="10"><10
+                        Km</input>
+                    </label>
+                    <label class="btn tag-btn btn-lg">
+                        <input autocomplete="off" id="location-25" name="location-filter" type="radio" value="25"><25
+                        Km</input>
+                    </label>
+                    <label class="btn tag-btn btn-lg">
+                        <input autocomplete="off" id="location-100" name="location-filter" type="radio" value="100"><100
+                        Km</input>
+                    </label>
+                </div>
             </div>
         </div>
+        <div class="filter-vline"></div>
         <div class="dropdown">
             <button aria-expanded="false" aria-haspopup="true" class="btn dropdown-toggle" data-toggle="dropdown"
                     id="filterDate" type="button">
                 Date: <span>Any</span>
             </button>
             <div aria-labelledby="filterDate" class="dropdown-menu">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
+                <div class="date-container">
+                    <h5>From:</h5>
+                    <input class="form-control form-control-sm" id="demo-11_1" type="text"/>
+                    <h5>To:</h5>
+                <input type="text" id="demo-11_2" class="form-control form-control-sm" />
+              </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="container-card">
+<div class="container-card" id="container-card">
     <div class="card col-md-3">
         <img class="img-fluid w-100 pt-3"
              src="https://hips.hearstapps.com/ghk.h-cdn.co/assets/17/30/2560x1280/landscape-1500925839-golden-retriever-puppy.jpg?resize=480:*"/>
@@ -181,15 +207,22 @@
             <a class="btn btn-primary btn-more" href="javascript:window.open('detail.html','mypopuptitle','width=400,height=400')">See more</a>
         </div>
     </div>
+</div>
 
-    <a href="javascript:window.open('cardform.html','mypopuptitle','width=400,height=400')" class="w3-xxxlarge w3-text-dark"><i class="fa fa-plus-circle"></i></a>
-
+<button class="w3-xxxlarge w3-text-dark">
+    <i class="fa fa-plus-circle sticky-bottom"></i>
+</button>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script charset="utf-8" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script crossorigin="anonymous" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 <script crossorigin="anonymous" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+
+<script src="scripts/moments.js"></script>
+<script src="scripts/lightpick.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="scripts/main.js"></script>
 </body>
 
