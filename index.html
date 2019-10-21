@@ -16,6 +16,7 @@
 
     <link href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
     <link href="stylesheets/main.css" rel="stylesheet">
+    <link href="stylesheets/lightpick.css" rel="stylesheet">
 
     <!-- Optional theme
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
@@ -111,14 +112,14 @@
         <div class="filter-vline"></div>
         <div class="dropdown">
             <button aria-expanded="false" aria-haspopup="true" class="btn dropdown-toggle" data-toggle="dropdown"
-
                     id="filterDate" type="button">
                 Date: <span>Any</span>
             </button>
             <div aria-labelledby="filterDate" class="dropdown-menu">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
+              <div class="d-flex">
+                <input type="text" id="demo-11_1" class="form-control form-control-sm" />
+                <input type="text" id="demo-11_2" class="form-control form-control-sm" />
+              </div>
             </div>
         </div>
     </div>
@@ -139,8 +140,7 @@
                 <i class="fa fa-thumb-tack"></i>
                 <a class="card-location card-grid-wide" href="t"><span class="nav-text"> Fullerton</span></a>
             </div>
-            <a class="btn btn-primary btn-more"
-               href="javascript:window.open('detail.html','mypopuptitle','width=400,height=400')">See more</a>
+            <a class="btn btn-primary btn-more" href="javascript:window.open('detail.html','mypopuptitle','width=400,height=400')">See more</a>
         </div>
     </div>
     <div class="card col-md-3">
@@ -157,8 +157,7 @@
                 <i class="fa fa-thumb-tack"></i>
                 <a class="card-location card-grid-wide" href="t"><span class="nav-text"> Fullerton</span></a>
             </div>
-            <a class="btn btn-primary btn-more"
-               href="javascript:window.open('detail.html','mypopuptitle','width=400,height=400')">See more</a>
+            <a class="btn btn-primary btn-more" href="javascript:window.open('detail.html','mypopuptitle','width=400,height=400')">See more</a>
         </div>
     </div>
     <div class="card col-md-3">
@@ -192,8 +191,7 @@
                 <i class="fa fa-thumb-tack"></i>
                 <a class="card-location card-grid-wide" href="t"><span class="nav-text"> Fullerton</span></a>
             </div>
-            <a class="btn btn-primary btn-more"
-               href="javascript:window.open('detail.html','mypopuptitle','width=400,height=400')">See more</a>
+            <a class="btn btn-primary btn-more" href="javascript:window.open('detail.html','mypopuptitle','width=400,height=400')">See more</a>
         </div>
     </div>
     <div class="card col-md-3">
@@ -210,8 +208,7 @@
                 <i class="fa fa-thumb-tack"></i>
                 <a class="card-location card-grid-wide" href="t"><span class="nav-text"> Fullerton</span></a>
             </div>
-            <a class="btn btn-primary btn-more"
-               href="javascript:window.open('detail.html','mypopuptitle','width=400,height=400')">See more</a>
+            <a class="btn btn-primary btn-more" href="javascript:window.open('detail.html','mypopuptitle','width=400,height=400')">See more</a>
         </div>
     </div>
 </div>
@@ -221,15 +218,16 @@
 </button>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script charset="utf-8" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script crossorigin="anonymous"
-        integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
+<script crossorigin="anonymous" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-<script crossorigin="anonymous"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+<script crossorigin="anonymous" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+
+<script src="scripts/moments.js"></script>
+<script src="scripts/lightpick.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="scripts/main.js"></script>
-
 </body>
 
 </html>
