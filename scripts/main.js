@@ -1,16 +1,26 @@
+// Constants
 let ADD_CARD_SELECTOR = "#add-card-form";
 let CARD_SELECTOR = "[data-card]";
 let MODAL_SELECTOR = "[data-modal]";
 
+// Init
 let App = window.App;
 let Formhandler = new App.FormHandler(ADD_CARD_SELECTOR);
 
-
 $(document).ready(function () {
     initFilterBar();
-    Formhandler.addSubmitHandler(uploadFile);
+    Formhandler.addSubmitHandler(uploadForm);
 });
 
+/*
+*
+* @param
+ */
+
+/*
+* Moves data from cards to modal
+* @param element The see more button.
+ */
 let showMore = function (element) {
     let id = element.parentElement.parentElement.id;
     let cardData = $("#" + id + " " + CARD_SELECTOR);
@@ -32,7 +42,11 @@ let showMore = function (element) {
 
 };
 
-let uploadFile = function (data) {
+/*
+* Uploads a card to the server
+* @param data The data from the form
+ */
+let uploadForm = function (data) {
     console.log(data); // Form info
     var blobFile = document.getElementById('image').files[0];
     console.log(blobFile); // File info
@@ -55,6 +69,10 @@ let uploadFile = function (data) {
     // });
 };
 
+/*
+* Displays the chosen image when adding a card
+* @param input The input element in the DOM
+ */
 let readURL = function (input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();

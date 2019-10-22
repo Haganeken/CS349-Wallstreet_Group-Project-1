@@ -1,3 +1,6 @@
+/*
+* Initializes the sub-components of the filter bar
+*/
 function initFilterBar() {
     initAgeSlider();
     initTimeSlider();
@@ -7,6 +10,9 @@ function initFilterBar() {
     initDateFilter();
 }
 
+/*
+* Stops the dropdown from disappearing when clicking inside the dropdown menu
+*/
 let initDropdown = function () {
     $('.dropdown-menu').on("click.bs.dropdown", function (event) {
         event.stopPropagation();
@@ -14,18 +20,22 @@ let initDropdown = function () {
     });
 };
 
+/*
+* Adds a click event to all location filters
+*/
 let initLocationCheckboxes = function () {
     var checkboxes = $(".btn-group-toggle label input");
     checkboxes.click(function (event) {
         $('label.btn.tag-btn.btn-lg').each(function () {
             this.setAttribute("style", "");
         });
-
         checkboxClick(event);
     });
-
 };
 
+/*
+* Adds color to the selected location filter
+*/
 var checkboxClick = function (event) {
     var target = event.currentTarget;
     let parent = target.parentElement;
@@ -37,6 +47,9 @@ var checkboxClick = function (event) {
 
 };
 
+/*
+* Updates values when dragging the age slider
+*/
 let initAgeSlider = function () {
     let slider = document.getElementById("ageSlider");
     let output = document.getElementById("ageButtonText");
@@ -49,6 +62,9 @@ let initAgeSlider = function () {
     };
 };
 
+/*
+* Initializes the time range-slider and updates values when dragging the range-slider
+*/
 let initTimeSlider = function () {
     let $timeSlider = $("#timeSlider");
     let $timeText = $("#timeText");
@@ -70,8 +86,10 @@ let initTimeSlider = function () {
     $timeButtonText.text($timeText.val());
 };
 
+/*
+* Sticks the filterbar to the top when scrolled out of view
+*/
 let initStickyFilter = function () {
-    // When the user scrolls the page, execute myFunction
     window.onscroll = function () {
         toggleSticky()
     };
@@ -89,11 +107,13 @@ let initStickyFilter = function () {
         } else {
             filterBar.classList.remove("sticky-top");
             cardContainer.classList.remove("mt-5");
-
         }
     }
 };
 
+/*
+* Initializes the date picker
+*/
 let initDateFilter = function () {
     var picker = new Lightpick({
         field: document.getElementById('date-from'),

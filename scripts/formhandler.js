@@ -3,6 +3,9 @@
     var App = window.App || {};
     var $ = window.jQuery;
 
+    /*
+    * FormHandler constructor
+    */
     function FormHandler(selector) {
         if (!selector) {
             throw new Error("No selector provided");
@@ -15,6 +18,9 @@
         }
     }
 
+    /*
+    * Adds a callback with form data when a form is submitted
+    */
     FormHandler.prototype.addSubmitHandler = function (fn) {
         this.$formElement.on("submit", function (event) {
             event.preventDefault();
@@ -26,19 +32,6 @@
             fn(data);
             this.reset();
             this.elements[0].focus();
-        });
-    };
-
-    FormHandler.prototype.addInputHandler = function (fn) {
-        this.$formElement.on("input", "[name=\"emailAddress\"]", function (event) {
-            var emailAddress = event.target.value;
-            var message = "";
-            if (fn(emailAddress)) {
-                event.target.setCustomValidity("");
-            } else {
-                message = emailAddress + " is not an authorized email address!";
-                event.target.setCustomValidity(message);
-            }
         });
     };
 
