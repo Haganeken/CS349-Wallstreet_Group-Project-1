@@ -34,16 +34,6 @@ nav {
     text-decoration: none;
 }
 
-.fa-user {
-    right: 20px;
-    top: 20px;
-}
-
-.fa-user:hover {
-    color: grey;
-    cursor: pointer;
-}
-
 /* FILTER BAR */
 .filter-bar {
     display: flex;
@@ -177,7 +167,7 @@ nav {
     padding: 0 0.3rem;
 }
 
-.date-container .form-control {
+.date-container {
     color: var(--color-white);
     background-color: var(--color-grey-dark);
 }
@@ -229,9 +219,13 @@ nav {
     grid-column-end: 3;
 }
 
-.title-detail {
+.title-detail-dog {
     font-weight: 700;
-    margin-top: 30px;
+}
+
+.title-detail-event, .title-detail-contact {
+  font-weight: 700;
+  margin-top: 30px;
 }
 
 .card-date, .card-time, .card-location {
@@ -244,12 +238,22 @@ nav {
     padding-right: 20px;
 }
 
+.card-date-detail:hover, .card-time-detail:hover, .card-location-detail:hover {
+  text-decoration: none;
+  color: var(--color-black);
+  cursor: text;
+}
+
 .fa-thumb-tack {
     margin-left: 3px;
 }
 
 .fa {
     align-self: center;
+}
+
+.form-item {
+  width: 100%;
 }
 
 /* BUTTONS */
@@ -264,6 +268,7 @@ nav {
     bottom: -7%;
     right: 10%;
     left: 10%;
+    width: 80%;
 }
 
 .btn:hover, .btn:focus {
@@ -292,23 +297,20 @@ nav {
     float: right;
 }
 
-.login-button:hover, .filter:hover, .fa-user:hover, .fa-plus-circle:hover, .back-button:hover {
+.login-button:hover, .filter:hover, .fa-plus-circle:hover {
     color: grey;
     cursor: pointer;
     text-decoration: none;
 }
 
-.back-button {
-    color: white;
-    font-size: 30px;
-}
-
-.email {
+.email-detail {
     display: inline;
 }
 
-.email-address {
-    text-decoration: underline;
+.email-address-detail:hover {
+  text-decoration: none;
+  color: var(--color-black);
+  cursor: text;
 }
 
 .img-fluid-detail {
@@ -320,14 +322,13 @@ nav {
     display: block;
 }
 
-.create-button {
-    margin-top: 20px;
-}
-
 .title-new-event {
-    color: #333333;
+    color: var(--color-dark-red);
     font-family: 'Dancing Script', cursive;
     font-size: 40px;
+    text-align: center;
+    margin-top: 10px;
+    transform: rotate(-5deg);
 }
 
 .fa-plus-circle:hover {
