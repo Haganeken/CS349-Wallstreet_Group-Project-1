@@ -24,7 +24,11 @@ let showMore = function (element) {
     modalData[5].innerText = cardData[5].innerText;
     modalData[6].innerText = cardData[6].innerText;
     modalData[7].innerText = cardData[7].innerText;
-    modalData[8].innerText = "getUserEmail";
+    let email = "getUserEmail";
+    modalData[8].innerText = email;
+
+    $("#contact-btn").attr("href", "mailto:" + email +
+        "?subject=Dog-date appointment&body=Hello, let's arrange a dog-date!");
 
 };
 
