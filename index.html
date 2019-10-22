@@ -271,17 +271,18 @@
 <div aria-hidden="true" aria-labelledby="card-modal-label" class="modal fade" id="card-modal" role="dialog"
      tabindex="-1">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <form class="modal-content" id="add-card">
             <div class="modal-header">
                 <p class="title-new-event"> Create New Event </p>
             </div>
             <div class="modal-body">
-                <form class="card-body">
+                <div class="card-body">
                     <p class="h3">Details about the Dog</p>
                     <div class="input-group">
                         <div class="custom-file">
                             <label class="custom-file-label" for="image">Choose file</label>
-                            <input accept="image/png, image/jpeg" class="custom-file-input" id="image" type="file">
+                            <input accept="image/png, image/jpeg" class="custom-file-input" id="image"
+                                   onchange="readURL(this)" type="file">
                         </div>
                     </div>
                     <img class="img w-100 pt-3 pb-3 d-none" id="uploadedImage"
@@ -295,7 +296,7 @@
                     <div class="form-group">
                         <label class="h5" for="age">Age: </label>
                         <input class="form-control" id="age" max="100" min="1" name="age"
-                               placeholder="Enter your dog's age"
+                               placeholder="Enter your dog's age in years"
                                type="number">
                     </div>
                     <div class="form-group">
@@ -314,7 +315,7 @@
                     <div class="form-group">
                         <label class="h5" for="date">Date: </label>
                         <input class="form-control" id="date" max="2021-12-31" min="2019-10-15" name="date"
-                               type="date" value="yyyy-MM-dd">
+                               required type="date" value="yyyy-MM-dd">
                     </div>
                     <div class="form-group">
                         <label class="h5" for="time">Time: </label>
@@ -334,13 +335,13 @@
                                placeholder="Enter your email address" required
                                type="email" value="">
                     </div>
-                </form>
+                </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
-                <button class="btn btn-primary" name="create">Create Event</button>
+                <button class="btn btn-secondary" data-dismiss="modal" type="reset">Close</button>
+                <button class="btn btn-primary" name="create" type="submit">Create Event</button>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 
@@ -354,6 +355,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"
         type="text/javascript"></script>
 
+<script src="scripts/formhandler.js"></script>
 <script src="scripts/filterbar.js"></script>
 <script src="scripts/moments.js"></script>
 <script src="scripts/lightpick.js"></script>
