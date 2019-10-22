@@ -11,8 +11,9 @@ $(document).ready(function () {
     Formhandler.addSubmitHandler(uploadFile);
 });
 
-let showMore = function () {
-    let cardData = $(CARD_SELECTOR);
+let showMore = function (element) {
+    let id = element.parentElement.parentElement.id;
+    let cardData = $("#" + id + " " + CARD_SELECTOR);
     let modalData = $(MODAL_SELECTOR);
 
     modalData[0].src = cardData[0].src;
