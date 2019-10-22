@@ -14,9 +14,11 @@
     <link href="https://www.w3schools.com/w3css/4/w3.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
 
+    <link href="stylesheets/filterbar.css" rel="stylesheet">
+    <link href="stylesheets/lightpick.css" rel="stylesheet">
     <link href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
     <link href="stylesheets/main.css" rel="stylesheet">
-    <link href="stylesheets/lightpick.css" rel="stylesheet">
+
 
     <!-- Optional theme
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
@@ -113,8 +115,8 @@
                     <h5>From:</h5>
                     <input class="form-control form-control-sm" id="demo-11_1" type="text"/>
                     <h5>To:</h5>
-                <input type="text" id="demo-11_2" class="form-control form-control-sm" />
-              </div>
+                    <input class="form-control form-control-sm" id="demo-11_2" type="text"/>
+                </div>
             </div>
         </div>
     </div>
@@ -137,29 +139,7 @@
             </div>
             <!-- Button trigger modal -->
             <button class="btn btn-primary btn-more" data-target="#more-modal" data-toggle="modal" type="button">
-              See more
-            </button>
-
-            </div>
-        </div>
-    </div>
-    <div class="card col-md-3">
-        <img class="img-fluid w-100 pt-3"
-             src="https://hips.hearstapps.com/ghk.h-cdn.co/assets/17/30/2560x1280/landscape-1500925839-golden-retriever-puppy.jpg?resize=480:*"/>
-        <div class="card-body">
-            <h5 class="card-title">Snoopy</h5>
-            <p class="card-desc">Shepherd, 3 years</p>
-            <div class="card-grid">
-                <i class="fa fa-calendar"></i>
-                <a class="card-date card-grid-wide" href="#"><span class="nav-text"> 10/13/2019</span></a>
-                <i class="fa fa-bell"></i>
-                <a class="card-time card-grid-wide" href="#"><span class="nav-text"> 4pm</span></a>
-                <i class="fa fa-thumb-tack"></i>
-                <a class="card-location card-grid-wide" href="#"><span class="nav-text"> Fullerton</span></a>
-            </div>
-            <!-- Button trigger modal -->
-            <button class="btn btn-primary btn-more" data-target="#more-modal" data-toggle="modal" type="button">
-              See more
+                See more
             </button>
 
         </div>
@@ -180,7 +160,7 @@
             </div>
             <!-- Button trigger modal -->
             <button class="btn btn-primary btn-more" data-target="#more-modal" data-toggle="modal" type="button">
-              See more
+                See more
             </button>
 
         </div>
@@ -201,7 +181,28 @@
             </div>
             <!-- Button trigger modal -->
             <button class="btn btn-primary btn-more" data-target="#more-modal" data-toggle="modal" type="button">
-              See more
+                See more
+            </button>
+
+        </div>
+    </div>
+    <div class="card col-md-3">
+        <img class="img-fluid w-100 pt-3"
+             src="https://hips.hearstapps.com/ghk.h-cdn.co/assets/17/30/2560x1280/landscape-1500925839-golden-retriever-puppy.jpg?resize=480:*"/>
+        <div class="card-body">
+            <h5 class="card-title">Snoopy</h5>
+            <p class="card-desc">Shepherd, 3 years</p>
+            <div class="card-grid">
+                <i class="fa fa-calendar"></i>
+                <a class="card-date card-grid-wide" href="#"><span class="nav-text"> 10/13/2019</span></a>
+                <i class="fa fa-bell"></i>
+                <a class="card-time card-grid-wide" href="#"><span class="nav-text"> 4pm</span></a>
+                <i class="fa fa-thumb-tack"></i>
+                <a class="card-location card-grid-wide" href="#"><span class="nav-text"> Fullerton</span></a>
+            </div>
+            <!-- Button trigger modal -->
+            <button class="btn btn-primary btn-more" data-target="#more-modal" data-toggle="modal" type="button">
+                See more
             </button>
         </div>
     </div>
@@ -221,10 +222,11 @@
             </div>
             <!-- Button trigger modal -->
             <button class="btn btn-primary btn-more" data-target="#more-modal" data-toggle="modal" type="button">
-              See more
+                See more
             </button>
         </div>
     </div>
+</div>
 </div>
 
 <button class="w3-xxxlarge w3-text-dark" data-target="#card-modal" data-toggle="modal">
@@ -238,7 +240,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <img class="img-fluid-detail w-100 pt-3"
+                <img class="img w-100 pt-3"
                      src="https://hips.hearstapps.com/ghk.h-cdn.co/assets/17/30/2560x1280/landscape-1500925839-golden-retriever-puppy.jpg?resize=480:*"></img>
             </div>
             <div class="modal-body">
@@ -263,63 +265,81 @@
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Add Card Modal -->
-    <div aria-hidden="true" aria-labelledby="card-modal-label" class="modal fade" id="card-modal" role="dialog"
-         tabindex="-1">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <p class="title-new-event"> Create New Event </p>
-      </div>
-      <div class="modal-body">
-        <div class="card-body">
-          <p class="title-detail-dog">Details about the Dog</p>
-            <div class="form-group">
-              <label for="image">Upload Picture: </label>
-              <input type="file" id="image" name="image" accept="image/png, image/jpeg">
+<!-- Add Card Modal -->
+<div aria-hidden="true" aria-labelledby="card-modal-label" class="modal fade" id="card-modal" role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="title-new-event"> Create New Event </p>
             </div>
-            <div class="form-group">
-              <label for="name">Name: </label>
-              <input class="form-item" name="name" id="name" autofocus required pattern="[a-zA-Z\s]+">
+            <div class="modal-body">
+                <form class="card-body">
+                    <p class="h3">Details about the Dog</p>
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <label class="custom-file-label" for="image">Choose file</label>
+                            <input accept="image/png, image/jpeg" class="custom-file-input" id="image" type="file">
+                        </div>
+                    </div>
+                    <img class="img w-100 pt-3 pb-3 d-none" id="uploadedImage"
+                         src="https://hips.hearstapps.com/ghk.h-cdn.co/assets/17/30/2560x1280/landscape-1500925839-golden-retriever-puppy.jpg?resize=480:*"></img>
+                    <div class="form-group">
+                        <label class="h5" for="name">Name</label>
+                        <input autofocus class="form-control" id="name" name="name" pattern="[a-zA-Z\s]+"
+                               placeholder="Enter your dog's name"
+                               required>
+                    </div>
+                    <div class="form-group">
+                        <label class="h5" for="age">Age: </label>
+                        <input class="form-control" id="age" max="100" min="1" name="age"
+                               placeholder="Enter your dog's age"
+                               type="number">
+                    </div>
+                    <div class="form-group">
+                        <label class="h5" for="breed">Breed: </label>
+                        <input class="form-control" id="breed" name="breed" pattern="[a-zA-Z\s]+"
+                               placeholder="Enter your dog's breed"
+                               required>
+                    </div>
+                    <div class="form-group">
+                        <label class="h5" for="details">More Information: </label>
+                        <textarea class="form-control" id="details" maxlength="200" minlength="1"
+                                  name="details" placeholder="Describe your dog in a few sentences"></textarea>
+                    </div>
+                    <p class="h3 mt-3">Details about the Event</p>
+                    <div class="form-group">
+                        <label class="h5" for="date">Date: </label>
+                        <input class="form-control" id="date" max="2021-12-31" min="2019-10-15" name="date"
+                               type="date" value="yyyy-MM-dd">
+                    </div>
+                    <div class="form-group">
+                        <label class="h5" for="time">Time: </label>
+                        <input class="form-control" id="time" max="18:00" min="09:00" name="time" required type="time">
+                    </div>
+                    <div class="form-group">
+                        <label class="h5" for="location">Location: </label>
+                        <input class="form-control" id="location" name="location" pattern="[a-zA-Z\s]+"
+                               placeholder="Enter an address for your dog-date"
+                               required>
+                    </div>
+                    <p class="title-detail-contact">Contact Information</p>
+                    <div class="form-group">
+                        <label class="h5" for="emailInput">Email:</label>
+                        <input class="form-control" id="emailInput" name="emailAddress"
+                               placeholder="Enter your email address" required
+                               type="email" value="">
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-              <label for="age">Age: </label>
-              <input class="form-item" type="number" id="age" name="age" min="0" max="100">
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
+                <button class="btn btn-primary" name="create">Create Event</button>
             </div>
-            <div class="form-group">
-              <label for="breed">Breed: </label>
-              <input class="form-item" name="breed" id="breed" required pattern="[a-zA-Z\s]+">
-            </div>
-            <div class="form-group">
-              <label class="details-label" for="details">More Information: </label>
-                <textarea class="form-item" id="details" maxlength="200" minlength="4" name="details"></textarea>
-            </div>
-            <p class="title-detail-event">Details about the Event</p>
-            <div class="form-group">
-              <label for="date">Date: </label>
-              <input class="form-item" type="date" id="date" name="date" value="jjjj-mm-dd" min="2019-10-15" max="2021-12-31">
-            </div>
-            <div class="form-group">
-              <label for="time">Time: </label>
-              <input class="form-item" type="time" id="time" name="appt" min="09:00" max="18:00" required>
-            </div>
-            <div class="form-group">
-              <label for="location">Location: </label>
-              <input class="form-item" name="location" id="location" required pattern="[a-zA-Z\s]+">
-            </div>
-            <p class="title-detail-contact">Contact Information</p>
-            <div class="form-group">
-              <label for="emailInput">Email:</label>
-              <input class="form-item" type="email" name="emailAddress" id="emailInput" value="" placeholder="dr@who.com" required>
-            </div>
-         </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-primary" name="create">Create Event</button>
-      </div>
+        </div>
     </div>
-  </div>
 </div>
 
 
@@ -329,9 +349,10 @@
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 <script crossorigin="anonymous" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"
+        type="text/javascript"></script>
 
-    <script src="scripts/filterbar.js"></script>
+<script src="scripts/filterbar.js"></script>
 <script src="scripts/moments.js"></script>
 <script src="scripts/lightpick.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
