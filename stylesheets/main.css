@@ -1,0 +1,352 @@
+/* VARIABLES */
+:root {
+    --color-dark-red: #96302E;
+    --color-dark-red-hover: #B62E2E;
+    --color-black: #343330;
+    --color-light-blue: #D8DAD3;
+    --color-white: #e8e8e8;
+    --color-grey-dark: #4d4542;
+    --color-grey: #8A817C;
+}
+
+/* TAGS */
+body {
+    background-color: var(--color-black);
+}
+
+nav {
+    background-color: var(--color-grey);
+    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+}
+
+/* NAV BAR */
+.title-name {
+    color: var(--color-dark-red);
+    font-family: 'Dancing Script', cursive;
+    font-size: 60px;
+    transform: rotate(-10deg);
+    text-align: center;
+}
+
+.login-button:hover, .filter:hover {
+    color: grey;
+    text-decoration: none;
+}
+
+.fa-user {
+    right: 20px;
+    top: 20px;
+}
+
+.fa-user:hover {
+    color: grey;
+    cursor: pointer;
+}
+
+/* FILTER BAR */
+.filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin: .5rem;
+    border: 0.22rem solid var(--color-grey);
+    border-radius: .75rem;
+    background-color: var(--color-grey);
+    box-shadow: 0.3rem 0.4rem 0.5rem;
+}
+
+.filter-bar .dropdown {
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+}
+
+.filter-bar .btn {
+    background-color: var(--color-grey);
+    color: var(--color-white);
+}
+
+.filter-vline {
+    height: 3rem;
+    width: 2px;
+    background-color: var(--color-grey-dark);
+}
+
+/* DROPDOWN */
+.dropdown-menu {
+    background-color: var(--color-grey);
+    color: var(--color-white);
+    text-align: center;
+}
+
+/* The slider itself */
+.slider {
+    -webkit-appearance: button; /* Override default CSS styles */
+    appearance: none;
+    width: 100%; /* Full-width */
+    height: 15px; /* Specified height */
+    background: #d3d3d3; /* Grey background */
+    border-radius: 0.6rem;
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: var(--color-dark-red);
+    border-radius: .75rem;
+    cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: var(--color-dark-red);
+    cursor: pointer; /* Cursor on hover */
+}
+
+/* TIME FILTER */
+.time-filter-title {
+    font-size: 24px;
+    font-family: "Segoe UI", sans-serif;
+    font-weight: 400;
+    margin: 0;
+}
+
+.time-filter-text {
+    background-color: var(--color-grey);
+    border: none;
+    text-align: center;
+    color: white;
+    font-size: 17px;
+}
+
+.time-filter-slider {
+    margin: 0.5rem;
+    opacity: 0.7;
+    border-radius: 1rem;
+}
+
+.ui-slide-range {
+    opacity: 0.7;
+}
+
+.time-filter-slider:hover {
+    opacity: 1;
+}
+
+.ui-slider-handle {
+    background: var(--color-dark-red) !important;
+    border-radius: 0.75rem !important;
+    border: none !important;
+}
+
+/* LOCATION FILTER */
+.list-group-item {
+    display: grid;
+    grid-template-columns: auto auto;
+    background-color: var(--color-grey);
+    border-bottom: 2px solid var(--color-dark-red);
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+}
+
+.location-active {
+    background-color: var(--color-dark-red);
+}
+
+/* DATE */
+.date-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 0.3rem;
+}
+
+.date-container .form-control {
+    color: var(--color-white);
+    background-color: var(--color-grey-dark);
+}
+
+
+/* CONTAINER */
+
+.container-card {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.container-card .card {
+    margin: 1rem;
+}
+
+/* CARD */
+.card {
+    background-color: var(--color-light-blue);
+    width: 200rem;
+    box-shadow: 0.4rem 0.6rem 0.8rem;
+}
+
+.card-body {
+    font-size: 14px;
+    padding: .75rem;
+    position: relative;
+}
+
+.card-title {
+    font-weight: 600;
+}
+
+.card-desc {
+    font-weight: 100;
+    font-size: 15px;
+}
+
+.card-grid {
+    display: inline-grid;
+    grid-template-columns: auto auto;
+    grid-column-gap: 0.5rem;
+    padding-bottom: 2rem;
+}
+
+.card-grid-wide {
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+.title-detail {
+    font-weight: 700;
+    margin-top: 30px;
+}
+
+.card-date, .card-time, .card-location {
+    display: block;
+    padding: 2px;
+    pointer-events: none;
+}
+
+.card-date-detail, .card-time-detail, .card-location-detail {
+    padding-right: 20px;
+}
+
+.fa-thumb-tack {
+    margin-left: 3px;
+}
+
+.fa {
+    align-self: center;
+}
+
+/* BUTTONS */
+.btn {
+    background-color: var(--color-dark-red);
+    border: None;
+    color: var(--color-white);
+}
+
+.btn-more {
+    position: absolute;
+    bottom: -7%;
+    right: 10%;
+    left: 10%;
+}
+
+.btn:hover, .btn:focus {
+    background-color: var(--color-dark-red-hover);
+}
+
+.card-body .btn {
+    margin-top: 20px;
+}
+
+.btn-group-toggle > .tag-btn > input[type="radio"] {
+    clip: rect(0, 0, 0, 0);
+    position: absolute;
+}
+
+.active {
+    background-color: var(--color-dark-red) !important;
+}
+
+/* ADD CARD BUTTON */
+.w3-text-dark {
+    color: var(--color-white) !important;
+}
+
+.fa-plus-circle {
+    float: right;
+}
+
+.login-button:hover, .filter:hover, .fa-user:hover, .fa-plus-circle:hover, .back-button:hover {
+    color: grey;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.back-button {
+    color: white;
+    font-size: 30px;
+}
+
+.email {
+    display: inline;
+}
+
+.email-address {
+    text-decoration: underline;
+}
+
+.img-fluid-detail {
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+.details-label {
+    display: block;
+}
+
+.create-button {
+    margin-top: 20px;
+}
+
+.title-new-event {
+    color: #333333;
+    font-family: 'Dancing Script', cursive;
+    font-size: 40px;
+}
+
+.fa-plus-circle:hover {
+    color: grey;
+    cursor: pointer;
+}
+
+/* STICKY CLASSES */
+
+.sticky-top {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.sticky-bottom {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+}
