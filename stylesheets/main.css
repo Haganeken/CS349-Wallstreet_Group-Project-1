@@ -80,6 +80,9 @@ nav {
 .card-desc {
     font-weight: 100;
     font-size: 15px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .card-grid {

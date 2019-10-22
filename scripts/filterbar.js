@@ -96,8 +96,8 @@ let initStickyFilter = function () {
 
 let initDateFilter = function () {
     var picker = new Lightpick({
-        field: document.getElementById('demo-11_1'),
-        secondField: document.getElementById('demo-11_2'),
+        field: document.getElementById('date-from'),
+        secondField: document.getElementById('date-to'),
         repick: true,
         startDate: moment().startOf('month').add(7, 'day'),
         endDate: moment().endOf('month').subtract(7, 'day')
