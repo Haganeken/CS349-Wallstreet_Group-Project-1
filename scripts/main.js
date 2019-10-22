@@ -13,7 +13,9 @@ function uploadFile(data) {
     console.log(data); // Form info
     var blobFile = document.getElementById('image').files[0];
     console.log(blobFile); // File info
-    data.image(blobFile);
+    data.image = blobFile;
+    console.log(data); // Form info
+
 
     // $.ajax({
     //     url: "upload.php",

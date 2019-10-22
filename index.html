@@ -58,7 +58,7 @@
                 <input class="slider" id="ageSlider" max="20" min="1" type="range" value="10">
             </div>
         </div>
-        <div class="filter-vline"></div>
+        <div class="vline"></div>
         <div class="dropdown">
             <button aria-expanded="false" aria-haspopup="true" class="btn dropdown-toggle" data-toggle="dropdown"
                     id="filterTime" type="button">
@@ -69,7 +69,7 @@
                 <input class="time-filter-text d-none" id="timeText" readonly type="text">
             </div>
         </div>
-        <div class="filter-vline"></div>
+        <div class="vline"></div>
         <div class="dropdown">
             <button aria-expanded="false" aria-haspopup="true" class="btn dropdown-toggle" data-toggle="dropdown"
                     id="filterLocation" type="button">
@@ -104,7 +104,7 @@
                 </div>
             </div>
         </div>
-        <div class="filter-vline"></div>
+        <div class="vline"></div>
         <div class="dropdown">
             <button aria-expanded="false" aria-haspopup="true" class="btn dropdown-toggle" data-toggle="dropdown"
                     id="filterDate" type="button">
@@ -244,18 +244,25 @@
                      src="https://hips.hearstapps.com/ghk.h-cdn.co/assets/17/30/2560x1280/landscape-1500925839-golden-retriever-puppy.jpg?resize=480:*"></img>
             </div>
             <div class="modal-body">
-                <h5 class="title-detail-dog">Snoopy</h5>
-                <p class="card-doginfo-detail">Details about the Dog Details about the Dog Details about the Dog Details
+                <h3>Snoopy, Age: <span id="modal-show-age">3</span></h3>
+                <p>Details about the Dog Details about the Dog Details about the Dog Details
                     about the Dog Details about the Dog Details about the Dog Details about the Dog Details about the
                     Dog Details about the Dog Details about the Dog </p>
-                <p class="title-detail-event">Details about the Event</p>
-                <a class="card-date-detail" href="#"><i class="fa fa-calendar"></i><span
-                        class="nav-text"> 10/13/2019</span></a>
-                <a class="card-time-detail" href="#"><i class="fa fa-bell"></i><span class="nav-text"> 4pm</span></a>
-                <a class="card-location-detail" href="#"><i class="fa fa-thumb-tack"></i><span class="nav-text"> Fullerton</span></a>
-                <p class="title-detail-contact">Contact Information</p>
-                <p class="email-detail">E-Mail: </p>
-                <a class="email-address-detail" href="#">max.mustermann@csu.fullerton.edu</a>
+                <div class="hline"></div>
+                <h3>Details about the Event</h3>
+                <div class="modal-grid">
+                    <a class="card-date-detail" href="#">
+                        <span class="nav-text"><i class="fa fa-calendar"></i> 10/13/2019</span></a>
+                    <a class="card-time-detail" href="#">
+                        <span class="nav-text"><i class="fa fa-bell"></i> 4pm</span></a>
+                    <a class="card-location-detail" href="#">
+                        <span class="nav-text"><i class="fa fa-thumb-tack"></i> Fullerton</span>
+                    </a>
+                </div>
+                <div class="hline"></div>
+                <h3>Contact Information</h3>
+                <h4>E-Mail</h4>
+                <p>max.mustermann@csu.fullerton.edu</p>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
@@ -277,7 +284,7 @@
             </div>
             <div class="modal-body">
                 <div class="card-body">
-                    <p class="h3">Details about the Dog</p>
+                    <h3>Details about the Dog</h3>
                     <div class="input-group">
                         <div class="custom-file">
                             <label class="custom-file-label" for="image">Choose file</label>
@@ -310,8 +317,8 @@
                         <textarea class="form-control" id="details" maxlength="200" minlength="1"
                                   name="details" placeholder="Describe your dog in a few sentences"></textarea>
                     </div>
-                    <div class="dropdown-divider"></div>
-                    <p class="h3 mt-3">Details about the Event</p>
+                    <div class="hline"></div>
+                    <h3 class="mt-3">Details about the Event</h3>
                     <div class="form-group">
                         <label class="h5" for="date">Date: </label>
                         <input class="form-control" id="date" max="2021-12-31" min="2019-10-15" name="date"
@@ -327,8 +334,8 @@
                                placeholder="Enter an address for your dog-date"
                                required>
                     </div>
-                    <div class="dropdown-divider"></div>
-                    <p class="h3">Contact Information</p>
+                    <div class="hline"></div>
+                    <h3>Contact Information</h3>
                     <div class="form-group">
                         <label class="h5" for="emailInput">Email:</label>
                         <input class="form-control" id="emailInput" name="emailAddress"

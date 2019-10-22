@@ -7,8 +7,22 @@
     --color-white: #e8e8e8;
     --color-grey-dark: #4d4542;
     --color-grey: #8A817C;
+    --color-grey-light: #675F5C;
 }
 
+/* LINES */
+
+.vline {
+    height: 3rem;
+    width: 2px;
+    background-color: var(--color-grey-dark);
+}
+
+.hline {
+    height: 2px;
+    background-color: var(--color-grey-dark);
+    margin-top: 0.9rem;
+}
 /* TAGS */
 body {
     background-color: var(--color-black);
@@ -177,29 +191,11 @@ nav {
     padding: 0 1rem;
 }
 
-.login-button:hover, .filter:hover, .fa-plus-circle:hover {
-    color: grey;
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.email-detail {
-    display: inline;
-}
-
-.email-address-detail:hover {
-  text-decoration: none;
-  color: var(--color-black);
-  cursor: text;
-}
-
-.img-fluid-detail {
-    padding-left: 20%;
-    padding-right: 20%;
-}
-
-.details-label {
-    display: block;
+.modal-grid {
+    display: inline-grid;
+    grid-template-columns: auto auto auto auto auto;
+    grid-column-gap: 0.5rem;
+    padding-bottom: 0.5rem;
 }
 
 .title-new-event {
@@ -213,10 +209,6 @@ nav {
 
 .custom-file-label {
     background-color: var(--color-white);
-}
-
-.custom-file-label:hover, .custom-file-label:focus {
-    background-color: white;
 }
 
 .modal-body .form-control {
