@@ -14,23 +14,26 @@ function initFilterBar() {
 /*
 * Filters the cards by date
  */
-let filterDate = function (t1, t2) {
-    var date1 = Date.parse(t1._d.getFullYear().toString() + "-" +
-        (t1._d.getMonth() + 1).toString() + "-" +
-        t1._d.getDate());
-    var date2 = Date.parse(t2._d.getFullYear().toString() + "-" +
-        (t2._d.getMonth() + 1).toString() + "-" +
-        t2._d.getDate());
+let filterDate = function (start, end) {
+    var date_start = start.format('YYYY-MM-DD');
+    var date_end = end.format('YYYY-MM-DD');
 
     cards.forEach(function (item) {
-        var itemDate = Date.parse(item.date);
+        let longItemDate = Date.parse(item.date);
+        let longDate1 = Date.parse(date_start);
+        let longDate2 = Date.parse(date_end);
 
-        if ((itemDate < date1) || (itemDate > date2)) {
+        if ((longItemDate < longDate1) || (longItemDate > longDate2)) {
             $("#" + item.id).hide();
         } else {
             $("#" + item.id).show();
         }
     });
+
+    let str = '';
+    str += date_start ? date_start + ' to ' : '';
+    str += date_end ? date_end : '...';
+    document.getElementById('date-filter').value = str;
 };
 
 /*
@@ -64,6 +67,10 @@ let filterTime = function (t1, t2) {
 */
 let initDropdown = function () {
     $('.dropdown-menu').on("click.bs.dropdown", function (event) {
+        event.stopPropagation();
+        // event.preventDefault();
+    });
+    $('.form-control').on("click.bs.dropdown", function (event) {
         event.stopPropagation();
         // event.preventDefault();
     });
@@ -166,8 +173,7 @@ let initStickyFilter = function () {
 */
 let initDateFilter = function () {
     var picker = new Lightpick({
-        field: document.getElementById('date-from'),
-        secondField: document.getElementById('date-to'),
+        field: document.getElementById('date-filter'),
         repick: true,
         singleDate: false,
         startDate: moment().startOf('month').add(7, 'day'),

@@ -58,6 +58,7 @@ $(document).ready(function () {
  */
 let uploadCard = function (data) {
     data.image = document.getElementById('uploadedImage').src;
+    data.emailAddress = currentUser;
 
     cardDS.add(data.emailAddress, data, function () {
         addCard(data);

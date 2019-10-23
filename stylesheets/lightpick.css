@@ -198,7 +198,7 @@
 
 .lightpick__day.is-in-range {
     border-radius: 0;
-    background-color: var(--color-grey);
+    background-color: var(--color-dark-red-hover);
     background-image: none;
 }
 
@@ -212,7 +212,7 @@
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 50%;
-    background-color: var(--color-white);
+    background-color: var(--color-dark-red);
     background-image: none;
 }
 
@@ -222,7 +222,7 @@
     border-top-right-radius: 50%;
     border-bottom-right-radius: 50%;
     border-bottom-left-radius: 0;
-    background-color: var(--color-white);
+    background-color: var(--color-dark-red);
     background-image: none;
 }
 
