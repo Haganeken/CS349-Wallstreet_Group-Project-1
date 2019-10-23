@@ -1,4 +1,3 @@
-
 /*
 * Initializes the sub-components of the filter bar
 */
@@ -12,23 +11,39 @@ function initFilterBar() {
 }
 
 /*
-* Filters the cards by date
- */
-let filterDate = function (start, end) {
-    var date_start = start.format('YYYY-MM-DD');
-    var date_end = end.format('YYYY-MM-DD');
+* Filter variables
+*/
+var date_start;
+var date_end;
+var age;
+var time_start;
+var time_end;
 
+let filterCards = function () {
     cards.forEach(function (item) {
         let longItemDate = Date.parse(item.date);
         let longDate1 = Date.parse(date_start);
         let longDate2 = Date.parse(date_end);
 
-        if ((longItemDate < longDate1) || (longItemDate > longDate2)) {
+        if ((longItemDate < longDate1) ||
+            (longItemDate > longDate2) ||
+            (item.age < age) ||
+            ((item.time.substr(0, 2) < time_start) || (item.time.substr(0, 2) > time_end))) {
             $("#" + item.id).hide();
         } else {
             $("#" + item.id).show();
         }
     });
+};
+
+/*
+* Filters the cards by date
+ */
+let filterDate = function (start, end) {
+    date_start = start.format('YYYY-MM-DD');
+    date_end = end.format('YYYY-MM-DD');
+
+    filterCards();
 
     let str = '';
     str += date_start ? date_start + ' to ' : '';
@@ -39,27 +54,18 @@ let filterDate = function (start, end) {
 /*
 * Filters the cards by age
  */
-let filterAge = function (age) {
-    cards.forEach(function (item) {
-        if (item.age < age) {
-            $("#" + item.id).hide();
-        } else {
-            $("#" + item.id).show();
-        }
-    });
+let filterAge = function (age_val) {
+    age = age_val;
+    filterCards();
 };
 
 /*
 * Filters the cards by time
  */
 let filterTime = function (t1, t2) {
-    cards.forEach(function (item) {
-        if ((item.time.substr(0, 2) < t1) || (item.time.substr(0, 2) > t2)) {
-            $("#" + item.id).hide();
-        } else {
-            $("#" + item.id).show();
-        }
-    });
+    time_start = t1;
+    time_end = t2;
+    filterCards();
 };
 
 /*
