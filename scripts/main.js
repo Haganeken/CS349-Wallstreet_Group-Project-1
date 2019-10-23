@@ -7,6 +7,10 @@ let MODAL_SELECTOR = "[data-modal]";
 let USER_SERVER_URL = "http://localhost:2403/users";
 let CARD_SERVER_URL = "http://localhost:2403/cards";
 
+// User session
+var userLoggedIn = false;
+var currentUser = null;
+
 // Init
 let App = window.App;
 let Formhandler = App.FormHandler;
@@ -22,7 +26,7 @@ let registerForm = new Formhandler(REGISTER_SELECTOR);
 var cards = [];
 
 $(document).ready(function () {
-    $("#signout-button").hide();
+    $("#signout-container").hide();
 
     initFilterBar();
 
@@ -41,6 +45,7 @@ $(document).ready(function () {
         })
     });
 
+    // Get users on init
     userDS.getAll(function (response) {
         response.forEach(function (item) {
             userDS.emailMap[item.email] = item.id;
@@ -48,6 +53,169 @@ $(document).ready(function () {
         })
     });
 });
+
+/*
+* Registers user in DB
+ */
+let registerUser = function (data) {
+    if (data.password !== data.passwordCheck) {
+        alert("Passwords don't match!");
+    } else if (userDS.emailMap[data.email]) {
+        alert("Email already in use");
+    } else {
+        delete data.passwordCheck;
+        userDS.add(data.email, data);
+        $("#register-modal").modal('hide');
+        alert('User added successfully');
+        toggleLogin(data);
+    }
+};
+
+let toggleLogin = function (data) {
+    if (userLoggedIn) {
+        $("#login-container").show();
+        $('#signout-container').hide();
+        currentUser = null;
+    } else {
+        $("#login-container").hide();
+        $('#signout-container').show();
+        currentUser = data.email;
+        $('#currentUser').text(currentUser);
+    }
+    userLoggedIn = !userLoggedIn;
+    console.log("user" + currentUser);
+
+};
+
+/*
+* Signs user out
+ */
+let signOut = function () {
+    $("#signout-container").hide();
+    $("#login-container").show();
+};
+
+/*
+* Authenticates a user and changes UI accordingly
+ */
+let authUser = function (data) {
+    let id = userDS.emailMap[data.email];
+    if (!id) {
+        alert('User not found or password is incorrect');
+        return
+    }
+    userDS.get(data.email, function (response) {
+        if ((!response) || (response.password !== data.password)) {
+            alert('User not found or password is incorrect');
+        } else {
+            alert('Logged in');
+            $("#login-modal").modal('hide');
+            toggleLogin(data);
+        }
+    })
+};
+
+/*
+* Filters the cards by date
+ */
+let filterDate = function (t1, t2) {
+    var date1 = Date.parse(t1._d.getFullYear().toString() + "-" +
+        (t1._d.getMonth() + 1).toString() + "-" +
+        t1._d.getDate());
+    var date2 = Date.parse(t2._d.getFullYear().toString() + "-" +
+        (t2._d.getMonth() + 1).toString() + "-" +
+        t2._d.getDate());
+
+    cards.forEach(function (item) {
+        var itemDate = Date.parse(item.date);
+
+        if ((itemDate < date1) || (itemDate > date2)) {
+            $("#" + item.id).hide();
+        } else {
+            $("#" + item.id).show();
+        }
+    });
+};
+
+/*
+* Filters the cards by age
+ */
+let filterAge = function (age) {
+    cards.forEach(function (item) {
+        if (item.age < age) {
+            $("#" + item.id).hide();
+        } else {
+            $("#" + item.id).show();
+        }
+    });
+};
+
+/*
+* Filters the cards by time
+ */
+let filterTime = function (t1, t2) {
+    cards.forEach(function (item) {
+        if ((item.time.substr(0, 2) < t1) || (item.time.substr(0, 2) > t2)) {
+            $("#" + item.id).hide();
+        } else {
+            $("#" + item.id).show();
+        }
+    });
+};
+
+/*
+* Uploads a card to the server
+* @param data The data from the form
+ */
+let uploadCard = function (data) {
+    data.image = document.getElementById('uploadedImage').src;
+
+    cardDS.add(data.emailAddress, data, function () {
+        addCard(data);
+    });
+};
+
+/*
+* Moves data from cards to modal
+* @param element The see more button.
+ */
+let showMore = function (element) {
+    let id = element.parentElement.parentElement.id;
+    let cardData = $("#" + id + " " + CARD_SELECTOR);
+    let modalData = $(MODAL_SELECTOR);
+
+    modalData[0].src = cardData[0].src;
+    modalData[1].innerText = cardData[1].innerText;
+    modalData[2].innerText = cardData[2].innerText;
+    modalData[3].innerText = cardData[3].innerText;
+    modalData[4].innerText = cardData[4].innerText;
+    modalData[5].innerText = cardData[5].innerText;
+    modalData[6].innerText = cardData[6].innerText;
+    modalData[7].innerText = cardData[7].innerText;
+    let email = cardDS.idMap[id];
+    modalData[8].innerText = email;
+
+    $("#contact-btn").attr("href", "mailto:" + email +
+        "?subject=Dog-date appointment&body=Hello, let's arrange a dog-date!");
+};
+
+/*
+* Displays the chosen image when adding a card
+* Uses base64 format to store the img
+* @param input The input element in the DOM
+ */
+let readURL = function (input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        let $uploadedImage = $('#uploadedImage');
+        reader.onload = function (e) {
+            $uploadedImage.attr('src', e.target.result);
+            $uploadedImage.removeClass("d-none");
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+};
+
 
 /*
 * Adds card from form data
@@ -61,7 +229,7 @@ function addCard(data) {
     var $img = $("<img></img>", {
         "class": "card-image",
         "data-card": "image",
-        "src": "https://hips.hearstapps.com/ghk.h-cdn.co/assets/17/30/2560x1280/landscape-1500925839-golden-retriever-puppy.jpg?resize=480:*"
+        "src": data.image
     });
     $card.append($img);
 
@@ -168,149 +336,3 @@ function addCard(data) {
     $card.append($cardBody);
     $("#container-card").append($card);
 }
-
-/*
-* Registers user in DB
- */
-let registerUser = function (data) {
-    if (data.password !== data.passwordCheck) {
-        alert("Passwords don't match!");
-    } else {
-        delete data.passwordCheck;
-        userDS.add(data.email, data);
-        alert('User added successfully');
-        $("#register-modal").modal('hide');
-        $("#login-button").hide();
-        $('#signout-button').show();
-    }
-};
-
-/*
-* Signs user out
- */
-let signOut = function () {
-    $("#signout-button").hide();
-    $("#login-button").show();
-};
-
-/*
-* Authenticates a user and changes UI accordingly
- */
-let authUser = function (data) {
-    let id = userDS.emailMap[data.email];
-    if (!id) {
-        alert('User not found or password is incorrect');
-        return
-    }
-    userDS.get(data.email, function (response) {
-        if ((!response) || (response.password !== data.password)) {
-            alert('User not found or password is incorrect');
-        } else {
-            alert('Logged in');
-            $("#login-modal").modal('hide');
-            $("#login-button").hide();
-            $('#signout-button').show();
-        }
-    })
-};
-
-/*
-* Filters the cards by date
- */
-let filterDate = function (t1, t2) {
-    var date1 = Date.parse(t1._d.getFullYear().toString() + "-" +
-        (t1._d.getMonth() + 1).toString() + "-" +
-        t1._d.getDate());
-    var date2 = Date.parse(t2._d.getFullYear().toString() + "-" +
-        (t2._d.getMonth() + 1).toString() + "-" +
-        t2._d.getDate());
-
-    cards.forEach(function (item) {
-        var itemDate = Date.parse(item.date);
-
-        if ((itemDate < date1) || (itemDate > date2)) {
-            $("#" + item.id).hide();
-        } else {
-            $("#" + item.id).show();
-        }
-    });
-};
-
-/*
-* Filters the cards by age
- */
-let filterAge = function (age) {
-    cards.forEach(function (item) {
-        if (item.age < age) {
-            $("#" + item.id).hide();
-        } else {
-            $("#" + item.id).show();
-        }
-    });
-};
-
-/*
-* Filters the cards by time
- */
-let filterTime = function (t1, t2) {
-    cards.forEach(function (item) {
-        if ((item.time.substr(0, 2) < t1) || (item.time.substr(0, 2) > t2)) {
-            $("#" + item.id).hide();
-        } else {
-            $("#" + item.id).show();
-        }
-    });
-};
-
-/*
-* Uploads a card to the server
-* @param data The data from the form
- */
-let uploadCard = function (data) {
-    var blobFile = document.getElementById('image').files[0];
-    data.image = blobFile;
-
-    cardDS.add(data.emailAddress, data, function () {
-        addCard(data);
-    });
-};
-
-/*
-* Moves data from cards to modal
-* @param element The see more button.
- */
-let showMore = function (element) {
-    let id = element.parentElement.parentElement.id;
-    let cardData = $("#" + id + " " + CARD_SELECTOR);
-    let modalData = $(MODAL_SELECTOR);
-
-    // modalData[0].src = cardData[0].src;
-    modalData[1].innerText = cardData[1].innerText;
-    modalData[2].innerText = cardData[2].innerText;
-    modalData[3].innerText = cardData[3].innerText;
-    modalData[4].innerText = cardData[4].innerText;
-    modalData[5].innerText = cardData[5].innerText;
-    modalData[6].innerText = cardData[6].innerText;
-    modalData[7].innerText = cardData[7].innerText;
-    let email = cardDS.idMap[id];
-    modalData[8].innerText = email;
-
-    $("#contact-btn").attr("href", "mailto:" + email +
-        "?subject=Dog-date appointment&body=Hello, let's arrange a dog-date!");
-};
-
-/*
-* Displays the chosen image when adding a card
-* @param input The input element in the DOM
- */
-let readURL = function (input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        let $uploadedImage = $('#uploadedImage');
-        reader.onload = function (e) {
-            $uploadedImage.attr('src', e.target.result);
-            $uploadedImage.removeClass("d-none");
-        };
-        reader.readAsDataURL(input.files[0]);
-    }
-};

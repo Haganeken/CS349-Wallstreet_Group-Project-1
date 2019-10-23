@@ -36,6 +36,7 @@ nav {
 
 /* NAV BAR */
 .title-name {
+    font-weight: 900;
     color: var(--color-dark-red);
     font-family: 'Dancing Script', cursive;
     font-size: 60px;
@@ -48,8 +49,12 @@ nav {
     text-decoration: none;
 }
 
-/* CONTAINER */
+#signout-container {
+    display: flex;
+    flex-direction: column;
+}
 
+/* CONTAINER */
 .container-card {
     display: flex;
     justify-content: space-around;
@@ -235,7 +240,6 @@ form, .card-body div {
 }
 
 /* STICKY CLASSES */
-
 .sticky-top {
     position: fixed;
     top: 0;
