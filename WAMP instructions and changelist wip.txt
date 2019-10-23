@@ -1,0 +1,18 @@
+Set-Up and Execution
+
+Place all files in a folder in the "www" directory
+-Typically found in C:wamp64/www/
+Run WAMP services
+
+
+Run WAMP services
+load browser
+go to address: localhost/(your folder name)/index.php
+my example: localhost/DogDate/index.php
+
+
+
+
+
+CHANGELIST:
+Changed index.html to index.php

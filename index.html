@@ -1,3 +1,20 @@
+<?php
+  include('server.php');
+
+  $nickname = $_SESSION['email'];
+
+
+
+  if (isset($_GET['logout'])) {
+  	session_destroy();
+  	unset($_SESSION['email']);
+  	header("location: index.php");
+  }
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,9 +58,11 @@
         <div class="col-sm-4">
             <p class="title-name">Dog-Date</p>
         </div>
+        <form action="login2.php">
         <div class="col-sm-4 d-flex justify-content-end">
-            <button class="btn mt-0" onclick="myFunction()">Login</button>
+            <input type="submit" name="login" value="Login" class="btn btn-success"/>
         </div>
+      </form>
     </div>
 </nav>
 
