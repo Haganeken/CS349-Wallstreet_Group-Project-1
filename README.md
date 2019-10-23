@@ -9,4 +9,4 @@ Ken Tat
 
 Jenny Reinhard
 
-Simon Sorenson
+Simon Soerenson
