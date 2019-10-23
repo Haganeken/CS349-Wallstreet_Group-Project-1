@@ -7,7 +7,8 @@ let MODAL_SELECTOR = "[data-modal]";
 let USER_SERVER_URL = "http://localhost:2403/users";
 let CARD_SERVER_URL = "http://localhost:2403/cards";
 
-// User session
+// Variables
+var cards = [];
 var userLoggedIn = false;
 var currentUser = null;
 
@@ -21,9 +22,6 @@ let cardDS = new RemoteDataStore(CARD_SERVER_URL);
 let cardForm = new Formhandler(ADD_CARD_SELECTOR);
 let loginForm = new Formhandler(LOGIN_SELECTOR);
 let registerForm = new Formhandler(REGISTER_SELECTOR);
-
-
-var cards = [];
 
 $(document).ready(function () {
     $("#signout-container").hide();
@@ -55,115 +53,6 @@ $(document).ready(function () {
 });
 
 /*
-* Registers user in DB
- */
-let registerUser = function (data) {
-    if (data.password !== data.passwordCheck) {
-        alert("Passwords don't match!");
-    } else if (userDS.emailMap[data.email]) {
-        alert("Email already in use");
-    } else {
-        delete data.passwordCheck;
-        userDS.add(data.email, data);
-        $("#register-modal").modal('hide');
-        alert('User added successfully');
-        toggleLogin(data);
-    }
-};
-
-let toggleLogin = function (data) {
-    if (userLoggedIn) {
-        $("#login-container").show();
-        $('#signout-container').hide();
-        currentUser = null;
-    } else {
-        $("#login-container").hide();
-        $('#signout-container').show();
-        currentUser = data.email;
-        $('#currentUser').text(currentUser);
-    }
-    userLoggedIn = !userLoggedIn;
-    console.log("user" + currentUser);
-
-};
-
-/*
-* Signs user out
- */
-let signOut = function () {
-    $("#signout-container").hide();
-    $("#login-container").show();
-};
-
-/*
-* Authenticates a user and changes UI accordingly
- */
-let authUser = function (data) {
-    let id = userDS.emailMap[data.email];
-    if (!id) {
-        alert('User not found or password is incorrect');
-        return
-    }
-    userDS.get(data.email, function (response) {
-        if ((!response) || (response.password !== data.password)) {
-            alert('User not found or password is incorrect');
-        } else {
-            alert('Logged in');
-            $("#login-modal").modal('hide');
-            toggleLogin(data);
-        }
-    })
-};
-
-/*
-* Filters the cards by date
- */
-let filterDate = function (t1, t2) {
-    var date1 = Date.parse(t1._d.getFullYear().toString() + "-" +
-        (t1._d.getMonth() + 1).toString() + "-" +
-        t1._d.getDate());
-    var date2 = Date.parse(t2._d.getFullYear().toString() + "-" +
-        (t2._d.getMonth() + 1).toString() + "-" +
-        t2._d.getDate());
-
-    cards.forEach(function (item) {
-        var itemDate = Date.parse(item.date);
-
-        if ((itemDate < date1) || (itemDate > date2)) {
-            $("#" + item.id).hide();
-        } else {
-            $("#" + item.id).show();
-        }
-    });
-};
-
-/*
-* Filters the cards by age
- */
-let filterAge = function (age) {
-    cards.forEach(function (item) {
-        if (item.age < age) {
-            $("#" + item.id).hide();
-        } else {
-            $("#" + item.id).show();
-        }
-    });
-};
-
-/*
-* Filters the cards by time
- */
-let filterTime = function (t1, t2) {
-    cards.forEach(function (item) {
-        if ((item.time.substr(0, 2) < t1) || (item.time.substr(0, 2) > t2)) {
-            $("#" + item.id).hide();
-        } else {
-            $("#" + item.id).show();
-        }
-    });
-};
-
-/*
 * Uploads a card to the server
 * @param data The data from the form
  */
@@ -175,11 +64,25 @@ let uploadCard = function (data) {
     });
 };
 
+let openCardForm = function () {
+    if (!userLoggedIn) {
+        alert("You have to be logged in to add a card!");
+        return;
+    }
+    $("#card-modal").modal('show');
+};
+
 /*
 * Moves data from cards to modal
 * @param element The see more button.
  */
 let showMore = function (element) {
+    if (!userLoggedIn) {
+        alert("You have to be logged in to see more!");
+        return;
+    }
+    $("#more-modal").modal('show');
+
     let id = element.parentElement.parentElement.id;
     let cardData = $("#" + id + " " + CARD_SELECTOR);
     let modalData = $(MODAL_SELECTOR);
@@ -204,7 +107,7 @@ let showMore = function (element) {
 * Uses base64 format to store the img
 * @param input The input element in the DOM
  */
-let readURL = function (input) {
+let previewImage = function (input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         let $uploadedImage = $('#uploadedImage');
@@ -323,8 +226,8 @@ function addCard(data) {
 
     var $button = $("<button></button>", {
         "class": "btn btn-primary btn-more",
-        "data-target": "#more-modal",
-        "data-toggle": "modal",
+        // "data-target": "#more-modal",
+        // "data-toggle": "modal",
         "onclick": "showMore(this)",
         "type": "button"
     });

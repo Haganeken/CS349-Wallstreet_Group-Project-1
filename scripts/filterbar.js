@@ -10,6 +10,55 @@ function initFilterBar() {
     initLocationCheckboxes();
     initDateFilter();
 }
+
+/*
+* Filters the cards by date
+ */
+let filterDate = function (t1, t2) {
+    var date1 = Date.parse(t1._d.getFullYear().toString() + "-" +
+        (t1._d.getMonth() + 1).toString() + "-" +
+        t1._d.getDate());
+    var date2 = Date.parse(t2._d.getFullYear().toString() + "-" +
+        (t2._d.getMonth() + 1).toString() + "-" +
+        t2._d.getDate());
+
+    cards.forEach(function (item) {
+        var itemDate = Date.parse(item.date);
+
+        if ((itemDate < date1) || (itemDate > date2)) {
+            $("#" + item.id).hide();
+        } else {
+            $("#" + item.id).show();
+        }
+    });
+};
+
+/*
+* Filters the cards by age
+ */
+let filterAge = function (age) {
+    cards.forEach(function (item) {
+        if (item.age < age) {
+            $("#" + item.id).hide();
+        } else {
+            $("#" + item.id).show();
+        }
+    });
+};
+
+/*
+* Filters the cards by time
+ */
+let filterTime = function (t1, t2) {
+    cards.forEach(function (item) {
+        if ((item.time.substr(0, 2) < t1) || (item.time.substr(0, 2) > t2)) {
+            $("#" + item.id).hide();
+        } else {
+            $("#" + item.id).show();
+        }
+    });
+};
+
 /*
 * Stops the dropdown from disappearing when clicking inside the dropdown menu
 */

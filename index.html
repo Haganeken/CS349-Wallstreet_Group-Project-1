@@ -40,7 +40,6 @@
         <div class="col-sm-7">
             <p class="title-name">Dog-Date</p>
         </div>
-        <div class="vline"></div>
         <form class="col-sm-4">
             <div class="d-flex justify-content-end">
                 <div id="login-container">
@@ -136,7 +135,7 @@
 <div class="container-card" id="container-card"></div>
 
 <div class="w3-xxxlarge w3-text-dark">
-    <i class="fa fa-plus-circle sticky-bottom" data-target="#card-modal" data-toggle="modal"></i>
+    <i class="fa fa-plus-circle sticky-bottom" onclick="openCardForm()"></i>
 </div>
 
 
@@ -198,7 +197,7 @@
                         <div class="custom-file">
                             <label class="custom-file-label" for="image">Choose file</label>
                             <input accept="image/png, image/jpeg" class="custom-file-input" id="image" required
-                                   onchange="readURL(this)" type="file">
+                                   onchange="previewImage(this)" type="file">
                         </div>
                     </div>
                     <img class="img w-100 pt-3 pb-3 d-none" id="uploadedImage"></img>
@@ -331,6 +330,7 @@
         type="text/javascript"></script>
 
 <script charset="utf-8" src="scripts/remotedatastore.js"></script>
+<script charset="utf-8" src="scripts/userAuth.js"></script>
 <script src="scripts/formhandler.js"></script>
 <script src="scripts/filterbar.js"></script>
 <script src="scripts/moments.js"></script>
