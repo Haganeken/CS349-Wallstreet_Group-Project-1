@@ -49,7 +49,9 @@ $(document).ready(function () {
     });
 });
 
-
+/*
+* Adds card from form data
+ */
 function addCard(data) {
     var $card = $("<div></div>", {
         "id": cardDS.emailMap[data.emailAddress],
@@ -167,6 +169,9 @@ function addCard(data) {
     $("#container-card").append($card);
 }
 
+/*
+* Registers user in DB
+ */
 let registerUser = function (data) {
     if (data.password !== data.passwordCheck) {
         alert("Passwords don't match!");
@@ -180,11 +185,17 @@ let registerUser = function (data) {
     }
 };
 
+/*
+* Signs user out
+ */
 let signOut = function () {
     $("#signout-button").hide();
     $("#login-button").show();
 };
 
+/*
+* Authenticates a user and changes UI accordingly
+ */
 let authUser = function (data) {
     let id = userDS.emailMap[data.email];
     if (!id) {
@@ -203,7 +214,9 @@ let authUser = function (data) {
     })
 };
 
-
+/*
+* Filters the cards by date
+ */
 let filterDate = function (t1, t2) {
     var date1 = Date.parse(t1._d.getFullYear().toString() + "-" +
         (t1._d.getMonth() + 1).toString() + "-" +
@@ -223,6 +236,9 @@ let filterDate = function (t1, t2) {
     });
 };
 
+/*
+* Filters the cards by age
+ */
 let filterAge = function (age) {
     cards.forEach(function (item) {
         if (item.age < age) {
@@ -233,6 +249,9 @@ let filterAge = function (age) {
     });
 };
 
+/*
+* Filters the cards by time
+ */
 let filterTime = function (t1, t2) {
     cards.forEach(function (item) {
         if ((item.time.substr(0, 2) < t1) || (item.time.substr(0, 2) > t2)) {
@@ -242,8 +261,6 @@ let filterTime = function (t1, t2) {
         }
     });
 };
-
-
 
 /*
 * Uploads a card to the server
