@@ -227,6 +227,7 @@ nav {
 
 .modal-body .form-control:focus, .form-control:hover {
     background-color: white;
+    color: black;
 }
 
 form, .card-body div {

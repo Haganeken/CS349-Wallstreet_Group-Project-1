@@ -1,20 +1,3 @@
-<?php
-  include('server.php');
-
-  $nickname = $_SESSION['email'];
-
-
-
-  if (isset($_GET['logout'])) {
-  	session_destroy();
-  	unset($_SESSION['email']);
-  	header("location: index.php");
-  }
-
-?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,9 +41,12 @@
         <div class="col-sm-4">
             <p class="title-name">Dog-Date</p>
         </div>
-        <form action="login2.php">
-        <div class="col-sm-4 d-flex justify-content-end">
-            <input type="submit" name="login" value="Login" class="btn btn-success"/>
+        <form class="col-sm-4">
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-success" data-target="#login-modal" data-toggle="modal" id="login-button"
+                        name="login" type="button">Login
+                </button>
+                <button class="btn btn-success" id="signout-button" name="signout" onclick="signOut()">Sign out</button>
         </div>
       </form>
     </div>
@@ -141,139 +127,7 @@
     </div>
 </div>
 
-<div class="container-card" id="container-card">
-    <div class="card col-md-3" id="dog-id-1">
-        <img class="card-image" data-card="image"
-             src="https://hips.hearstapps.com/ghk.h-cdn.co/assets/17/30/2560x1280/landscape-1500925839-golden-retriever-puppy.jpg?resize=480:*"/>
-        <div class="card-body">
-            <h5 class="card-title"><span data-card="name">Snoopy</span>, <span data-card="age">3</span> years</h5>
-            <p class="font-italic font-weight-light" data-card="breed">Golden Retriever</p>
-            <p class="card-desc" data-card="description">Snoopy is an amazing dog, he loves his toys and running around
-                in the park</p>
-            <div class="card-grid">
-                <i class="fa fa-calendar"></i>
-                <a class="card-date card-grid-wide" href="#"><span class="nav-text" data-card="date"> 10/22/2019</span></a>
-                <i class="fa fa-bell"></i>
-                <a class="card-time card-grid-wide" href="#"><span class="nav-text" data-card="time"> 09:30</span></a>
-                <i class="fa fa-thumb-tack"></i>
-                <a class="card-location card-grid-wide" href="#"><span class="nav-text"
-                                                                       data-card="location"> Fullerton</span></a>
-            </div>
-            <!-- Button trigger modal -->
-            <button class="btn btn-primary btn-more" data-target="#more-modal" data-toggle="modal"
-                    onclick="showMore(this)"
-                    type="button">
-                See more
-            </button>
-
-        </div>
-    </div>
-    <div class="card col-md-3" id="dog-id-2">
-        <img class="card-image" data-card="image"
-             src="https://thenypost.files.wordpress.com/2018/06/180615-scooby-doo-television-pets-feature.jpg?quality=90&strip=all"/>
-        <div class="card-body">
-            <h5 class="card-title"><span data-card="name">Scooby</span>, <span data-card="age">5</span> years</h5>
-            <p class="font-italic font-weight-light" data-card="breed">Big boi</p>
-            <p class="card-desc" data-card="description">He eats snacks and hunts monsters</p>
-            <div class="card-grid">
-                <i class="fa fa-calendar"></i>
-                <a class="card-date card-grid-wide" href="#"><span class="nav-text" data-card="date"> 10/22/2019</span></a>
-                <i class="fa fa-bell"></i>
-                <a class="card-time card-grid-wide" href="#"><span class="nav-text" data-card="time"> 15:30</span></a>
-                <i class="fa fa-thumb-tack"></i>
-                <a class="card-location card-grid-wide" href="#"><span class="nav-text"
-                                                                       data-card="location"> Anaheim</span></a>
-            </div>
-            <!-- Button trigger modal -->
-            <button class="btn btn-primary btn-more" data-target="#more-modal" data-toggle="modal"
-                    onclick="showMore(this)"
-                    type="button">
-                See more
-            </button>
-
-        </div>
-    </div>
-    <div class="card col-md-3" id="dog-id-3">
-        <img class="card-image" data-card="image"
-             src="https://hips.hearstapps.com/ghk.h-cdn.co/assets/17/30/2560x1280/landscape-1500925839-golden-retriever-puppy.jpg?resize=480:*"/>
-        <div class="card-body">
-            <h5 class="card-title"><span data-card="name">Snoopy</span>, <span data-card="age">5</span> years</h5>
-            <p class="font-italic font-weight-light" data-card="breed">Golden Retriever</p>
-            <p class="card-desc" data-card="description">Snoopy is an amazing dog, he loves his toys and running around
-                in the park</p>
-            <div class="card-grid">
-                <i class="fa fa-calendar"></i>
-                <a class="card-date card-grid-wide" href="#"><span class="nav-text" data-card="date"> 10/22/2019</span></a>
-                <i class="fa fa-bell"></i>
-                <a class="card-time card-grid-wide" href="#"><span class="nav-text" data-card="time"> 09:30</span></a>
-                <i class="fa fa-thumb-tack"></i>
-                <a class="card-location card-grid-wide" href="#"><span class="nav-text"
-                                                                       data-card="location"> Fullerton</span></a>
-            </div>
-            <!-- Button trigger modal -->
-            <button class="btn btn-primary btn-more" data-target="#more-modal" data-toggle="modal"
-                    onclick="showMore(this)"
-                    type="button">
-                See more
-            </button>
-
-        </div>
-    </div>
-    <div class="card col-md-3" id="dog-id-4">
-        <img class="card-image" data-card="image"
-             src="https://hips.hearstapps.com/ghk.h-cdn.co/assets/17/30/2560x1280/landscape-1500925839-golden-retriever-puppy.jpg?resize=480:*"/>
-        <div class="card-body">
-            <h5 class="card-title"><span data-card="name">Snoopy</span>, <span data-card="age">3</span> years</h5>
-            <p class="font-italic font-weight-light" data-card="breed">Golden Retriever</p>
-            <p class="card-desc" data-card="description">Snoopy is an amazing dog, he loves his toys and running around
-                in the park</p>
-            <div class="card-grid">
-                <i class="fa fa-calendar"></i>
-                <a class="card-date card-grid-wide" href="#"><span class="nav-text" data-card="date"> 10/22/2019</span></a>
-                <i class="fa fa-bell"></i>
-                <a class="card-time card-grid-wide" href="#"><span class="nav-text" data-card="time"> 09:30</span></a>
-                <i class="fa fa-thumb-tack"></i>
-                <a class="card-location card-grid-wide" href="#"><span class="nav-text"
-                                                                       data-card="location"> Fullerton</span></a>
-            </div>
-            <!-- Button trigger modal -->
-            <button class="btn btn-primary btn-more" data-target="#more-modal" data-toggle="modal"
-                    onclick="showMore(this)"
-                    type="button">
-                See more
-            </button>
-
-        </div>
-    </div>
-    <div class="card col-md-3" id="dog-id-5">
-        <img class="card-image" data-card="image"
-             src="https://hips.hearstapps.com/ghk.h-cdn.co/assets/17/30/2560x1280/landscape-1500925839-golden-retriever-puppy.jpg?resize=480:*"/>
-        <div class="card-body">
-            <h5 class="card-title"><span data-card="name">Snoopy</span>, <span data-card="age">3</span> years</h5>
-            <p class="font-italic font-weight-light" data-card="breed">Golden Retriever</p>
-            <p class="card-desc" data-card="description">Snoopy is an amazing dog, he loves his toys and running around
-                in the park</p>
-            <div class="card-grid">
-                <i class="fa fa-calendar"></i>
-                <a class="card-date card-grid-wide" href="#"><span class="nav-text" data-card="date"> 10/22/2019</span></a>
-                <i class="fa fa-bell"></i>
-                <a class="card-time card-grid-wide" href="#"><span class="nav-text" data-card="time"> 09:30</span></a>
-                <i class="fa fa-thumb-tack"></i>
-                <a class="card-location card-grid-wide" href="#"><span class="nav-text"
-                                                                       data-card="location"> Fullerton</span></a>
-            </div>
-            <!-- Button trigger modal -->
-            <button class="btn btn-primary btn-more" data-target="#more-modal" data-toggle="modal"
-                    onclick="showMore(this)"
-                    type="button">
-                See more
-            </button>
-
-        </div>
-    </div>
-
-</div>
-</div>
+<div class="container-card" id="container-card"></div>
 
 <button class="w3-xxxlarge w3-text-dark" data-target="#card-modal" data-toggle="modal">
     <i class="fa fa-plus-circle sticky-bottom"></i>
@@ -370,12 +224,12 @@
                     <h3 class="mt-3">Details about the Event</h3>
                     <div class="form-group">
                         <label class="h5" for="date">Date: </label>
-                        <input class="form-control" id="date" max="2021-12-31" min="2019-10-15" name="date"
-                               required type="date" value="yyyy-mm-dd">
+                        <input class="form-control" id="date" max="31-12-2030" min="01-01-2019" name="date"
+                               required type="date" value="dd/mm/yyyy">
                     </div>
                     <div class="form-group">
                         <label class="h5" for="time">Time: </label>
-                        <input class="form-control" id="time" max="18:00" min="09:00" name="time" required type="time">
+                        <input class="form-control" id="time" max="23:00" min="00:00" name="time" required type="time">
                     </div>
                     <div class="form-group">
                         <label class="h5" for="location">Location: </label>
@@ -402,6 +256,66 @@
 </div>
 
 
+<!-- Login Modal -->
+<div aria-hidden="true" aria-labelledby="more-modal-label" class="modal fade" id="login-modal" role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form class="modal-body" id="login-form">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input class="form-control" name="email" type="text">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input class="form-control" name="password" type="password">
+                </div>
+                <p>
+                    Not yet a member? <b>
+                    <button data-dismiss="modal" data-target="#register-modal" data-toggle="modal" type="button">Sign
+                        up
+                    </button>
+                </b>
+                </p>
+                <div class="modal-footer">
+                    <div class="input-group">
+                        <button class="btn" name="login_user" type="submit">Login</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Register Modal -->
+<div aria-hidden="true" aria-labelledby="more-modal-label" class="modal fade" id="register-modal" role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form class="modal-body" id="register-form">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input class="form-control" name="email" type="text">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input class="form-control" name="password" type="password">
+                </div>
+                <div class="form-group">
+                    <label>Confirm password</label>
+                    <input class="form-control" name="passwordCheck" type="password">
+                </div>
+                <div class="modal-footer">
+                    <div class="input-group">
+                        <button class="btn" name="register_user" type="submit">Sign up</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script charset="utf-8" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script crossorigin="anonymous" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
@@ -411,6 +325,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"
         type="text/javascript"></script>
 
+<script charset="utf-8" src="scripts/remotedatastore.js"></script>
 <script src="scripts/formhandler.js"></script>
 <script src="scripts/filterbar.js"></script>
 <script src="scripts/moments.js"></script>

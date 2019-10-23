@@ -1,3 +1,4 @@
+
 /*
 * Initializes the sub-components of the filter bar
 */
@@ -9,7 +10,6 @@ function initFilterBar() {
     initLocationCheckboxes();
     initDateFilter();
 }
-
 /*
 * Stops the dropdown from disappearing when clicking inside the dropdown menu
 */
@@ -41,7 +41,6 @@ var checkboxClick = function (event) {
     let parent = target.parentElement;
 
     parent.setAttribute("style", "background-color: var(--color-dark-red)");
-    //DO stuff
 
     console.log(target.value);
 
