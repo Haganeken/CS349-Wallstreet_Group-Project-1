@@ -203,17 +203,59 @@ let authUser = function (data) {
     })
 };
 
+
+let filterDate = function (t1, t2) {
+    var date1 = Date.parse(t1._d.getFullYear().toString() + "-" +
+        (t1._d.getMonth() + 1).toString() + "-" +
+        t1._d.getDate());
+    var date2 = Date.parse(t2._d.getFullYear().toString() + "-" +
+        (t2._d.getMonth() + 1).toString() + "-" +
+        t2._d.getDate());
+
+    cards.forEach(function (item) {
+        var itemDate = Date.parse(item.date);
+
+        if ((itemDate < date1) || (itemDate > date2)) {
+            $("#" + item.id).hide();
+        } else {
+            $("#" + item.id).show();
+        }
+    });
+};
+
+let filterAge = function (age) {
+    cards.forEach(function (item) {
+        if (item.age < age) {
+            $("#" + item.id).hide();
+        } else {
+            $("#" + item.id).show();
+        }
+    });
+};
+
+let filterTime = function (t1, t2) {
+    cards.forEach(function (item) {
+        if ((item.time.substr(0, 2) < t1) || (item.time.substr(0, 2) > t2)) {
+            $("#" + item.id).hide();
+        } else {
+            $("#" + item.id).show();
+        }
+    });
+};
+
+
+
 /*
 * Uploads a card to the server
 * @param data The data from the form
  */
 let uploadCard = function (data) {
     var blobFile = document.getElementById('image').files[0];
-
-    cardDS.add(data.emailAddress, data);
     data.image = blobFile;
 
-    addCard(data);
+    cardDS.add(data.emailAddress, data, function () {
+        addCard(data);
+    });
 };
 
 /*

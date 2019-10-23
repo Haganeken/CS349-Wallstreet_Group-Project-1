@@ -42,7 +42,7 @@ var checkboxClick = function (event) {
 
     parent.setAttribute("style", "background-color: var(--color-dark-red)");
 
-    console.log(target.value);
+    $("#location-filter").text("<" + target.value + "km");
 
 };
 
@@ -58,6 +58,7 @@ let initAgeSlider = function () {
     // Update the current slider value
     slider.oninput = function () {
         output.innerHTML = this.value;
+        filterAge(this.value);
     };
 };
 
@@ -73,10 +74,11 @@ let initTimeSlider = function () {
         range: true,
         min: 0,
         max: 23,
-        values: [12, 18],
+        values: [1, 23],
         slide: function (event, ui) {
             $timeText.val(ui.values[0] + ":00 - " + ui.values[1] + ":00");
             $timeButtonText.text($timeText.val());
+            filterTime(ui.values[0], ui.values[1]);
         }
     });
 
@@ -118,7 +120,11 @@ let initDateFilter = function () {
         field: document.getElementById('date-from'),
         secondField: document.getElementById('date-to'),
         repick: true,
+        singleDate: false,
         startDate: moment().startOf('month').add(7, 'day'),
-        endDate: moment().endOf('month').subtract(7, 'day')
+        endDate: moment().endOf('month').subtract(7, 'day'),
+        onSelect: function (start, end) {
+            filterDate(start, end);
+        }
     });
 };

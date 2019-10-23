@@ -13,11 +13,14 @@
         this.idMap = {};
     }
 
-    RemoteDataStore.prototype.add = function (key, val) {
+    RemoteDataStore.prototype.add = function (key, val, cb) {
         var self = this;
         $.post(this.serverUrl, val, function (serverResponse) {
             self.emailMap[key] = serverResponse.id;
             self.idMap[serverResponse.id] = key;
+            if (cb) {
+                cb();
+            }
         });
     };
 

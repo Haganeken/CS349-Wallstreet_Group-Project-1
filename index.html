@@ -60,7 +60,7 @@
                 Age: <span id="ageButtonText"></span>+
             </button>
             <div aria-labelledby="filterAge" class="dropdown-menu">
-                <input class="slider" id="ageSlider" max="20" min="1" type="range" value="10">
+                <input class="slider" id="ageSlider" max="20" min="1" type="range" value="1">
             </div>
         </div>
         <div class="vline"></div>
@@ -78,7 +78,7 @@
         <div class="dropdown">
             <button aria-expanded="false" aria-haspopup="true" class="btn dropdown-toggle" data-toggle="dropdown"
                     id="filterLocation" type="button">
-                Location: <span>Any</span>
+                Location: <span id="location-filter">Any</span>
             </button>
             <div aria-labelledby="filterLocation" class="dropdown-menu p-0">
                 <div class="d-flex flex-column btn-group-toggle" data-toggle="buttons">
@@ -113,7 +113,7 @@
         <div class="dropdown">
             <button aria-expanded="false" aria-haspopup="true" class="btn dropdown-toggle" data-toggle="dropdown"
                     id="filterDate" type="button">
-                Date: <span>Any</span>
+                Date: <span></span>
             </button>
             <div aria-labelledby="filterDate" class="dropdown-menu">
                 <div class="date-container">
