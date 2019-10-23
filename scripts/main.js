@@ -280,7 +280,6 @@ let showMore = function (element) {
 
     $("#contact-btn").attr("href", "mailto:" + email +
         "?subject=Dog-date appointment&body=Hello, let's arrange a dog-date!");
-
 };
 
 /*
