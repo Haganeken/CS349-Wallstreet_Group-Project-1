@@ -7,8 +7,22 @@
     --color-white: #e8e8e8;
     --color-grey-dark: #4d4542;
     --color-grey: #8A817C;
+    --color-grey-light: #675F5C;
 }
 
+/* LINES */
+
+.vline {
+    height: 3rem;
+    width: 2px;
+    background-color: var(--color-grey-dark);
+}
+
+.hline {
+    height: 2px;
+    background-color: var(--color-grey-dark);
+    margin-top: 0.9rem;
+}
 /* TAGS */
 body {
     background-color: var(--color-black);
@@ -34,155 +48,6 @@ nav {
     text-decoration: none;
 }
 
-.fa-user {
-    right: 20px;
-    top: 20px;
-}
-
-.fa-user:hover {
-    color: grey;
-    cursor: pointer;
-}
-
-/* FILTER BAR */
-.filter-bar {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    margin: .5rem;
-    border: 0.22rem solid var(--color-grey);
-    border-radius: .75rem;
-    background-color: var(--color-grey);
-    box-shadow: 0.3rem 0.4rem 0.5rem;
-}
-
-.filter-bar .dropdown {
-    margin-top: .5rem;
-    margin-bottom: .5rem;
-}
-
-.filter-bar .btn {
-    background-color: var(--color-grey);
-    color: var(--color-white);
-}
-
-.filter-vline {
-    height: 3rem;
-    width: 2px;
-    background-color: var(--color-grey-dark);
-}
-
-/* DROPDOWN */
-.dropdown-menu {
-    background-color: var(--color-grey);
-    color: var(--color-white);
-    text-align: center;
-}
-
-/* The slider itself */
-.slider {
-    -webkit-appearance: button; /* Override default CSS styles */
-    appearance: none;
-    width: 100%; /* Full-width */
-    height: 15px; /* Specified height */
-    background: #d3d3d3; /* Grey background */
-    border-radius: 0.6rem;
-    outline: none; /* Remove outline */
-    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
-    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
-    transition: opacity .2s;
-}
-
-/* Mouse-over effects */
-.slider:hover {
-    opacity: 1; /* Fully shown on mouse-over */
-}
-
-/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
-.slider::-webkit-slider-thumb {
-    -webkit-appearance: none; /* Override default look */
-    appearance: none;
-    width: 25px; /* Set a specific slider handle width */
-    height: 25px; /* Slider handle height */
-    background: var(--color-dark-red);
-    border-radius: .75rem;
-    cursor: pointer; /* Cursor on hover */
-}
-
-.slider::-moz-range-thumb {
-    width: 25px; /* Set a specific slider handle width */
-    height: 25px; /* Slider handle height */
-    background: var(--color-dark-red);
-    cursor: pointer; /* Cursor on hover */
-}
-
-/* TIME FILTER */
-.time-filter-title {
-    font-size: 24px;
-    font-family: "Segoe UI", sans-serif;
-    font-weight: 400;
-    margin: 0;
-}
-
-.time-filter-text {
-    background-color: var(--color-grey);
-    border: none;
-    text-align: center;
-    color: white;
-    font-size: 17px;
-}
-
-.time-filter-slider {
-    margin: 0.5rem;
-    opacity: 0.7;
-    border-radius: 1rem;
-}
-
-.ui-slide-range {
-    opacity: 0.7;
-}
-
-.time-filter-slider:hover {
-    opacity: 1;
-}
-
-.ui-slider-handle {
-    background: var(--color-dark-red) !important;
-    border-radius: 0.75rem !important;
-    border: none !important;
-}
-
-/* LOCATION FILTER */
-.list-group-item {
-    display: grid;
-    grid-template-columns: auto auto;
-    background-color: var(--color-grey);
-    border-bottom: 2px solid var(--color-dark-red);
-    align-items: center;
-    justify-content: space-between;
-    padding-left: 0.3rem;
-    padding-right: 0.3rem;
-}
-
-.location-active {
-    background-color: var(--color-dark-red);
-}
-
-/* DATE */
-.date-container {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 0 0.3rem;
-}
-
-.date-container .form-control {
-    color: var(--color-white);
-    background-color: var(--color-grey-dark);
-}
-
-
 /* CONTAINER */
 
 .container-card {
@@ -202,6 +67,13 @@ nav {
     box-shadow: 0.4rem 0.6rem 0.8rem;
 }
 
+.card-image {
+    max-width: 100%;
+    height: auto;
+    max-height: 20rem;
+    padding-top: 1rem !important;
+}
+
 .card-body {
     font-size: 14px;
     padding: .75rem;
@@ -215,6 +87,9 @@ nav {
 .card-desc {
     font-weight: 100;
     font-size: 15px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .card-grid {
@@ -229,9 +104,13 @@ nav {
     grid-column-end: 3;
 }
 
-.title-detail {
+.title-detail-dog {
     font-weight: 700;
-    margin-top: 30px;
+}
+
+.title-detail-event, .title-detail-contact {
+  font-weight: 700;
+  margin-top: 30px;
 }
 
 .card-date, .card-time, .card-location {
@@ -244,12 +123,22 @@ nav {
     padding-right: 20px;
 }
 
+.card-date-detail:hover, .card-time-detail:hover, .card-location-detail:hover {
+  text-decoration: none;
+  color: var(--color-black);
+  cursor: text;
+}
+
 .fa-thumb-tack {
     margin-left: 3px;
 }
 
 .fa {
     align-self: center;
+}
+
+.form-item {
+  width: 100%;
 }
 
 /* BUTTONS */
@@ -259,11 +148,20 @@ nav {
     color: var(--color-white);
 }
 
+.btn-secondary {
+    background-color: var(--color-grey-dark);
+}
+
+.btn-secondary:hover, .btn-secondary:focus {
+    background-color: var(--color-grey) !important;
+}
+
 .btn-more {
     position: absolute;
     bottom: -7%;
     right: 10%;
     left: 10%;
+    width: 80%;
 }
 
 .btn:hover, .btn:focus {
@@ -292,47 +190,47 @@ nav {
     float: right;
 }
 
-.login-button:hover, .filter:hover, .fa-user:hover, .fa-plus-circle:hover, .back-button:hover {
-    color: grey;
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.back-button {
-    color: white;
-    font-size: 30px;
-}
-
-.email {
-    display: inline;
-}
-
-.email-address {
-    text-decoration: underline;
-}
-
-.img-fluid-detail {
-    padding-left: 20%;
-    padding-right: 20%;
-}
-
-.details-label {
-    display: block;
-}
-
-.create-button {
-    margin-top: 20px;
-}
-
-.title-new-event {
-    color: #333333;
-    font-family: 'Dancing Script', cursive;
-    font-size: 40px;
-}
-
 .fa-plus-circle:hover {
     color: grey;
     cursor: pointer;
+}
+
+/* MODALS */
+.modal-content {
+    background-color: var(--color-light-blue);
+    padding: 0 1rem;
+}
+
+.modal-grid {
+    display: inline-grid;
+    grid-template-columns: auto auto auto auto auto;
+    grid-column-gap: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.title-new-event {
+    color: var(--color-dark-red);
+    font-family: 'Dancing Script', cursive;
+    font-size: 40px;
+    text-align: center;
+    margin-top: 10px;
+    transform: rotate(-5deg);
+}
+
+.custom-file-label {
+    background-color: var(--color-white);
+}
+
+.modal-body .form-control {
+    background-color: var(--color-white);
+}
+
+.modal-body .form-control:focus, .form-control:hover {
+    background-color: white;
+}
+
+form, .card-body div {
+    margin-bottom: 0.50rem !important;
 }
 
 /* STICKY CLASSES */

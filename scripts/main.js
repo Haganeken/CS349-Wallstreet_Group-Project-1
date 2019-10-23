@@ -1,105 +1,86 @@
+// Constants
+let ADD_CARD_SELECTOR = "#add-card-form";
+let CARD_SELECTOR = "[data-card]";
+let MODAL_SELECTOR = "[data-modal]";
+
+// Init
+let App = window.App;
+let Formhandler = new App.FormHandler(ADD_CARD_SELECTOR);
+
 $(document).ready(function () {
-    initAgeSlider();
-    initTimeSlider();
-    initStickyFilter();
-    initDropdown();
-    initLocationCheckboxes();
-    initDateFilter();
+    initFilterBar();
+    Formhandler.addSubmitHandler(uploadForm);
 });
 
-let initDropdown = function () {
-    $('.dropdown-menu').on("click.bs.dropdown", function (event) {
-        event.stopPropagation();
-        // event.preventDefault();
-    });
+/*
+*
+* @param
+ */
+
+/*
+* Moves data from cards to modal
+* @param element The see more button.
+ */
+let showMore = function (element) {
+    let id = element.parentElement.parentElement.id;
+    let cardData = $("#" + id + " " + CARD_SELECTOR);
+    let modalData = $(MODAL_SELECTOR);
+
+    modalData[0].src = cardData[0].src;
+    modalData[1].innerText = cardData[1].innerText;
+    modalData[2].innerText = cardData[2].innerText;
+    modalData[3].innerText = cardData[3].innerText;
+    modalData[4].innerText = cardData[4].innerText;
+    modalData[5].innerText = cardData[5].innerText;
+    modalData[6].innerText = cardData[6].innerText;
+    modalData[7].innerText = cardData[7].innerText;
+    let email = "getUserEmail";
+    modalData[8].innerText = email;
+
+    $("#contact-btn").attr("href", "mailto:" + email +
+        "?subject=Dog-date appointment&body=Hello, let's arrange a dog-date!");
+
 };
 
-let initLocationCheckboxes = function () {
-    var checkboxes = $(".btn-group-toggle label input");
-    checkboxes.click(function (event) {
-        $('label.btn.tag-btn.btn-lg').each(function () {
-            this.setAttribute("style", "");
-        });
+/*
+* Uploads a card to the server
+* @param data The data from the form
+ */
+let uploadForm = function (data) {
+    console.log(data); // Form info
+    var blobFile = document.getElementById('image').files[0];
+    console.log(blobFile); // File info
+    data.image = blobFile;
+    console.log(data); // Form info
 
-        checkboxClick(event);
-    });
 
+    // $.ajax({
+    //     url: "upload.php",
+    //     type: "POST",
+    //     data: formData,
+    //     processData: false,
+    //     contentType: false,
+    //     success: function(response) {
+    //         // .. do something
+    //     },
+    //     error: function(jqXHR, textStatus, errorMessage) {
+    //         console.log(errorMessage); // Optional
+    //     }
+    // });
 };
 
-var checkboxClick = function (event) {
-    var target = event.currentTarget;
-    let parent = target.parentElement;
-
-    parent.setAttribute("style", "background-color: var(--color-dark-red)");
-    //DO stuff
-
-    console.log(target.value);
-
-};
-
-let initAgeSlider = function () {
-    let slider = document.getElementById("ageSlider");
-    let output = document.getElementById("ageButtonText");
-
-    output.innerHTML = slider.value; // Display the default slider value
-
-    // Update the current slider value
-    slider.oninput = function () {
-        output.innerHTML = this.value;
-    };
-};
-
-let initTimeSlider = function () {
-    let $timeSlider = $("#timeSlider");
-    let $timeText = $("#timeText");
-    let $timeButtonText = $("#timeButtonText");
-
-    $timeSlider.slider({
-        range: true,
-        min: 0,
-        max: 23,
-        values: [12, 18],
-        slide: function (event, ui) {
-            $timeText.val(ui.values[0] + ":00 - " + ui.values[1] + ":00");
-            $timeButtonText.text($timeText.val());
-        }
-    });
-
-    $timeText.val($timeSlider.slider("values", 0) +
-        ":00 - " + $timeSlider.slider("values", 1) + ":00");
-    $timeButtonText.text($timeText.val());
-};
-
-let initStickyFilter = function () {
-    // When the user scrolls the page, execute myFunction
-    window.onscroll = function () {
-        toggleSticky()
-    };
-
-    let filterBar = document.getElementById("filterbar");
-    let cardContainer = document.getElementById("container-card");
-    // Get the offset position of the
-    var sticky = filterBar.offsetTop;
-
-    // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
-    function toggleSticky() {
-        if (window.pageYOffset >= sticky) {
-            filterBar.classList.add("sticky-top");
-            cardContainer.classList.add("mt-5");
-        } else {
-            filterBar.classList.remove("sticky-top");
-            cardContainer.classList.remove("mt-5");
-
-        }
+/*
+* Displays the chosen image when adding a card
+* @param input The input element in the DOM
+ */
+let readURL = function (input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        let $uploadedImage = $('#uploadedImage');
+        reader.onload = function (e) {
+            $uploadedImage.attr('src', e.target.result);
+            $uploadedImage.removeClass("d-none");
+        };
+        reader.readAsDataURL(input.files[0]);
     }
-};
-
-let initDateFilter = function () {
-    var picker = new Lightpick({
-        field: document.getElementById('demo-11_1'),
-        secondField: document.getElementById('demo-11_2'),
-        repick: true,
-        startDate: moment().startOf('month').add(7, 'day'),
-        endDate: moment().endOf('month').subtract(7, 'day')
-    });
 };
