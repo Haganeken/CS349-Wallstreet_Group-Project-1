@@ -68,10 +68,12 @@ nav {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    margin-bottom: 6rem;
 }
 
 .container-card .card {
     margin: 1rem;
+    margin-top: 2rem;
     color: var(--color-black)
 }
 
@@ -271,6 +273,11 @@ form, .card-body div {
     margin-right: 0.3rem;
 }
 
+.modal-event-details {
+    display: flex;
+    flex-direction: column;
+}
+
 /* STICKY CLASSES */
 .sticky-top {
     position: fixed;
@@ -278,10 +285,18 @@ form, .card-body div {
     width: 100%;
 }
 
-.sticky-bottom {
+.sticky-bottom-right {
     position: fixed;
     bottom: 0;
     right: 0;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+}
+
+.sticky-bottom-left {
+    position: fixed;
+    bottom: 0;
+    left: 0;
     margin-bottom: 1rem;
     margin-right: 1rem;
 }
@@ -296,3 +311,19 @@ form, .card-body div {
     color: var(--color-dark-red);
     font-size: 20px;
 }
+
+/* SORT BAR */
+.sort-bar {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.sort-text {
+    color: white;
+    margin-bottom: 0;
+    margin-right: .5rem;
+}
+
+/*.sort-bar .btn {*/
+/*    margin-left: 0.25rem;*/
+/*}*/

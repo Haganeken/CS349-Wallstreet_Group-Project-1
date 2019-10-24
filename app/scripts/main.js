@@ -1,3 +1,7 @@
+//TODO: Add edit feature, and delete inside edit modal
+//TODO: Sort by functionality
+//TODO: oauth
+
 // Constants
 let ADD_CARD_SELECTOR = "#add-card-form";
 let LOGIN_SELECTOR = "#login-form";
@@ -17,6 +21,7 @@ let DATE_FILTER_SELECTOR = '#date-filter';
 let CONTAINER_CARD_SELECTOR = ".container-card";
 let LOGIN_RESPONSE_SELECTOR = "#login-response";
 let REGISTER_RESPONSE_SELECTOR = "#register-response";
+let MODAL_LOCATION_SELECTOR = "[data-modal=location]";
 
 
 // Variables
@@ -71,6 +76,30 @@ $(document).ready(function () {
     });
 
 });
+
+
+let getAddressFromCoordinates = function (coords, cb) {
+    let latlng = "latlng=" + coords['lat'] + "," + coords['lng'];
+    let API_KEY = "key=AIzaSyCTLJXDOMiF29v6kSlOxCZZZ2I3cXZJtco";
+    let url = "https://maps.googleapis.com/maps/api/geocode/json?" + latlng + "&" + API_KEY;
+
+    $.ajax({
+        url: url,
+        success: function (data) {
+            let address = data.results[0]; // Choose first address in results list
+            cb(address);
+        }
+    });
+};
+
+let getDirections = function () {
+    var url = "https://www.google.dk/maps/dir/";
+    getAddressFromCoordinates(user_location, function (address) {
+        url += encodeURI(address.formatted_address);
+        url += "/" + encodeURI($(MODAL_LOCATION_SELECTOR).text());
+        window.open(url);
+    });
+};
 
 let getUserLocation = function (cb) {
     navigator.geolocation.getCurrentPosition(function (position) {

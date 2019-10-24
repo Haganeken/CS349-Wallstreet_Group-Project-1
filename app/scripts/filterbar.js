@@ -146,10 +146,10 @@ let initDropdown = function () {
 * Adds a click event to all location filters
 */
 let initLocationCheckboxes = function () {
-    var checkboxes = $(".btn-group-toggle label input");
+    var checkboxes = $("#filterbar .btn-group-toggle label input");
 
     checkboxes.click(function (event) {
-        $('label.btn.tag-btn.btn-lg').each(function () {
+        $('#filterbar label.btn.tag-btn.btn-lg').each(function () {
             this.setAttribute("style", "");
         });
         checkboxClick(event);
@@ -206,7 +206,7 @@ let initDateFilter = function () {
         }
     });
 
-    dateFilter.val("Any");
+    dateFilter.val("Date");
 };
 
 /*

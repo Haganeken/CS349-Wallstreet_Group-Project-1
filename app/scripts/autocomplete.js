@@ -26,16 +26,8 @@
     };
 
     Autocomplete.prototype.setAddress = function (coords) {
-        let latlng = "latlng=" + coords['lat'] + "," + coords['lng'];
-        let API_KEY = "key=AIzaSyCTLJXDOMiF29v6kSlOxCZZZ2I3cXZJtco";
-        let url = "https://maps.googleapis.com/maps/api/geocode/json?" + latlng + "&" + API_KEY;
-
-        $.ajax({
-            url: url,
-            success: function (data) {
-                let address = data.results[0]; // Choose first address in results list
-                $(LOCATION_INPUT_SELECTOR).val(address.formatted_address);
-            }
+        getAddressFromCoordinates(coords, function (address) {
+            $(LOCATION_INPUT_SELECTOR).val(address.formatted_address);
         });
     };
 
