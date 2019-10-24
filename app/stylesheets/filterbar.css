@@ -10,6 +10,7 @@
     border-radius: .75rem;
     background-color: var(--color-grey);
     box-shadow: 0.3rem 0.4rem 0.5rem;
+    font-size: 1rem;
 }
 
 .filter-bar .dropdown {
@@ -20,6 +21,7 @@
 .filter-bar .btn {
     background-color: var(--color-grey);
     color: var(--color-white);
+    font-size: inherit;
 }
 
 
@@ -144,6 +146,7 @@
 #filterDate .form-control {
     color: white;
     text-align: center;
+    font-size: 1rem;
 }
 
 #filterDate .form-control:hover {

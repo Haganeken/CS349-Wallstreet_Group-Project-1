@@ -1,6 +1,7 @@
 //TODO: Add edit feature, and delete inside edit modal
 //TODO: Sort by functionality
 //TODO: oauth
+//TODO: feature to animate bars
 
 // Constants
 let ADD_CARD_SELECTOR = "#add-card-form";

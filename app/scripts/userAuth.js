@@ -45,6 +45,7 @@ let toggleLogin = function (data) {
         $(LOGIN_NAV_CONTAINER_SELECTOR).show();
         $(SIGNOUT_NAV_CONTAINER_SELECTOR).hide();
         currentUser = null;
+        addEdit
     } else {
         $(LOGIN_NAV_CONTAINER_SELECTOR).hide();
         $(SIGNOUT_NAV_CONTAINER_SELECTOR).show();
@@ -52,5 +53,4 @@ let toggleLogin = function (data) {
         $('#currentUser').text(currentUser);
     }
     userLoggedIn = !userLoggedIn;
-
 };
