@@ -37,6 +37,14 @@ let authUser = function (data) {
     })
 };
 
+function displayOwnedCards() {
+    $(CARDS_SELECTOR).each(function (index, item) {
+        if (cardDS.idMap[item.id] === currentUser) {
+            addEditButton();
+        }
+    })
+}
+
 /*
 * Toggles login state dependant on current state
  */
@@ -45,12 +53,11 @@ let toggleLogin = function (data) {
         $(LOGIN_NAV_CONTAINER_SELECTOR).show();
         $(SIGNOUT_NAV_CONTAINER_SELECTOR).hide();
         currentUser = null;
-        addEdit
     } else {
         $(LOGIN_NAV_CONTAINER_SELECTOR).hide();
         $(SIGNOUT_NAV_CONTAINER_SELECTOR).show();
         currentUser = data.email;
-        $('#currentUser').text(currentUser);
+        $(WELCOME_MESSAGE_SELECTOR).text(currentUser);
     }
     userLoggedIn = !userLoggedIn;
 };

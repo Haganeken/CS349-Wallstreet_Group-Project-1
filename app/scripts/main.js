@@ -7,7 +7,7 @@
 let ADD_CARD_SELECTOR = "#add-card-form";
 let LOGIN_SELECTOR = "#login-form";
 let REGISTER_SELECTOR = "#register-form";
-let CARD_SELECTOR = "[data-card]";
+let CARD_DATA_SELECTOR = "[data-card]";
 let MODAL_SELECTOR = "[data-modal]";
 let USER_SERVER_URL = "http://localhost:2403/users";
 let CARD_SERVER_URL = "http://localhost:2403/cards";
@@ -23,6 +23,8 @@ let CONTAINER_CARD_SELECTOR = ".container-card";
 let LOGIN_RESPONSE_SELECTOR = "#login-response";
 let REGISTER_RESPONSE_SELECTOR = "#register-response";
 let MODAL_LOCATION_SELECTOR = "[data-modal=location]";
+let CARDS_SELECTOR = ".card";
+let WELCOME_MESSAGE_SELECTOR = '#currentUser';
 
 
 // Variables
@@ -204,7 +206,7 @@ let showMore = function (element) {
     $("#more-modal").modal('show');
 
     let id = element.parentElement.parentElement.id;
-    let cardData = $("#" + id + " " + CARD_SELECTOR);
+    let cardData = $("#" + id + " " + CARD_DATA_SELECTOR);
     let modalData = $(MODAL_SELECTOR);
 
     modalData[0].src = cardData[0].src;

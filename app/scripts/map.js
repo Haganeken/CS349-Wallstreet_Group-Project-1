@@ -24,7 +24,6 @@
     };
 
     GMap.prototype.initMap = function () {
-        var csuf = {lat: 33.883621, lng: -117.883888};
         this.map = new google.maps.Map(this.$map[0], {
             zoom: 10,
             center: user_location
@@ -34,7 +33,6 @@
     };
 
     GMap.prototype.moveMarker = function (coords) {
-
         if (this.locationMarker) {
             this.locationMarker.setPosition(coords);
         } else {
