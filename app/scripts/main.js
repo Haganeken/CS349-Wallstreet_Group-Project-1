@@ -10,6 +10,9 @@ let REGISTER_MODAL_SELECTOR = "#register-modal";
 let LOGIN_MODAL_SELECTOR = "#login-modal";
 let LOGIN_NAV_CONTAINER_SELECTOR = "#login-nav-container";
 let SIGNOUT_NAV_CONTAINER_SELECTOR = '#signout-nav-container';
+let MAP_SELECTOR = "#map";
+let LOCATION_INPUT_SELECTOR = '#location';
+let UPLOADED_IMAGE_SELECTOR = '#uploadedImage';
 
 
 // Variables
@@ -21,12 +24,16 @@ var currentUser = null;
 let App = window.App;
 let Formhandler = App.FormHandler;
 let RemoteDataStore = App.RemoteDataStore;
+let GMap = App.GMap;
+let Autocomplete = App.Autocomplete;
 
 let userDS = new RemoteDataStore(USER_SERVER_URL);
 let cardDS = new RemoteDataStore(CARD_SERVER_URL);
 let cardForm = new Formhandler(ADD_CARD_SELECTOR);
 let loginForm = new Formhandler(LOGIN_SELECTOR);
 let registerForm = new Formhandler(REGISTER_SELECTOR);
+var map;
+var autocomplete;
 
 $(document).ready(function () {
     $(SIGNOUT_NAV_CONTAINER_SELECTOR).hide();
@@ -55,19 +62,58 @@ $(document).ready(function () {
             userDS.idMap[item.id] = item.email;
         })
     });
+
 });
 
 function initMap() {
-    var uluru = {lat: 28.501859, lng: 77.410320};
-    var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 4,
-        center: uluru
+    map = new GMap(MAP_SELECTOR);
+    autocomplete = new Autocomplete(LOCATION_INPUT_SELECTOR);
+
+    map.initMap();
+
+    map.addEventListener(function (event) {
+        var latitude = event.latLng.lat();
+        var longitude = event.latLng.lng();
+        let coords = {lat: latitude, lng: longitude};
+
+        map.moveMarker(coords);
+
+        autocomplete.setAddress(coords);
     });
-    var marker = new google.maps.Marker({
-        position: uluru,
-        map: map
+
+    autocomplete.autocomplete.bindTo('bounds', map.map);
+
+    autocomplete.addEventListener(function () {
+        var place = autocomplete.autocomplete.getPlace();
+        var coords = {
+            lat: place.geometry.location['lat'](),
+            lng: place.geometry.location['lng']()
+        };
+
+        map.moveMarker(coords);
+
+        console.log(place);
     });
 }
+
+// Autocomplete.prototype.getUserLocation = function () {
+//     navigator.geolocation.getCurrentPosition(function (position) {
+//         let userLat = position.coords.latitude;
+//         let userLng = position.coords.longitude;
+//         return {"lat": userLat, "lng": userLng}
+//     }, function (error) {
+//         alert('Please accept location services in order to use dog-date');
+//         return null;
+//     });
+//
+//
+//     let coords = this.getUserLocation();
+//
+//     if (!coords) {
+//         return;
+//     }
+// };
+
 /*
 * Uploads a card to the server
 * @param data The data from the form
@@ -130,7 +176,7 @@ let showMore = function (element) {
 let previewImage = function (input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
-        let $uploadedImage = $('#uploadedImage');
+        let $uploadedImage = $(UPLOADED_IMAGE_SELECTOR);
         reader.onload = function (e) {
             $uploadedImage.attr('src', e.target.result);
             $uploadedImage.removeClass("d-none");
@@ -139,6 +185,9 @@ let previewImage = function (input) {
     }
 };
 
+let resetImage = function (input) {
+    $(UPLOADED_IMAGE_SELECTOR).attr('src', 'img/placeholder.jpg');
+};
 
 /*
 * Adds card from form data
@@ -200,7 +249,7 @@ function addCard(data) {
     });
 
     var $iconDate = $("<i></i>", {
-        "class": "fa fa-calendar"
+        "class": "fas fa-calendar-alt"
     });
     var $gridDate = $("<a></a>", {
         "class": "card-date card-grid-wide"

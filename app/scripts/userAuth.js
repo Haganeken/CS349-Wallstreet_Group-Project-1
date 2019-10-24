@@ -1,4 +1,3 @@
-
 /*
 * Registers user in DB
  */
@@ -29,7 +28,6 @@ let authUser = function (data) {
         if ((!response) || (response.password !== data.password)) {
             alert('User not found or password is incorrect');
         } else {
-            alert('Logged in successfully');
             $(LOGIN_MODAL_SELECTOR).modal('hide');
             toggleLogin(data);
         }
@@ -41,16 +39,17 @@ let authUser = function (data) {
  */
 let toggleLogin = function (data) {
     if (userLoggedIn) {
+        alert('Logged out successfully');
         $(LOGIN_NAV_CONTAINER_SELECTOR).show();
         $(SIGNOUT_NAV_CONTAINER_SELECTOR).hide();
         currentUser = null;
     } else {
+        alert('Logged in successfully');
         $(LOGIN_NAV_CONTAINER_SELECTOR).hide();
         $(SIGNOUT_NAV_CONTAINER_SELECTOR).show();
         currentUser = data.email;
         $('#currentUser').text(currentUser);
     }
     userLoggedIn = !userLoggedIn;
-    console.log("user" + currentUser);
 
 };
