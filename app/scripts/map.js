@@ -27,7 +27,7 @@
         var csuf = {lat: 33.883621, lng: -117.883888};
         this.map = new google.maps.Map(this.$map[0], {
             zoom: 10,
-            center: csuf
+            center: user_location
         });
 
         var self = this;

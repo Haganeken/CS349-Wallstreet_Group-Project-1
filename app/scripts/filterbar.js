@@ -148,13 +148,6 @@ let initDropdown = function () {
 let initLocationCheckboxes = function () {
     var checkboxes = $(".btn-group-toggle label input");
 
-    navigator.geolocation.getCurrentPosition(function (position) {
-        user_location = {"lat": position.coords.latitude, "lng": position.coords.longitude}
-    }, function (error) {
-        alert('Please accept location services in order to use dog-date');
-        user_location = null;
-    });
-
     checkboxes.click(function (event) {
         $('label.btn.tag-btn.btn-lg').each(function () {
             this.setAttribute("style", "");

@@ -70,36 +70,48 @@ $(document).ready(function () {
 
 });
 
+let getUserLocation = function (cb) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+        user_location = {"lat": position.coords.latitude, "lng": position.coords.longitude};
+        cb()
+    }, function (error) {
+        alert('Please accept location services in order to use dog-date');
+        user_location = null;
+    });
+};
 
 function initMap() {
     map = new GMap(MAP_SELECTOR);
     autocomplete = new Autocomplete(LOCATION_INPUT_SELECTOR);
 
-    map.initMap();
+    getUserLocation(function () {
+        map.initMap();
 
-    map.addEventListener(function (event) {
-        var latitude = event.latLng.lat();
-        var longitude = event.latLng.lng();
-        let coords = {lat: latitude, lng: longitude};
+        map.addEventListener(function (event) {
+            var latitude = event.latLng.lat();
+            var longitude = event.latLng.lng();
+            let coords = {lat: latitude, lng: longitude};
 
-        map.moveMarker(coords);
+            map.moveMarker(coords);
 
-        autocomplete.setAddress(coords);
+            autocomplete.setAddress(coords);
+        });
+
+        autocomplete.autocomplete.bindTo('bounds', map.map);
+
+        autocomplete.addEventListener(function () {
+            var place = autocomplete.autocomplete.getPlace();
+            var coords = {
+                lat: place.geometry.location['lat'](),
+                lng: place.geometry.location['lng']()
+            };
+
+            map.moveMarker(coords);
+
+            console.log(place);
+        });
     });
 
-    autocomplete.autocomplete.bindTo('bounds', map.map);
-
-    autocomplete.addEventListener(function () {
-        var place = autocomplete.autocomplete.getPlace();
-        var coords = {
-            lat: place.geometry.location['lat'](),
-            lng: place.geometry.location['lng']()
-        };
-
-        map.moveMarker(coords);
-
-        console.log(place);
-    });
 }
 
 /*
@@ -120,6 +132,8 @@ let uploadCard = function (data) {
             addCard(data);
         });
     });
+
+    filterCards();
 };
 
 let getAddressCoordinates = function (address, cb) {
