@@ -258,7 +258,7 @@
                     <p class="h5">Image</p>
                     <div class="input-group">
                         <div class="custom-file">
-                            <label class="custom-file-label" for="image">Choose file</label>
+                            <label class="custom-file-label" for="image">Choose image</label>
                             <input accept="image/png, image/jpeg" class="custom-file-input" id="image"
                                    onchange="previewImage(this)"
                                    required type="file">
@@ -310,13 +310,13 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" data-dismiss="modal" type="reset">Close</button>
-                <button class="btn btn-primary" name="create" type="submit">Create Event</button>
+                <button class="btn btn-secondary" data-dismiss="modal" id="close" type="reset">Close</button>
+                <button class="btn btn-primary" data-card-id="" id="submit" name="create" type="submit">Create Event
+                </button>
             </div>
         </form>
     </div>
 </div>
-
 
 <!-- Login Modal -->
 <div aria-hidden="true" aria-labelledby="more-modal-label" class="modal fade" id="login-modal" role="dialog"

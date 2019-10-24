@@ -183,7 +183,7 @@
     opacity: 1;
 }
 .lightpick__day.is-disabled.is-forward-selected:not(.is-start-date) {
-    background-color: var(--color-grey);
+    background-color: var(--color-grey-light);
     background-image: none;
 }
 
@@ -294,7 +294,7 @@
 }
 
 .form-control {
-  background-color: var(--color-grey);
+    background-color: var(--color-grey-light);
   border: none;
   color: black;
 }

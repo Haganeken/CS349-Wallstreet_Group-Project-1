@@ -31,15 +31,47 @@
     };
 
     RemoteDataStore.prototype.get = function (key, cb) {
-        $.get(this.serverUrl + "/" + this.emailMap[key], function (serverResponse) {
+        var str;
+        if (key.includes("@")) {
+            str = this.emailMap[key]
+        } else {
+            str = key.toString();
+        }
+        $.get(this.serverUrl + "/" + str, function (serverResponse) {
             if (cb) {
                 cb(serverResponse);
             }
         });
     };
 
+    RemoteDataStore.prototype.update = function (key, data, cb) {
+        var str;
+        if (key.includes("@")) {
+            str = this.emailMap[key]
+        } else {
+            str = key.toString();
+        }
+
+        $.ajax({
+            url: this.serverUrl + "/" + str,
+            type: 'PUT',
+            data: data,
+            success: function (serverResponse) {
+                if (cb) {
+                    cb(serverResponse);
+                }
+            }
+        });
+    };
+
     RemoteDataStore.prototype.remove = function (key) {
-        $.ajax(this.serverUrl + "/" + this.emailMap[key], {
+        var str;
+        if (key.includes("@")) {
+            str = this.emailMap[key]
+        } else {
+            str = key.toString();
+        }
+        $.ajax(this.serverUrl + "/" + str, {
             type: "DELETE"
         });
     };

@@ -46,6 +46,11 @@
         this.map.panTo(new google.maps.LatLng(coords));
     };
 
+    GMap.prototype.deleteMarker = function () {
+        this.locationMarker.setMap(null);
+        this.locationMarker = null;
+    };
+
     App.GMap = GMap;
     window.App = App;
 })(window);

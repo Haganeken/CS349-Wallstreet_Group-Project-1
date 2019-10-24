@@ -6,9 +6,9 @@
     align-items: center;
     justify-content: space-around;
     margin: .5rem;
-    border: 0.22rem solid var(--color-grey);
+    border: 0.22rem solid var(--color-grey-light);
     border-radius: .75rem;
-    background-color: var(--color-grey);
+    background-color: var(--color-grey-light);
     box-shadow: 0.3rem 0.4rem 0.5rem;
     font-size: 1rem;
 }
@@ -19,7 +19,7 @@
 }
 
 .filter-bar .btn {
-    background-color: var(--color-grey);
+    background-color: var(--color-grey-light);
     color: var(--color-white);
     font-size: inherit;
 }
@@ -27,7 +27,7 @@
 
 /* DROPDOWN */
 .dropdown-menu {
-    background-color: var(--color-grey);
+    background-color: var(--color-grey-light);
     color: var(--color-white);
     text-align: center;
 }
@@ -79,7 +79,7 @@
 }
 
 .time-filter-text {
-    background-color: var(--color-grey);
+    background-color: var(--color-grey-light);
     border: none;
     text-align: center;
     color: white;
@@ -110,7 +110,7 @@
 .list-group-item {
     display: grid;
     grid-template-columns: auto auto;
-    background-color: var(--color-grey);
+    background-color: var(--color-grey-light);
     border-bottom: 2px solid var(--color-dark-red);
     align-items: center;
     justify-content: space-between;
@@ -139,7 +139,7 @@
 }
 
 .date-container .form-control:hover, .form-control:focus {
-    background-color: var(--color-grey-light);
+    background-color: var(--color-grey);
     color: white;
 }
 

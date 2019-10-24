@@ -6,8 +6,8 @@
     --color-light-cream: #e0d3ce;
     --color-white: #e8e8e8;
     --color-grey-dark: #4d4542;
-    --color-grey: #8A817C;
-    --color-grey-light: #675F5C;
+    --color-grey-light: #8A817C;
+    --color-grey: #675F5C;
 }
 
 html, body {
@@ -37,7 +37,7 @@ body {
 }
 
 nav {
-    background-color: var(--color-grey);
+    background-color: var(--color-grey-light);
     border-bottom-left-radius: .5rem;
     border-bottom-right-radius: .5rem;
 }
@@ -74,7 +74,8 @@ nav {
 .container-card .card {
     margin: 1rem;
     margin-top: 2rem;
-    color: var(--color-black)
+    color: var(--color-black);
+    padding-top: 0.9rem;
 }
 
 /* CARD */
@@ -86,9 +87,8 @@ nav {
 
 .card-image {
     max-width: 100%;
-    min-width: 100%;
-    height: auto;
-    padding-top: 1rem !important;
+    max-height: 12rem;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.45);
 }
 
 .card-body {
@@ -155,16 +155,41 @@ nav {
   cursor: text;
 }
 
-.fa-thumb-tack {
-    margin-left: 3px;
-}
-
-.fa {
-    align-self: center;
-}
-
 .form-item {
   width: 100%;
+}
+
+.edit-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 2.3rem;
+    width: 6rem;
+    background-color: var(--color-light-cream);
+    border-radius: 1rem;
+    order: -1;
+    text-align: center;
+    align-self: center;
+    margin-bottom: 0.5rem;
+    margin-top: -0.4rem;
+    border: 3px solid var(--color-dark-red);
+    opacity: 0.8;
+    color: var(--color-dark-red);
+}
+
+.edit-icon {
+    font-size: 22px;
+    margin-bottom: 1rem;
+}
+
+.edit-text {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.edit-bar:hover {
+    opacity: 1;
 }
 
 /* BUTTONS */
@@ -179,7 +204,7 @@ nav {
 }
 
 .btn-secondary:hover, .btn-secondary:focus {
-    background-color: var(--color-grey) !important;
+    background-color: var(--color-grey-light) !important;
 }
 
 .btn-more {

@@ -1,7 +1,7 @@
 //TODO: Add edit feature, and delete inside edit modal
 //TODO: Sort by functionality
 //TODO: oauth
-//TODO: feature to animate bars
+//TODO: feature to animate bars (hint use 'fade' class)
 
 // Constants
 let ADD_CARD_SELECTOR = "#add-card-form";
@@ -52,7 +52,7 @@ $(document).ready(function () {
 
     initFilterBar();
 
-    cardForm.addSubmitHandler(uploadCard);
+    cardForm.addSubmitHandler(getSubmitAction);
     loginForm.addSubmitHandler(authUser);
     registerForm.addSubmitHandler(registerUser);
 
@@ -63,7 +63,14 @@ $(document).ready(function () {
             cardDS.idMap[item.id] = item.emailAddress;
             item.date = item.date.substring(0, 10);
             cards = cards.concat(item);
-            addCard(item);
+
+            if (!user_location) {
+                getUserLocation(function () {
+                    addCard(item);
+                });
+            } else {
+                addCard(item);
+            }
         });
 
         cardsVisible = cards.length;
@@ -78,8 +85,87 @@ $(document).ready(function () {
         })
     });
 
+    $("#card-modal").on('hidden.bs.modal', function () {
+        let $buttons = $("#card-modal .modal-footer");
+        $("#deleteBtn").remove();
+        $("#image").attr('required', true);
+
+        $buttons.children()[0].innerHTML = "Close";
+        $buttons.children()[1].innerHTML = "Create Event";
+    })
 });
 
+
+function addEditButton(card) {
+    let $card = $('#' + card.id);
+    let $icon = $("<i></i>", {
+        "class": "fas fa-pencil-alt edit-icon"
+    });
+    let $text = $("<p></p>", {
+        "class": "edit-text"
+    });
+    let $bar = $("<button></button>", {
+        "class": "edit-bar",
+        "type": "button",
+        "onclick": "editCardModal(this)"
+    });
+    $text.append("Edit");
+    $bar.append($icon);
+    $bar.append($text);
+    $card.append($bar);
+}
+
+function editCardModal(card) {
+    let $cardModal = $("#card-modal .form-group");
+    $("#image").attr('required', false);
+
+    let $buttons = $("#card-modal .modal-footer");
+    let $deletebtn = $("<button></button>", {
+        "id": "deleteBtn",
+        "class": "btn btn-secondary",
+        "type": "submit",
+        "onclick": "removeCard()"
+    });
+    $deletebtn.text("Delete");
+    $buttons.prepend($deletebtn);
+
+    $buttons.children()[1].innerHTML = "Discard Changes";
+    $buttons.children()[2].innerHTML = "Save Changes";
+
+    let cardId = card.parentElement.id;
+    $("#submit").data().cardId = cardId;
+
+    cardDS.get(cardId, function (response) {
+        $(UPLOADED_IMAGE_SELECTOR).attr('src', response.image);
+        $cardModal[0].children[1].value = response.name;
+        $cardModal[1].children[1].value = response.age;
+        $cardModal[2].children[1].value = response.breed;
+        $cardModal[3].children[1].value = response.details;
+        var time = new Date(response.date);
+        $cardModal[4].children[1].value = time.customFormat("#YYYY#-#MM#-#DD#");
+        $cardModal[5].children[1].value = response.time;
+        $cardModal[6].children[1].value = response.location;
+
+        response.latlng['lat'] = Number(response.latlng['lat']);
+        response.latlng['lng'] = Number(response.latlng['lng']);
+
+        map.moveMarker(response.latlng);
+
+        $("#card-modal").modal('show');
+    });
+}
+
+function displayEditButtons() {
+    $(CARDS_SELECTOR).each(function (index, card) {
+        if (cardDS.idMap[card.id] === currentUser) {
+            addEditButton(card);
+        }
+    })
+}
+
+function hideEditButtons() {
+    $(".edit-bar").remove();
+}
 
 let getAddressFromCoordinates = function (coords, cb) {
     let latlng = "latlng=" + coords['lat'] + "," + coords['lng'];
@@ -148,28 +234,66 @@ function initMap() {
 
 }
 
+function removeCard() {
+    let cardId = $("#submit").data().cardId;
+    cardDS.remove(cardId);
+    $("#" + cardId).remove();
+}
+
+function editCard(data) {
+    cardDS.update(data.cardId, data, function (response) {
+        let cardData = $("#" + response.id + " " + CARD_DATA_SELECTOR);
+
+        cardData[0].src = response.image;
+        cardData[1].innerHTML = response.name;
+        cardData[2].innerHTML = response.age;
+        cardData[3].innerHTML = response.breed;
+        cardData[4].innerHTML = response.details;
+        var time = new Date(response.date);
+        cardData[5].innerHTML = time.customFormat("#YYYY#-#MM#-#DD#");
+        cardData[6].innerHTML = response.time;
+        cardData[7].innerHTML = response.location;
+        response.latlng['lat'] = Number(response.latlng['lat']);
+        response.latlng['lng'] = Number(response.latlng['lng']);
+        cardData[8].innerHTML = getDistance(user_location, response.latlng).toPrecision(2) + " km";
+    })
+}
+
 /*
 * Uploads a card to the server
 * @param data The data from the form
  */
-let uploadCard = function (data) {
+let getSubmitAction = function (data) {
+    let $submitBtn = $("#submit");
+    let btnText = $submitBtn.text();
     let image = $(UPLOADED_IMAGE_SELECTOR);
-    data.image = image.attr('src');
-    image.attr('src', 'img/placeholder.jpg');
 
-    data.emailAddress = currentUser;
+    data.image = image.attr('src');
+    data.cardId = $submitBtn.data().cardId;
+
+    image.attr('src', 'img/placeholder.jpg');
 
     let address = "address=" + encodeURI(data.location);
     getAddressCoordinates(address, function (latlng) {
         data.latlng = latlng;
-        cardDS.add(data.emailAddress, data, function () {
-            addCard(data);
-            cards.concat(data);
-        });
+        if (btnText === "Create Event") {
+            uploadCard(data);
+        } else if (btnText === "Save Changes") {
+            editCard(data);
+        }
     });
-
-    filterCards();
+    $("#card-modal").modal('hide');
 };
+
+function uploadCard(data) {
+    data.emailAddress = currentUser;
+
+    cardDS.add(data.emailAddress, data, function () {
+        addCard(data);
+        cards.concat(data);
+        filterCards();
+    });
+}
 
 let getAddressCoordinates = function (address, cb) {
     let API_KEY = "key=AIzaSyCTLJXDOMiF29v6kSlOxCZZZ2I3cXZJtco";
@@ -191,8 +315,24 @@ let openCardForm = function () {
         alert("You have to be logged in to add a card!");
         return;
     }
+    resetCardModal();
     $("#card-modal").modal('show');
 };
+
+function resetCardModal() {
+    let $cardModal = $("#card-modal .form-group");
+    $(UPLOADED_IMAGE_SELECTOR).attr('src', 'img/placeholder.jpg');
+    $cardModal[0].children[1].value = "";
+    $cardModal[1].children[1].value = "";
+    $cardModal[2].children[1].value = "";
+    $cardModal[3].children[1].value = "";
+    $cardModal[4].children[1].value = "";
+    $cardModal[5].children[1].value = "";
+    $cardModal[6].children[1].value = "";
+
+    map.moveMarker(user_location);
+    map.deleteMarker();
+}
 
 /*
 * Opens more-modal and moves data from cards to the modal, if the user is logged in
@@ -353,7 +493,7 @@ function addCard(data) {
     });
     var $spanDist = $("<span></span>", {
         "class": "nav-text",
-        "data-card": "location"
+        "data-card": "distance"
     });
     $spanDist.append(getDistance(data.latlng, user_location).toPrecision(2) + " km");
     $gridDist.append($spanDist);
@@ -373,5 +513,28 @@ function addCard(data) {
     $cardBody.append($grid);
     $cardBody.append($button);
     $card.append($cardBody);
+
     $("#container-card").append($card);
 }
+
+//*** This code is copyright 2002-2016 by Gavin Kistner, !@phrogz.net
+//*** It is covered under the license viewable at http://phrogz.net/JS/_ReuseLicense.txt
+Date.prototype.customFormat = function (formatString) {
+    var YYYY, YY, MMMM, MMM, MM, M, DDDD, DDD, DD, D, hhhh, hhh, hh, h, mm, m, ss, s, ampm, AMPM, dMod, th;
+    YY = ((YYYY = this.getFullYear()) + "").slice(-2);
+    MM = (M = this.getMonth() + 1) < 10 ? ('0' + M) : M;
+    MMM = (MMMM = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][M - 1]).substring(0, 3);
+    DD = (D = this.getDate() + 1) < 10 ? ('0' + D) : D;
+    DDD = (DDDD = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][this.getDay()]).substring(0, 3);
+    th = (D >= 10 && D <= 20) ? 'th' : ((dMod = D % 10) == 1) ? 'st' : (dMod == 2) ? 'nd' : (dMod == 3) ? 'rd' : 'th';
+    formatString = formatString.replace("#YYYY#", YYYY).replace("#YY#", YY).replace("#MMMM#", MMMM).replace("#MMM#", MMM).replace("#MM#", MM).replace("#M#", M).replace("#DDDD#", DDDD).replace("#DDD#", DDD).replace("#DD#", DD).replace("#D#", D).replace("#th#", th);
+    h = (hhh = this.getHours());
+    if (h == 0) h = 24;
+    if (h > 12) h -= 12;
+    hh = h < 10 ? ('0' + h) : h;
+    hhhh = hhh < 10 ? ('0' + hhh) : hhh;
+    AMPM = (ampm = hhh < 12 ? 'am' : 'pm').toUpperCase();
+    mm = (m = this.getMinutes()) < 10 ? ('0' + m) : m;
+    ss = (s = this.getSeconds()) < 10 ? ('0' + s) : s;
+    return formatString.replace("#hhhh#", hhhh).replace("#hhh#", hhh).replace("#hh#", hh).replace("#h#", h).replace("#mm#", mm).replace("#m#", m).replace("#ss#", ss).replace("#s#", s).replace("#ampm#", ampm).replace("#AMPM#", AMPM);
+};
