@@ -72,6 +72,14 @@
 			"required": true,
 			"id": "image",
 			"order": 8
+		},
+		"latlng": {
+			"name": "latlng",
+			"type": "object",
+			"typeLabel": "object",
+			"required": true,
+			"id": "latlng",
+			"order": 9
 		}
 	}
 }

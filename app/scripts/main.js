@@ -14,6 +14,7 @@ let MAP_SELECTOR = "#map";
 let LOCATION_INPUT_SELECTOR = '#location';
 let UPLOADED_IMAGE_SELECTOR = '#uploadedImage';
 let DATE_FILTER_SELECTOR = '#date-filter';
+let CONTAINER_CARD_SELECTOR = ".container-card";
 
 
 // Variables
@@ -53,7 +54,10 @@ $(document).ready(function () {
             item.date = item.date.substring(0, 10);
             cards = cards.concat(item);
             addCard(item);
-        })
+        });
+
+        cardsVisible = cards.length;
+        filterCards();
     });
 
     // Get users on init
@@ -64,10 +68,8 @@ $(document).ready(function () {
         })
     });
 
-    //TODO: Filter cards on load
-    filterCards();
-
 });
+
 
 function initMap() {
     map = new GMap(MAP_SELECTOR);
@@ -111,8 +113,24 @@ let uploadCard = function (data) {
 
     data.emailAddress = currentUser;
 
-    cardDS.add(data.emailAddress, data, function () {
-        addCard(data);
+    let address = "address=" + encodeURI(data.location);
+    getAddressCoordinates(address, function (latlng) {
+        data.latlng = latlng;
+        cardDS.add(data.emailAddress, data, function () {
+            addCard(data);
+        });
+    });
+};
+
+let getAddressCoordinates = function (address, cb) {
+    let API_KEY = "key=AIzaSyCTLJXDOMiF29v6kSlOxCZZZ2I3cXZJtco";
+    let url = "https://maps.googleapis.com/maps/api/geocode/json?" + address + "&" + API_KEY;
+    $.ajax({
+        url: url,
+        success: function (data) {
+            // Choose first matching address
+            cb(data.results[0].geometry.location);
+        }
     });
 };
 
@@ -252,7 +270,7 @@ function addCard(data) {
         "class": "fa fa-bell"
     });
     var $gridTime = $("<a></a>", {
-        "class": "card-date card-grid-wide"
+        "class": "card-time card-grid-wide"
     });
     var $spanTime = $("<span></span>", {
         "class": "nav-text",
@@ -267,7 +285,7 @@ function addCard(data) {
         "class": "fa fa-thumb-tack"
     });
     var $gridLoc = $("<a></a>", {
-        "class": "card-date card-grid-wide"
+        "class": "card-location card-grid-wide"
     });
     var $spanLoc = $("<span></span>", {
         "class": "nav-text",

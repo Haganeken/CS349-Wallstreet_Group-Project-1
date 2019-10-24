@@ -13,13 +13,14 @@ function initFilterBar() {
 /*
 * Filter variables
 */
-var date_start;
-var date_end;
-var age;
-var time_start;
-var time_end;
+var date_start = "2000/01/01";
+var date_end = "2030/01/01";
+var age = 1;
+var time_start = 0;
+var time_end = 23;
 var user_location;
-var range;
+var range = 100;
+var cardsVisible;
 
 /*
 * Uses the 'haversine' formula to calculate the great-circle distance between two points.
@@ -38,26 +39,11 @@ let getDistance = function (coord1, coord2) {
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
     var d = R * c;
-    console.log(d);
     return d < range;
 };
 
 let isInRange = function (item) {
-    let address = "address=" + encodeURI(item.location);
-    let API_KEY = "key=AIzaSyCTLJXDOMiF29v6kSlOxCZZZ2I3cXZJtco";
-    let url = "https://maps.googleapis.com/maps/api/geocode/json?" + address + "&" + API_KEY;
-    console.log(address);
-    var isWithinRange = false;
-    $.ajax({
-        url: url,
-        success: function (data) {
-            let coords = data.results[0].geometry.location; // Choose first matching address
-
-            isWithinRange = getDistance(coords, user_location);
-        }
-    });
-
-    return isWithinRange;
+    return getDistance(item.latlng, user_location)
 };
 
 let filterCards = function () {
@@ -65,18 +51,35 @@ let filterCards = function () {
         let longItemDate = Date.parse(item.date);
         let longDate1 = Date.parse(date_start);
         let longDate2 = Date.parse(date_end);
+        let card = $("#" + item.id);
 
         if ((longItemDate < longDate1) ||
             (longItemDate > longDate2) ||
             (item.age < age) ||
             ((item.time.substr(0, 2) < time_start) || (item.time.substr(0, 2) > time_end)) ||
-            !isInRange(item)) {
-            $("#" + item.id).hide();
+            (!isInRange(item))) {
+            if (card[0].style.display !== "none") {
+                card.hide();
+                cardsVisible--;
+            }
         } else {
-            $("#" + item.id).show();
+            if (card[0].style.display === "none") {
+                card.show();
+                cardsVisible++;
+            }
         }
     });
+
+    let containerCard = $(CONTAINER_CARD_SELECTOR);
+    if (cardsVisible == 0) {
+        if (!$(".container-card > p")[0]) {
+            containerCard.append("<p> No cards to display... </p>");
+        }
+    } else {
+        $(".container-card > p").remove();
+    }
 };
+
 
 /*
 * Filters the cards by date
@@ -196,6 +199,24 @@ let initTimeSlider = function () {
 };
 
 /*
+* Initializes the date picker
+*/
+let initDateFilter = function () {
+    let dateFilter = $(DATE_FILTER_SELECTOR);
+
+    var picker = new Lightpick({
+        field: dateFilter[0],
+        repick: true,
+        singleDate: false,
+        onSelect: function (start, end) {
+            filterDate(start, end);
+        }
+    });
+
+    dateFilter.val("Any");
+};
+
+/*
 * Sticks the filterbar to the top when scrolled out of view
 */
 let initStickyFilter = function () {
@@ -218,22 +239,4 @@ let initStickyFilter = function () {
             cardContainer.classList.remove("mt-5");
         }
     }
-};
-
-/*
-* Initializes the date picker
-*/
-let initDateFilter = function () {
-    let dateFilter = $(DATE_FILTER_SELECTOR);
-
-    var picker = new Lightpick({
-        field: dateFilter[0],
-        repick: true,
-        singleDate: false,
-        onSelect: function (start, end) {
-            filterDate(start, end);
-        }
-    });
-
-    dateFilter.val("Any");
 };

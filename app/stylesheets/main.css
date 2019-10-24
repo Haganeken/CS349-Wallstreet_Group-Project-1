@@ -59,6 +59,7 @@ nav {
 
 /* CONTAINER */
 .container-card {
+    color: var(--color-white);
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -66,6 +67,7 @@ nav {
 
 .container-card .card {
     margin: 1rem;
+    color: var(--color-black)
 }
 
 /* CARD */
@@ -119,6 +121,12 @@ nav {
 .title-detail-event, .title-detail-contact {
   font-weight: 700;
   margin-top: 30px;
+}
+
+.card-location {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .card-date, .card-time, .card-location {
@@ -214,6 +222,7 @@ nav {
     grid-template-columns: auto auto auto auto auto;
     grid-column-gap: 0.5rem;
     padding-bottom: 0.5rem;
+    align-items: center;
 }
 
 .title-new-event {
