@@ -8,13 +8,11 @@
     <title>Dog-Date</title>
 
     <!-- Bootstrap  -->
+    <link href="stylesheets/fontawesome.css" rel="stylesheet">
     <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="https://www.w3schools.com/w3css/4/w3.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
-    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" rel="stylesheet">
     <link href="stylesheets/filterbar.css" rel="stylesheet">
     <link href="stylesheets/lightpick.css" rel="stylesheet">
     <link href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
@@ -133,9 +131,7 @@
 <div class="container-card" id="container-card"></div>
 
 <!-- Add card button -->
-<div class="w3-xxxlarge w3-text-dark">
-    <i class="fa fa-plus-circle sticky-bottom" onclick="openCardForm()"></i>
-</div>
+<i class="fa fa-plus-circle sticky-bottom" onclick="openCardForm()"></i>
 
 
 <!-- See More Modal -->
@@ -150,20 +146,27 @@
             <div class="modal-body">
                 <h3 class="display-4"><span data-modal="name">Snoopy</span>, <span data-modal="age">3</span> years</h3>
                 <p class="font-italic font-weight-light text-muted" data-modal="breed"></p>
-                <p data-modal="description">Details about the Dog Details about the Dog Details about the Dog Details
-                    about the Dog Details about the Dog Details about the Dog Details about the Dog Details about the
-                    Dog Details about the Dog Details about the Dog </p>
+                <p data-modal="description"></p>
                 <div class="hline"></div>
                 <h3>Details about the Event</h3>
                 <div class="modal-grid">
                     <a class="card-date-detail">
-                        <span class="nav-text"><i class="fa fa-calendar"></i> <span data-modal="date">10/13/2019</span></span></a>
+                        <span class="nav-text">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span data-modal="date"></span>
+                        </span>
+                    </a>
                     <a class="card-time-detail">
-                        <span class="nav-text"><i class="fa fa-bell"></i> <span
-                                data-modal="time">04:40</span></span></a>
+                        <span class="nav-text">
+                            <i class="fas fa-clock"></i>
+                            <span data-modal="time"></span>
+                        </span>
+                    </a>
                     <a class="card-location-detail">
-                        <span class="nav-text"><i class="fa fa-thumb-tack"></i> <span
-                                data-modal="location">Fullerton</span></span>
+                        <span class="nav-text">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span data-modal="location"></span>
+                        </span>
                     </a>
                 </div>
                 <div class="hline"></div>

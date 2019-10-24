@@ -10,6 +10,10 @@
     --color-grey-light: #675F5C;
 }
 
+html, body {
+    font-family: fa5-proxima-nova, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 #map {
     height: 400px;
     width: 100%;
@@ -25,6 +29,7 @@
     height: 2px;
     background-color: var(--color-grey-dark);
     margin-top: 0.9rem;
+    margin-bottom: 0.5rem;
 }
 /* TAGS */
 body {
@@ -107,11 +112,14 @@ nav {
     grid-template-columns: auto auto;
     grid-column-gap: 0.5rem;
     padding-bottom: 2rem;
+    align-items: center;
+    text-align: center;
 }
 
 .card-grid-wide {
     grid-column-start: 2;
     grid-column-end: 3;
+    text-align: left;
 }
 
 .title-detail-dog {
@@ -198,12 +206,10 @@ nav {
 }
 
 /* ADD CARD BUTTON */
-.w3-text-dark {
-    color: var(--color-white) !important;
-}
-
 .fa-plus-circle {
     float: right;
+    color: var(--color-white) !important;
+    font-size: 4rem;
 }
 
 .fa-plus-circle:hover {
@@ -221,7 +227,6 @@ nav {
     display: inline-grid;
     grid-template-columns: auto auto auto auto auto;
     grid-column-gap: 0.5rem;
-    padding-bottom: 0.5rem;
     align-items: center;
 }
 
@@ -255,6 +260,15 @@ form, .card-body div {
     width: 100% !important;
     margin-bottom: 1rem !important;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.45);
+}
+
+.nav-text {
+    display: flex;
+    align-items: center;
+}
+
+.modal-grid .fas {
+    margin-right: 0.3rem;
 }
 
 /* STICKY CLASSES */

@@ -267,7 +267,7 @@ function addCard(data) {
     $grid.append($gridDate);
 
     var $iconTime = $("<i></i>", {
-        "class": "fa fa-bell"
+        "class": "fas fa-clock"
     });
     var $gridTime = $("<a></a>", {
         "class": "card-time card-grid-wide"
@@ -282,7 +282,7 @@ function addCard(data) {
     $grid.append($gridTime);
 
     var $iconLoc = $("<i></i>", {
-        "class": "fa fa-thumb-tack"
+        "class": "fas fa-map-marker-alt"
     });
     var $gridLoc = $("<a></a>", {
         "class": "card-location card-grid-wide"
