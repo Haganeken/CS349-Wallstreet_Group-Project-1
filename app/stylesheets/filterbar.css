@@ -143,6 +143,7 @@
 
 #filterDate .form-control {
     color: white;
+    text-align: center;
 }
 
 #filterDate .form-control:hover {

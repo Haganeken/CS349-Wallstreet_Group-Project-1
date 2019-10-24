@@ -13,6 +13,7 @@ let SIGNOUT_NAV_CONTAINER_SELECTOR = '#signout-nav-container';
 let MAP_SELECTOR = "#map";
 let LOCATION_INPUT_SELECTOR = '#location';
 let UPLOADED_IMAGE_SELECTOR = '#uploadedImage';
+let DATE_FILTER_SELECTOR = '#date-filter';
 
 
 // Variables
@@ -63,6 +64,9 @@ $(document).ready(function () {
         })
     });
 
+    //TODO: Filter cards on load
+    filterCards();
+
 });
 
 function initMap() {
@@ -96,30 +100,15 @@ function initMap() {
     });
 }
 
-// Autocomplete.prototype.getUserLocation = function () {
-//     navigator.geolocation.getCurrentPosition(function (position) {
-//         let userLat = position.coords.latitude;
-//         let userLng = position.coords.longitude;
-//         return {"lat": userLat, "lng": userLng}
-//     }, function (error) {
-//         alert('Please accept location services in order to use dog-date');
-//         return null;
-//     });
-//
-//
-//     let coords = this.getUserLocation();
-//
-//     if (!coords) {
-//         return;
-//     }
-// };
-
 /*
 * Uploads a card to the server
 * @param data The data from the form
  */
 let uploadCard = function (data) {
-    data.image = document.getElementById('uploadedImage').src;
+    let image = $(UPLOADED_IMAGE_SELECTOR);
+    data.image = image.attr('src');
+    image.attr('src', 'img/placeholder.jpg');
+
     data.emailAddress = currentUser;
 
     cardDS.add(data.emailAddress, data, function () {
@@ -183,10 +172,6 @@ let previewImage = function (input) {
         };
         reader.readAsDataURL(input.files[0]);
     }
-};
-
-let resetImage = function (input) {
-    $(UPLOADED_IMAGE_SELECTOR).attr('src', 'img/placeholder.jpg');
 };
 
 /*

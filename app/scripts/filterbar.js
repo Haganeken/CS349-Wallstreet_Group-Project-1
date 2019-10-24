@@ -18,6 +18,47 @@ var date_end;
 var age;
 var time_start;
 var time_end;
+var user_location;
+var range;
+
+/*
+* Uses the 'haversine' formula to calculate the great-circle distance between two points.
+* Returns the distance in kilometres
+ */
+let getDistance = function (coord1, coord2) {
+    var R = 6371; // kilometres
+    var lat1 = coord1['lat'] * Math.PI / 180;
+    var lat2 = coord2['lat'] * Math.PI / 180;
+    var dLat = (lat2 - lat1) * Math.PI / 180; //delta in latitude
+    var dLon = (coord2['lng'] - coord1['lng']) * Math.PI / 180;
+
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(lat1) * Math.cos(lat2) *
+        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+    var d = R * c;
+    console.log(d);
+    return d < range;
+};
+
+let isInRange = function (item) {
+    let address = "address=" + encodeURI(item.location);
+    let API_KEY = "key=AIzaSyCTLJXDOMiF29v6kSlOxCZZZ2I3cXZJtco";
+    let url = "https://maps.googleapis.com/maps/api/geocode/json?" + address + "&" + API_KEY;
+    console.log(address);
+    var isWithinRange = false;
+    $.ajax({
+        url: url,
+        success: function (data) {
+            let coords = data.results[0].geometry.location; // Choose first matching address
+
+            isWithinRange = getDistance(coords, user_location);
+        }
+    });
+
+    return isWithinRange;
+};
 
 let filterCards = function () {
     cards.forEach(function (item) {
@@ -28,7 +69,8 @@ let filterCards = function () {
         if ((longItemDate < longDate1) ||
             (longItemDate > longDate2) ||
             (item.age < age) ||
-            ((item.time.substr(0, 2) < time_start) || (item.time.substr(0, 2) > time_end))) {
+            ((item.time.substr(0, 2) < time_start) || (item.time.substr(0, 2) > time_end)) ||
+            !isInRange(item)) {
             $("#" + item.id).hide();
         } else {
             $("#" + item.id).show();
@@ -68,6 +110,21 @@ let filterTime = function (t1, t2) {
     filterCards();
 };
 
+
+/*
+* Adds color to the selected location filter
+*/
+var checkboxClick = function (event) {
+    var target = event.currentTarget;
+    let parent = target.parentElement;
+
+    parent.setAttribute("style", "background-color: var(--color-dark-red)");
+
+    $("#location-filter").text("<" + target.value + "km");
+    range = target.value;
+    filterCards();
+};
+
 /*
 * Stops the dropdown from disappearing when clicking inside the dropdown menu
 */
@@ -87,6 +144,14 @@ let initDropdown = function () {
 */
 let initLocationCheckboxes = function () {
     var checkboxes = $(".btn-group-toggle label input");
+
+    navigator.geolocation.getCurrentPosition(function (position) {
+        user_location = {"lat": position.coords.latitude, "lng": position.coords.longitude}
+    }, function (error) {
+        alert('Please accept location services in order to use dog-date');
+        user_location = null;
+    });
+
     checkboxes.click(function (event) {
         $('label.btn.tag-btn.btn-lg').each(function () {
             this.setAttribute("style", "");
@@ -96,26 +161,11 @@ let initLocationCheckboxes = function () {
 };
 
 /*
-* Adds color to the selected location filter
-*/
-var checkboxClick = function (event) {
-    var target = event.currentTarget;
-    let parent = target.parentElement;
-
-    parent.setAttribute("style", "background-color: var(--color-dark-red)");
-
-    $("#location-filter").text("<" + target.value + "km");
-
-};
-
-/*
 * Updates values when dragging the age slider
 */
 let initAgeSlider = function () {
     let slider = document.getElementById("ageSlider");
     let output = document.getElementById("ageButtonText");
-
-    output.innerHTML = slider.value; // Display the default slider value
 
     // Update the current slider value
     slider.oninput = function () {
@@ -143,10 +193,6 @@ let initTimeSlider = function () {
             filterTime(ui.values[0], ui.values[1]);
         }
     });
-
-    $timeText.val($timeSlider.slider("values", 0) +
-        ":00 - " + $timeSlider.slider("values", 1) + ":00");
-    $timeButtonText.text($timeText.val());
 };
 
 /*
@@ -178,14 +224,16 @@ let initStickyFilter = function () {
 * Initializes the date picker
 */
 let initDateFilter = function () {
+    let dateFilter = $(DATE_FILTER_SELECTOR);
+
     var picker = new Lightpick({
-        field: document.getElementById('date-filter'),
+        field: dateFilter[0],
         repick: true,
         singleDate: false,
-        startDate: moment().startOf('month').add(7, 'day'),
-        endDate: moment().endOf('month').subtract(7, 'day'),
         onSelect: function (start, end) {
             filterDate(start, end);
         }
     });
+
+    dateFilter.val("Any");
 };
