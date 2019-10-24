@@ -15,6 +15,8 @@ let LOCATION_INPUT_SELECTOR = '#location';
 let UPLOADED_IMAGE_SELECTOR = '#uploadedImage';
 let DATE_FILTER_SELECTOR = '#date-filter';
 let CONTAINER_CARD_SELECTOR = ".container-card";
+let LOGIN_RESPONSE_SELECTOR = "#login-response";
+let REGISTER_RESPONSE_SELECTOR = "#register-response";
 
 
 // Variables
@@ -130,6 +132,7 @@ let uploadCard = function (data) {
         data.latlng = latlng;
         cardDS.add(data.emailAddress, data, function () {
             addCard(data);
+            cards.concat(data);
         });
     });
 
@@ -309,6 +312,21 @@ function addCard(data) {
     $gridLoc.append($spanLoc);
     $grid.append($iconLoc);
     $grid.append($gridLoc);
+
+    var $iconDist = $("<i></i>", {
+        "class": "fas fa-road"
+    });
+    var $gridDist = $("<a></a>", {
+        "class": "card-distance card-grid-wide"
+    });
+    var $spanDist = $("<span></span>", {
+        "class": "nav-text",
+        "data-card": "location"
+    });
+    $spanDist.append(getDistance(data.latlng, user_location).toPrecision(2) + " km");
+    $gridDist.append($spanDist);
+    $grid.append($iconDist);
+    $grid.append($gridDist);
 
     var $button = $("<button></button>", {
         "class": "btn btn-primary btn-more",

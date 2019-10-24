@@ -39,11 +39,11 @@ let getDistance = function (coord1, coord2) {
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
     var d = R * c;
-    return d < range;
+    return d;
 };
 
 let isInRange = function (item) {
-    return getDistance(item.latlng, user_location)
+    return getDistance(item.latlng, user_location) < range;
 };
 
 let filterCards = function () {
