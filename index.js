@@ -20,7 +20,6 @@ var server = http.createServer(function (req, res) {
     fs.readFile(filePath, function (err, data) {
         if (err) {
             handleError(err, res);
-
         } else {
             res.setHeader('Content-Type', mime.getType(filePath));
             res.end(data);

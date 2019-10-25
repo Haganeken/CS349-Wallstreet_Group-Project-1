@@ -137,13 +137,14 @@
     <!-- Sortbar -->
     <div class="sticky-bottom-left">
         <div class="filter-bar sort-bar col-md-12" id="sortbar">
+            <h5 class="sort-text">Sort By: </h5>
             <div class="dropdown">
                 <button aria-expanded="false" aria-haspopup="true" class="sort-text btn dropdown-toggle"
                         data-toggle="dropdown"
                         id="sortBy" type="button">
-                    Sort By: <span id="sortByText">Date</span>
+                    <span id="sortByText">Any</span>
                 </button>
-                <div aria-labelledby="sortBy" class="dropdown-menu p-0">
+                <div aria-labelledby="sortBy" class="dropdown-menu p-0" id="sortByDropdown">
                     <div class="d-flex flex-column btn-group-toggle" data-toggle="buttons">
                         <label class="btn tag-btn btn-lg">
                             <input autocomplete="off" id="sortAge" name="sortAge" type="radio" value="Age">Age</input>
@@ -153,8 +154,8 @@
                                    value="Time">Time</input>
                         </label>
                         <label class="btn tag-btn btn-lg">
-                            <input autocomplete="off" id="sortLocation" name="sortLocation" type="radio"
-                                   value="Location">Distance</input>
+                            <input autocomplete="off" id="sortDistance" name="sortDistance" type="radio"
+                                   value="Distance">Distance</input>
                         </label>
                         <label class="btn tag-btn btn-lg">
                             <input autocomplete="off" id="sortDate" name="sortDate" type="radio"
@@ -169,9 +170,9 @@
                 <button aria-expanded="false" aria-haspopup="true" class="sort-text btn dropdown-toggle"
                         data-toggle="dropdown"
                         id="sortType" type="button">
-                    Type: <span id="sortTypeText">Asc</span>
+                    <span id="sortTypeText">Asc</span>
                 </button>
-                <div aria-labelledby="sortType" class="dropdown-menu p-0">
+                <div aria-labelledby="sortType" class="dropdown-menu p-0" id="sortTypeDropdown">
                     <div class="d-flex flex-column btn-group-toggle" data-toggle="buttons">
                         <label class="btn tag-btn btn-lg">
                             <input autocomplete="off" id="sortAsc" name="sortAsc" type="radio" value="Asc">Asc</input>
@@ -380,7 +381,6 @@
 </div>
 
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script charset="utf-8" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script crossorigin="anonymous" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>

@@ -51,6 +51,7 @@ $(document).ready(function () {
     $(SIGNOUT_NAV_CONTAINER_SELECTOR).hide();
 
     initFilterBar();
+    initSortCheckboxes();
 
     cardForm.addSubmitHandler(getSubmitAction);
     loginForm.addSubmitHandler(authUser);
@@ -95,16 +96,77 @@ $(document).ready(function () {
     })
 });
 
-let initSortCheckboxes = function () {
-    var checkboxes = $("#filterbar .btn-group-toggle label input");
+function timeStringToFloat(time) {
+    var hoursMinutes = time.split(/[.:]/);
+    var hours = parseInt(hoursMinutes[0], 10);
+    var minutes = hoursMinutes[1] ? parseInt(hoursMinutes[1], 10) : 0;
+    return hours + minutes / 60;
+}
 
-    checkboxes.click(function (event) {
-        $('#filterbar label.btn.tag-btn.btn-lg').each(function () {
+function sortCards(by, order) {
+    $(CONTAINER_CARD_SELECTOR).empty();
+
+    var sortCards = cards;
+    if (by === "Date") {
+        sortCards = sortCards.sort((item1, item2) => {
+            let sortVal = Date.parse(item1.date) - Date.parse(item2.date);
+            return order === "Desc" ? -sortVal : sortVal;
+        });
+    } else if (by === "Distance") {
+        sortCards = sortCards.sort((item1, item2) => {
+            let sortVal = getDistance(user_location, item1.latlng) - getDistance(user_location, item2.latlng);
+            return order === "Desc" ? -sortVal : sortVal;
+        });
+    } else if (by === "Time") {
+        sortCards = sortCards.sort((item1, item2) => {
+            let sortVal = timeStringToFloat(item1.time) - timeStringToFloat(item2.time);
+            return order === "Desc" ? -sortVal : sortVal;
+
+        });
+    } else if (by === "Age") {
+        sortCards = sortCards.sort((item1, item2) => {
+            let sortVal = item1.age - item2.age;
+            return order === "Desc" ? -sortVal : sortVal;
+        });
+    }
+
+    sortCards.forEach(data => addCard(data));
+
+}
+
+function getSortVariables(event) {
+    var target = event.currentTarget;
+    let parent = target.parentElement;
+    parent.setAttribute("style", "background-color: var(--color-dark-red)");
+
+    var by = $("#sortByText").text();
+    var order = $("#sortTypeText").text();
+
+    sortCards(by, order);
+}
+
+function initSortCheckboxes() {
+    var checkboxesSort = $("#sortByDropdown label input");
+    var checkboxesType = $("#sortTypeDropdown label input");
+
+    checkboxesSort.click(function (event) {
+        $('#sortByDropdown label.btn.tag-btn.btn-lg').each(function () {
             this.setAttribute("style", "");
         });
-        locationClick(event);
+
+        $("#sortByText").text(event.target.value);
+        getSortVariables(event);
     });
-};
+
+    checkboxesType.click(function (event) {
+        $('#sortTypeDropdown label.btn.tag-btn.btn-lg').each(function () {
+            this.setAttribute("style", "");
+        });
+
+        $("#sortTypeText").text(event.target.value);
+        getSortVariables(event);
+    });
+}
 
 
 /*
@@ -127,7 +189,7 @@ let getSubmitAction = function (data) {
         if (btnText === "Create Event") {
             uploadCard(data);
         } else if (btnText === "Save Changes") {
-            editCard(data);
+            updateCard(data);
         }
     });
     $("#card-modal").modal('hide');

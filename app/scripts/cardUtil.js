@@ -118,7 +118,7 @@ function removeCard() {
     $("#" + cardId).remove();
 }
 
-function editCard(data) {
+function updateCard(data) {
     cardDS.update(data.cardId, data, function (response) {
         let cardData = $("#" + response.id + " " + CARD_DATA_SELECTOR);
 
@@ -175,7 +175,7 @@ let previewImage = function (input) {
  */
 function addCard(data) {
     var $card = $("<div></div>", {
-        "id": cardDS.emailMap[data.emailAddress],
+        "id": data.id,
         "class": "card col-md-3"
     });
 

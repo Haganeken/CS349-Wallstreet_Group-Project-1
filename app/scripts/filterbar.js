@@ -71,7 +71,7 @@ let filterCards = function () {
     });
 
     let containerCard = $(CONTAINER_CARD_SELECTOR);
-    if (cardsVisible == 0) {
+    if (cardsVisible === 0) {
         if (!$(".container-card > p")[0]) {
             containerCard.append("<p> No cards to display... </p>");
         }
@@ -112,7 +112,6 @@ let filterTime = function (t1, t2) {
     time_end = t2;
     filterCards();
 };
-
 
 /*
 * Adds color to the selected location filter
