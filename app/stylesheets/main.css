@@ -92,7 +92,7 @@ nav {
 }
 
 .card-body {
-    font-size: 14px;
+    font-size: 18px;
     padding: .75rem;
     position: relative;
 }
@@ -103,7 +103,7 @@ nav {
 
 .card-desc {
     font-weight: 100;
-    font-size: 15px;
+    font-size: 18px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -116,6 +116,7 @@ nav {
     padding-bottom: 2rem;
     align-items: center;
     text-align: center;
+    font-size: 16px;
 }
 
 .card-grid-wide {
@@ -221,6 +222,7 @@ nav {
 
 .card-body .btn {
     margin-top: 20px;
+    font-size: 20px;
 }
 
 .btn-group-toggle > .tag-btn > input[type="radio"] {

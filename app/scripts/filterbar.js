@@ -117,7 +117,7 @@ let filterTime = function (t1, t2) {
 /*
 * Adds color to the selected location filter
 */
-var checkboxClick = function (event) {
+var locationClick = function (event) {
     var target = event.currentTarget;
     let parent = target.parentElement;
 
@@ -152,7 +152,7 @@ let initLocationCheckboxes = function () {
         $('#filterbar label.btn.tag-btn.btn-lg').each(function () {
             this.setAttribute("style", "");
         });
-        checkboxClick(event);
+        locationClick(event);
     });
 };
 
