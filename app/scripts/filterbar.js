@@ -6,7 +6,7 @@ function initFilterBar() {
     initTimeSlider();
     initStickyFilter();
     initDropdown();
-    initLocationCheckboxes();
+    initDistanceSlider();
     initDateFilter();
 }
 
@@ -99,8 +99,8 @@ let filterDate = function (start, end) {
 /*
 * Filters the cards by age
  */
-let filterAge = function (age_val) {
-    age = age_val;
+let filterAge = function (val) {
+    age = val;
     filterCards();
 };
 
@@ -116,14 +116,8 @@ let filterTime = function (t1, t2) {
 /*
 * Adds color to the selected location filter
 */
-var locationClick = function (event) {
-    var target = event.currentTarget;
-    let parent = target.parentElement;
-
-    parent.setAttribute("style", "background-color: var(--color-dark-red)");
-
-    $("#location-filter").text("<" + target.value + "km");
-    range = target.value;
+let filterDistance = function (val) {
+    range = val;
     filterCards();
 };
 
@@ -144,15 +138,15 @@ let initDropdown = function () {
 /*
 * Adds a click event to all location filters
 */
-let initLocationCheckboxes = function () {
-    var checkboxes = $("#filterbar .btn-group-toggle label input");
+let initDistanceSlider = function () {
+    let slider = document.getElementById("distanceSlider");
+    let output = document.getElementById("distanceText");
 
-    checkboxes.click(function (event) {
-        $('#filterbar label.btn.tag-btn.btn-lg').each(function () {
-            this.setAttribute("style", "");
-        });
-        locationClick(event);
-    });
+    // Update the current slider value
+    slider.oninput = function () {
+        output.innerHTML = "<" + this.value + " km";
+        filterDistance(this.value);
+    };
 };
 
 /*
@@ -164,7 +158,7 @@ let initAgeSlider = function () {
 
     // Update the current slider value
     slider.oninput = function () {
-        output.innerHTML = this.value;
+        output.innerHTML = "&#8805 " + this.value;
         filterAge(this.value);
     };
 };

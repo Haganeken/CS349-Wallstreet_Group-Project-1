@@ -63,7 +63,7 @@
         <div class="dropdown">
             <button aria-expanded="false" aria-haspopup="true" class="btn dropdown-toggle" data-toggle="dropdown"
                     id="filterAge" type="button">
-                Age: <span id="ageButtonText">Any</span>+
+                Age: <span id="ageButtonText">Any</span>
             </button>
             <div aria-labelledby="filterAge" class="dropdown-menu">
                 <input class="age-slider" id="ageSlider" max="15" min="1" type="range" value="1">
@@ -85,36 +85,11 @@
         <!--        Location filter -->
         <div class="dropdown">
             <button aria-expanded="false" aria-haspopup="true" class="btn dropdown-toggle" data-toggle="dropdown"
-                    id="filterLocation" type="button">
-                Distance: <span id="location-filter">Any</span>
+                    id="filterDistance" type="button">
+                Distance: <span id="distanceText">Any</span>
             </button>
-            <div aria-labelledby="filterLocation" class="dropdown-menu p-0">
-                <div class="d-flex flex-column btn-group-toggle" data-toggle="buttons">
-                    <label class="btn tag-btn btn-lg">
-                        <input autocomplete="off" id="location-1" name="location-filter" type="radio" value="1"><1
-                        Km</input>
-                    </label>
-                    <label class="btn tag-btn btn-lg">
-                        <input autocomplete="off" id="location-3" name="location-filter" type="radio" value="3"><3
-                        Km</input>
-                    </label>
-                    <label class="btn tag-btn btn-lg">
-                        <input autocomplete="off" checked id="location-5" name="location-filter" type="radio" value="5"><5
-                        Km</input>
-                    </label>
-                    <label class="btn tag-btn btn-lg">
-                        <input autocomplete="off" id="location-10" name="location-filter" type="radio" value="10"><10
-                        Km</input>
-                    </label>
-                    <label class="btn tag-btn btn-lg">
-                        <input autocomplete="off" id="location-25" name="location-filter" type="radio" value="25"><25
-                        Km</input>
-                    </label>
-                    <label class="btn tag-btn btn-lg">
-                        <input autocomplete="off" id="location-100" name="location-filter" type="radio" value="100"><100
-                        Km</input>
-                    </label>
-                </div>
+            <div aria-labelledby="filterDistance" class="dropdown-menu">
+                <input class="age-slider" id="distanceSlider" max="100" min="1" type="range" value="25">
             </div>
         </div>
         <div class="vline"></div>
