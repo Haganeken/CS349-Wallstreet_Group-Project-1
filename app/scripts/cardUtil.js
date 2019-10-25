@@ -1,4 +1,7 @@
-function initMap() {
+/**
+ * Initializes the google API elements: map and autocomplete
+ */
+function initGoogleAPI() {
     map = new GMap(MAP_SELECTOR);
     autocomplete = new Autocomplete(LOCATION_INPUT_SELECTOR);
 
@@ -11,7 +14,6 @@ function initMap() {
             let coords = {lat: latitude, lng: longitude};
 
             map.moveMarker(coords);
-
             autocomplete.setAddress(coords);
         });
 
@@ -25,14 +27,16 @@ function initMap() {
             };
 
             map.moveMarker(coords);
-
-            console.log(place);
         });
     });
 }
 
-function addEditButton(card) {
-    let $card = $('#' + card.id);
+/**
+ * Adds edit button to a card
+ * @param {number} id Id of the card
+ */
+function addEditButton(id) {
+    let $card = $('#' + id);
     let $icon = $("<i></i>", {
         "class": "fas fa-pencil-alt edit-icon"
     });
@@ -40,7 +44,7 @@ function addEditButton(card) {
         "class": "edit-text"
     });
     let $bar = $("<button></button>", {
-        "class": "edit-bar",
+        "class": "edit-button",
         "type": "button",
         "onclick": "editCardModal(this)"
     });
@@ -50,7 +54,11 @@ function addEditButton(card) {
     $card.append($bar);
 }
 
-function editCardModal(card) {
+/**
+ * Restyles the card modal for editing
+ * @param {Element} button The clicked edit button
+ */
+function editCardModal(button) {
     let $cardModal = $("#card-modal .form-group");
     $("#image").attr('required', false);
 
@@ -67,10 +75,10 @@ function editCardModal(card) {
     $buttons.children()[1].innerHTML = "Discard Changes";
     $buttons.children()[2].innerHTML = "Save Changes";
 
-    let cardId = card.parentElement.id;
+    let cardId = button.parentElement.id;
     $("#submit").data().cardId = cardId;
 
-    cardDS.get(cardId, function (response) {
+    cardDS.get(cardId.toString(), function (response) {
         $(UPLOADED_IMAGE_SELECTOR).attr('src', response.image);
         $cardModal[0].children[1].value = response.name;
         $cardModal[1].children[1].value = response.age;
@@ -90,18 +98,28 @@ function editCardModal(card) {
     });
 }
 
+/**
+ * Adds edit buttons to all cards associated with the current user
+ */
 function displayEditButtons() {
     $(CARDS_SELECTOR).each(function (index, card) {
         if (cardDS.idMap[card.id] === currentUser) {
-            addEditButton(card);
+            addEditButton(card.id);
         }
     })
 }
 
+/**
+ * Removes all edit buttons
+ */
 function hideEditButtons() {
-    $(".edit-bar").remove();
+    $(".edit-button").remove();
 }
 
+/**
+ * Uploads a card to the database. Filters cards on success
+ * @param {object} data Form data with fields: [age, breed, date, details, location, name, time, image, latlng]
+ */
 function uploadCard(data) {
     data.emailAddress = currentUser;
 
@@ -112,12 +130,19 @@ function uploadCard(data) {
     });
 }
 
+/**
+ * Removes a card from the database on click of delete button
+ */
 function removeCard() {
     let cardId = $("#submit").data().cardId;
     cardDS.remove(cardId);
     $("#" + cardId).remove();
 }
 
+/**
+ * Updates card in database and assigns new values to the card on success
+ * @param {object} data Form data with fields: [cardId, age, breed, date, details, location, name, time, image, latlng]
+ */
 function updateCard(data) {
     cardDS.update(data.cardId, data, function (response) {
         let cardData = $("#" + response.id + " " + CARD_DATA_SELECTOR);
@@ -137,6 +162,9 @@ function updateCard(data) {
     })
 }
 
+/**
+ * Resets card modal to default values
+ */
 function resetCardModal() {
     let $cardModal = $("#card-modal .form-group");
     $(UPLOADED_IMAGE_SELECTOR).attr('src', 'img/placeholder.jpg');
@@ -153,10 +181,10 @@ function resetCardModal() {
 }
 
 
-/*
+/**
 * Previews the uploaded image when adding a card
 * Uses base64 format to store the img
-* @param input The input element in the DOM
+ * @param {Element} input The input element in the DOM
  */
 let previewImage = function (input) {
     if (input.files && input.files[0]) {
@@ -170,8 +198,9 @@ let previewImage = function (input) {
     }
 };
 
-/*
-* Adds card from form data
+/**
+ * Adds card from server response
+ * @param {object} data Server response data with fields: [id, age, breed, date, details, location, name, time, image, latlng]
  */
 function addCard(data) {
     var $card = $("<div></div>", {

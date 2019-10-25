@@ -3,9 +3,10 @@
     var App = window.App || {};
     var $ = window.jQuery;
 
-    /*
-    * FormHandler constructor
-    */
+    /**
+     * FormHandler constructor
+     * @param {string} selector jQuery selector for the form element
+     */
     function FormHandler(selector) {
         if (!selector) {
             throw new Error("No selector provided");
@@ -18,9 +19,10 @@
         }
     }
 
-    /*
-    * Adds a callback with form data when a form is submitted
-    */
+    /**
+     * Adds a callback with form data when a form is submitted
+     * @param {function} fn Function to execute when form is submitted
+     */
     FormHandler.prototype.addSubmitHandler = function (fn) {
         this.$formElement.on("submit", function (event) {
             event.preventDefault();

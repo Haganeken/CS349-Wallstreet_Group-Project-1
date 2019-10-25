@@ -160,7 +160,7 @@ nav {
   width: 100%;
 }
 
-.edit-bar {
+.edit-button {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -189,7 +189,7 @@ nav {
     font-weight: 700;
 }
 
-.edit-bar:hover {
+.edit-button:hover {
     opacity: 1;
 }
 

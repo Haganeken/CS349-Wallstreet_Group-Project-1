@@ -47,6 +47,9 @@ let registerForm = new Formhandler(REGISTER_SELECTOR);
 var map;
 var autocomplete;
 
+/**
+ * Initializes website when elements are loaded
+ */
 $(document).ready(function () {
     $(SIGNOUT_NAV_CONTAINER_SELECTOR).hide();
 
@@ -59,23 +62,18 @@ $(document).ready(function () {
 
     // Populate cards on init
     cardDS.getAll(function (response) {
-        response.forEach(function (item) {
-            cardDS.emailMap[item.emailAddress] = item.id;
-            cardDS.idMap[item.id] = item.emailAddress;
-            item.date = item.date.substring(0, 10);
-            cards = cards.concat(item);
-
-            if (!user_location) {
-                getUserLocation(function () {
-                    addCard(item);
-                });
-            } else {
+        getUserLocation(function () {
+            response.forEach(function (item) {
+                cardDS.emailMap[item.emailAddress] = item.id;
+                cardDS.idMap[item.id] = item.emailAddress;
+                item.date = item.date.substring(0, 10);
+                cards = cards.concat(item);
                 addCard(item);
-            }
-        });
+            });
 
-        cardsVisible = cards.length;
-        filterCards();
+            cardsVisible = cards.length;
+            filterCards();
+        });
     });
 
     // Get users on init
@@ -86,6 +84,7 @@ $(document).ready(function () {
         })
     });
 
+    // Reset card modal when hidden
     $("#card-modal").on('hidden.bs.modal', function () {
         let $buttons = $("#card-modal .modal-footer");
         $("#deleteBtn").remove();
@@ -96,6 +95,10 @@ $(document).ready(function () {
     })
 });
 
+/**
+ * Converts a time string to float
+ * @param {string} time Time in format HH:MM
+ */
 function timeStringToFloat(time) {
     var hoursMinutes = time.split(/[.:]/);
     var hours = parseInt(hoursMinutes[0], 10);
@@ -103,6 +106,11 @@ function timeStringToFloat(time) {
     return hours + minutes / 60;
 }
 
+/**
+ * Sorts cards by given values from the sort bar
+ * @param {string} by Value to be sorted by
+ * @param {string} order 'Asc' or 'Desc' order
+ */
 function sortCards(by, order) {
     $(CONTAINER_CARD_SELECTOR).empty();
 
@@ -131,9 +139,12 @@ function sortCards(by, order) {
     }
 
     sortCards.forEach(data => addCard(data));
-
 }
 
+/**
+ * Highlights selected variable and calls sortCards(by, order) with currently displayed values.
+ * @param {event} event ClickEvent
+ */
 function getSortVariables(event) {
     var target = event.currentTarget;
     let parent = target.parentElement;
@@ -145,6 +156,9 @@ function getSortVariables(event) {
     sortCards(by, order);
 }
 
+/**
+ * Initializes event listeners on dropdown menu clicks
+ */
 function initSortCheckboxes() {
     var checkboxesSort = $("#sortByDropdown label input");
     var checkboxesType = $("#sortTypeDropdown label input");
@@ -169,9 +183,9 @@ function initSortCheckboxes() {
 }
 
 
-/*
-* Uploads a card to the server
-* @param data The data from the form
+/**
+ * Uploads a card to the server
+ * @param {object} data Form data with fields: [age, breed, date, details, location, name, time]
  */
 let getSubmitAction = function (data) {
     let $submitBtn = $("#submit");
@@ -196,8 +210,8 @@ let getSubmitAction = function (data) {
 };
 
 
-/*
-* Opens the add card form if the user is logged in
+/**
+ * Opens the add card form if the user is logged in
  */
 let openCardForm = function () {
     if (!userLoggedIn) {
@@ -208,9 +222,9 @@ let openCardForm = function () {
     $("#card-modal").modal('show');
 };
 
-/*
-* Opens more-modal and moves data from cards to the modal, if the user is logged in
-* @param element The see more button.
+/**
+ * Opens more-modal and moves data from cards to the modal, if the user is logged in
+ * @param {element} element The see more button
  */
 let showMore = function (element) {
     if (!userLoggedIn) {
@@ -238,6 +252,7 @@ let showMore = function (element) {
         "?subject=Dog-date appointment&body=Hello, let's arrange a dog-date!");
 };
 
+// Thank you Gavin
 
 //*** This code is copyright 2002-2016 by Gavin Kistner, !@phrogz.net
 //*** It is covered under the license viewable at http://phrogz.net/JS/_ReuseLicense.txt

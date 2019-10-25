@@ -1,4 +1,4 @@
-/*
+/**
 * Initializes the sub-components of the filter bar
 */
 function initFilterBar() {
@@ -22,9 +22,11 @@ var user_location;
 var range = 100;
 var cardsVisible;
 
-/*
-* Uses the 'haversine' formula to calculate the great-circle distance between two points.
-* Returns the distance in kilometres
+/**
+ * Uses the 'haversine' formula to calculate the great-circle distance between two points.
+ * @param {object} coord1 First coordinates with fields: 'lat' and 'lng' and integer values
+ * @param {object} coord2 Second coordinates with fields: 'lat' and 'lng' and integer values
+ * @returns {number} Distance in kilometers
  */
 let getDistance = function (coord1, coord2) {
     var R = 6371; // kilometres
@@ -42,10 +44,18 @@ let getDistance = function (coord1, coord2) {
     return d;
 };
 
-let isInRange = function (item) {
-    return getDistance(item.latlng, user_location) < range;
+/**
+ * Checks if card is in range of user
+ * @param {object} coords Coordinates with fields: 'lat' and 'lng' and integer values
+ * @returns {boolean} True if user is in range of the coordinates
+ */
+let isInRange = function (coords) {
+    return getDistance(coords, user_location) < range;
 };
 
+/**
+ * Filters cards by hiding or showing them. Checks all available filters. Displays message if filter is too strict.
+ */
 let filterCards = function () {
     cards.forEach(function (item) {
         let longItemDate = Date.parse(item.date);
@@ -57,7 +67,7 @@ let filterCards = function () {
             (longItemDate > longDate2) ||
             (item.age < age) ||
             ((item.time.substr(0, 2) < time_start) || (item.time.substr(0, 2) > time_end)) ||
-            (!isInRange(item))) {
+            (!isInRange(item.latlng))) {
             if (card[0].style.display !== "none") {
                 card.hide();
                 cardsVisible--;
@@ -81,8 +91,10 @@ let filterCards = function () {
 };
 
 
-/*
-* Filters the cards by date
+/**
+ * Filters cards by date
+ * @param {object} start Moment object
+ * @param {object} end Moment object
  */
 let filterDate = function (start, end) {
     date_start = start.format('YYYY-MM-DD');
@@ -96,16 +108,19 @@ let filterDate = function (start, end) {
     document.getElementById('date-filter').value = str;
 };
 
-/*
-* Filters the cards by age
+/**
+ * Filters cards by age
+ * @param {number} val Age value
  */
 let filterAge = function (val) {
     age = val;
     filterCards();
 };
 
-/*
-* Filters the cards by time
+/**
+ * Filters cards by time
+ * @param {number} t1 Time in hours (HH)
+ * @param {number} t2 Time in hours (HH)
  */
 let filterTime = function (t1, t2) {
     time_start = t1;
@@ -113,17 +128,18 @@ let filterTime = function (t1, t2) {
     filterCards();
 };
 
-/*
-* Adds color to the selected location filter
-*/
+/**
+ * Adds color to the selected location filter
+ * @param {number} val Range in kilometers
+ */
 let filterDistance = function (val) {
     range = val;
     filterCards();
 };
 
-/*
-* Stops the dropdown from disappearing when clicking inside the dropdown menu
-*/
+/**
+ * Stops the dropdown from disappearing when clicking inside the dropdown menu
+ */
 let initDropdown = function () {
     $('.dropdown-menu').on("click.bs.dropdown", function (event) {
         event.stopPropagation();
@@ -135,9 +151,9 @@ let initDropdown = function () {
     });
 };
 
-/*
-* Adds a click event to all location filters
-*/
+/**
+ * Adds a click event to all location filters
+ */
 let initDistanceSlider = function () {
     let slider = document.getElementById("distanceSlider");
     let output = document.getElementById("distanceText");
@@ -149,9 +165,9 @@ let initDistanceSlider = function () {
     };
 };
 
-/*
-* Updates values when dragging the age slider
-*/
+/**
+ * Updates values when dragging the age slider
+ */
 let initAgeSlider = function () {
     let slider = document.getElementById("ageSlider");
     let output = document.getElementById("ageButtonText");
@@ -163,9 +179,9 @@ let initAgeSlider = function () {
     };
 };
 
-/*
-* Initializes the time range-slider and updates values when dragging the range-slider
-*/
+/**
+ * Initializes the time range-slider and updates values when dragging the range-slider
+ */
 let initTimeSlider = function () {
     let $timeSlider = $("#timeSlider");
     let $timeText = $("#timeText");
@@ -184,9 +200,9 @@ let initTimeSlider = function () {
     });
 };
 
-/*
-* Initializes the date picker
-*/
+/**
+ * Initializes the date picker
+ */
 let initDateFilter = function () {
     let dateFilter = $(DATE_FILTER_SELECTOR);
 
@@ -202,9 +218,9 @@ let initDateFilter = function () {
     dateFilter.val("Date");
 };
 
-/*
-* Sticks the filterbar to the top when scrolled out of view
-*/
+/**
+ * Sticks the filterbar to the top when scrolled out of view
+ */
 let initStickyFilter = function () {
     window.onscroll = function () {
         toggleSticky()

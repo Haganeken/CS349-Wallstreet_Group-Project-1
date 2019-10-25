@@ -1,12 +1,20 @@
-# Wallstreet-Project-1
-CPSC 349 Project 1, Group: Wallstreet
+# Dog-Date
+> CPSC 349 Project 1
+>
+> Group: Wallstreet
+
+Dog date is a web application which allows users to plan dog dates with each other and their dogs
 
 Members:
+- Abhyuday Vatsavai (Group Leader)
+- Ken Tat
+- Jenny Reinhard
+- Simon Moe Soerensen
 
-Abhyuday Vatsavai (Group Leader)
+#Requirements
+- Node.js (>=12.10.x)
+- npm (>=6.11.x)
+- deployd (>=1.2.x)
 
-Ken Tat
-
-Jenny Reinhard
-
-Simon Soerenson
+# Front page
+!["Front page"](resources/front-page.png)

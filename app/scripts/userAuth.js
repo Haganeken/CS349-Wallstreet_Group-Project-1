@@ -1,5 +1,6 @@
-/*
-* Registers user in DB
+/**
+ * Registers user in DB
+ * @param {object} data Data with fields: [email, password, passwordCheck]
  */
 function registerUser(data) {
     let $response = $(REGISTER_RESPONSE_SELECTOR);
@@ -11,11 +12,13 @@ function registerUser(data) {
         delete data.passwordCheck;
         userDS.add(data.email, data);
         $(REGISTER_MODAL_SELECTOR).modal('hide');
-        toggleLogin(data);
+        toggleLogin(data.email);
     }
 }
-/*
-* Authenticates a user and changes UI accordingly
+
+/**
+ * Authenticates a user and changes UI accordingly
+ * @param {object} data Data with fields: [email, password]
  */
 function authUser(data) {
     let id = userDS.emailMap[data.email];
@@ -31,14 +34,16 @@ function authUser(data) {
         } else {
             $response.text(null);
             $(LOGIN_MODAL_SELECTOR).modal('hide');
-            toggleLogin(data);
+            toggleLogin(data.email);
         }
     })
 }
-/*
-* Toggles login state dependant on current state
+
+/**
+ * Toggles login state dependant on current state
+ * @param {string} email User email
  */
-function toggleLogin(data) {
+function toggleLogin(email) {
     if (userLoggedIn) {
         $(LOGIN_NAV_CONTAINER_SELECTOR).show();
         $(SIGNOUT_NAV_CONTAINER_SELECTOR).hide();
@@ -47,7 +52,7 @@ function toggleLogin(data) {
     } else {
         $(LOGIN_NAV_CONTAINER_SELECTOR).hide();
         $(SIGNOUT_NAV_CONTAINER_SELECTOR).show();
-        currentUser = data.email;
+        currentUser = email;
         $(WELCOME_MESSAGE_SELECTOR).text(currentUser);
         displayEditButtons();
     }
