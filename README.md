@@ -11,12 +11,12 @@ Members:
 - Jenny Reinhard
 - Simon Moe Soerensen
 
-#Requirements
+# Requirements
 - Node.js (>=12.10.x)
 - npm (>=6.11.x)
 - deployd (>=1.2.x)
 
-#Running the server
+# Running the server
 To run the server, open a terminal and navigate to dog-date-backend and run the following command 
 
 `dpd ` 
