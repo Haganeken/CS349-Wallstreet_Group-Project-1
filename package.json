@@ -14,7 +14,7 @@
     "nodemon": "^1.19.3"
   },
   "dependencies": {
-    "mime": "^2.4.4",
-    "deployd-cli": "latest"
+    "deployd-cli": "latest",
+    "mime": "^2.4.4"
   }
 }
